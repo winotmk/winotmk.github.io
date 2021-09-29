@@ -20,12 +20,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="##起因因为疫情严重不得不在家办公，无奈TeamViewer很多软件打开都是白屏，稳定性也很是不爽，所以结合现有资源做了个内网穿透，将公司的电脑远程登陆地址映射到公网上，在家用windows自带的远程桌面连接，实测效果比TeamViewer好得多。 之前配NAS的时候，家里整过光猫，改成路由拨号所以有公网ip，也在nas上运行了ddns程序，另外这台群晖nas不出意外会一直开机（因为跑了文件存储和">
+<meta name="description" content="起因因为疫情严重不得不在家办公，无奈TeamViewer很多软件打开都是白屏，稳定性也很是不爽，所以结合现有资源做了个内网穿透，将公司的电脑远程登陆地址映射到公网上，在家用windows自带的远程桌面连接，实测效果比TeamViewer好得多。 之前配NAS的时候，家里整过光猫，改成路由拨号所以有公网ip，也在nas上运行了ddns程序，另外这台群晖nas不出意外会一直开机（因为跑了文件存储和日记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="WinNote">
+<meta property="og:title" content="内网穿透">
 <meta property="og:url" content="http://example.com/2021/09/29/nas%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/index.html">
 <meta property="og:site_name" content="WinNote">
-<meta property="og:description" content="##起因因为疫情严重不得不在家办公，无奈TeamViewer很多软件打开都是白屏，稳定性也很是不爽，所以结合现有资源做了个内网穿透，将公司的电脑远程登陆地址映射到公网上，在家用windows自带的远程桌面连接，实测效果比TeamViewer好得多。 之前配NAS的时候，家里整过光猫，改成路由拨号所以有公网ip，也在nas上运行了ddns程序，另外这台群晖nas不出意外会一直开机（因为跑了文件存储和">
+<meta property="og:description" content="起因因为疫情严重不得不在家办公，无奈TeamViewer很多软件打开都是白屏，稳定性也很是不爽，所以结合现有资源做了个内网穿透，将公司的电脑远程登陆地址映射到公网上，在家用windows自带的远程桌面连接，实测效果比TeamViewer好得多。 之前配NAS的时候，家里整过光猫，改成路由拨号所以有公网ip，也在nas上运行了ddns程序，另外这台群晖nas不出意外会一直开机（因为跑了文件存储和日记">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://www.winotmk.com/wp-content/uploads/2020/02/0000.png">
 <meta property="og:image" content="http://www.winotmk.com/wp-content/uploads/2020/02/000.png">
@@ -44,8 +44,8 @@
 <meta property="og:image" content="http://www.winotmk.com/wp-content/uploads/2020/02/13.png">
 <meta property="og:image" content="http://www.winotmk.com/wp-content/uploads/2020/02/14.png">
 <meta property="og:image" content="http://www.winotmk.com/wp-content/uploads/2020/02/15.png">
-<meta property="article:published_time" content="2021-09-29T05:22:12.349Z">
-<meta property="article:modified_time" content="2020-02-06T14:02:48.000Z">
+<meta property="article:published_time" content="2021-09-29T09:53:10.827Z">
+<meta property="article:modified_time" content="2021-09-29T09:53:09.000Z">
 <meta property="article:author" content="winotmk">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://www.winotmk.com/wp-content/uploads/2020/02/0000.png">
@@ -55,10 +55,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/09/29/nas%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/","path":"2021/09/29/nas内网穿透/","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/09/29/nas%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/","path":"2021/09/29/nas内网穿透/","title":"内网穿透"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title> | WinNote</title>
+<title>内网穿透 | WinNote</title>
   
 
   <script src="/js/third-party/analytics/baidu-analytics.js"></script>
@@ -114,7 +114,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -127,6 +127,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B5%B7%E5%9B%A0"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87"><span class="nav-number">2.</span> <span class="nav-text">前期准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NAS%E4%B8%8A%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-number">2.1.</span> <span class="nav-text">NAS上的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#winscp%E7%99%BB%E5%BD%95"><span class="nav-number">2.2.</span> <span class="nav-text">winscp登录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">服务端配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEfrps"><span class="nav-number">3.1.</span> <span class="nav-text">配置frps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8frps"><span class="nav-number">3.2.</span> <span class="nav-text">启动frps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E7%BE%A4%E6%99%96nas%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E8%BF%90%E8%A1%8Cfrps"><span class="nav-number">3.3.</span> <span class="nav-text">设置群晖nas开机自动运行frps</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2"><span class="nav-number">4.</span> <span class="nav-text">远程桌面</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -194,7 +195,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
+          内网穿透
         </h1>
 
         <div class="post-meta-container">
@@ -204,19 +205,13 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2021-09-29 13:22:12" itemprop="dateCreated datePublished" datetime="2021-09-29T13:22:12+08:00">2021-09-29</time>
+      <time title="创建时间：2021-09-29 17:53:10 / 修改时间：17:53:09" itemprop="dateCreated datePublished" datetime="2021-09-29T17:53:10+08:00">2021-09-29</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-02-06 22:02:48" itemprop="dateModified" datetime="2020-02-06T22:02:48+08:00">2020-02-06</time>
-      </span>
 
   
-    <span id="/2021/09/29/nas%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" class="post-meta-item leancloud_visitors" data-flag-title="" title="阅读次数">
+    <span id="/2021/09/29/nas%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" class="post-meta-item leancloud_visitors" data-flag-title="内网穿透" title="阅读次数">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -232,17 +227,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>##起因<br>因为疫情严重不得不在家办公，无奈TeamViewer很多软件打开都是白屏，稳定性也很是不爽，所以结合现有资源做了个内网穿透，将公司的电脑远程登陆地址映射到公网上，在家用windows自带的远程桌面连接，实测效果比TeamViewer好得多。</p>
+        <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>因为疫情严重不得不在家办公，无奈TeamViewer很多软件打开都是白屏，稳定性也很是不爽，所以结合现有资源做了个内网穿透，将公司的电脑远程登陆地址映射到公网上，在家用windows自带的远程桌面连接，实测效果比TeamViewer好得多。</p>
 <p>之前配NAS的时候，家里整过光猫，改成路由拨号所以有公网ip，也在nas上运行了ddns程序，另外这台群晖nas不出意外会一直开机（因为跑了文件存储和日记服务），这样一来就有现成的条件做内网穿透服务器了，搞起来~</p>
 <p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/0000.png"></p>
-<p>##前期准备</p>
-<ul>
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ul>
 <li>公司电脑开机,且打开TeamViewer，配好之前还得使它</li>
 <li>家里路由配好端口转发和ddns</li>
 <li>住处有电脑</li>
 </ul>
-<p>###NAS上的配置</p>
-<p>登录DSM（群晖的网页系统，很nb），开启SSH</p>
+<h3 id="NAS上的配置"><a href="#NAS上的配置" class="headerlink" title="NAS上的配置"></a>NAS上的配置</h3><p>登录DSM（群晖的网页系统，很nb），开启SSH</p>
 <p>默认是22端口</p>
 <p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/000.png"></p>
 <p>在路由上设置转发</p>
@@ -264,10 +257,8 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot //重启群晖</span><br></pre></td></tr></table></figure>
 
 <p>现在可以直接用root登录ssh了</p>
-<p>###winscp登录<br>用这个是因为我对linux指令不熟，图形界面很友好，可以本地制作好文件以后再上传运行，非常简单<br><img src="http://www.winotmk.com/wp-content/uploads/2020/02/02.png"><br>和ssh一样输入好地址就能连接用了，注意协议选SCP，第一次选的是SFTP，神奇的是也连上了，但是出现的是NAS的硬盘盘符而不是linux内部的路径，在这里懵了很久</p>
-<p>##服务端配置</p>
-<p>###配置frps</p>
-<p><strong>github地址：</strong></p>
+<h3 id="winscp登录"><a href="#winscp登录" class="headerlink" title="winscp登录"></a>winscp登录</h3><p>用这个是因为我对linux指令不熟，图形界面很友好，可以本地制作好文件以后再上传运行，非常简单<br><img src="http://www.winotmk.com/wp-content/uploads/2020/02/02.png"><br>和ssh一样输入好地址就能连接用了，注意协议选SCP，第一次选的是SFTP，神奇的是也连上了，但是出现的是NAS的硬盘盘符而不是linux内部的路径，在这里懵了很久</p>
+<h2 id="服务端配置"><a href="#服务端配置" class="headerlink" title="服务端配置"></a>服务端配置</h2><h3 id="配置frps"><a href="#配置frps" class="headerlink" title="配置frps"></a>配置frps</h3><p><strong>github地址：</strong></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases">https://github.com/fatedier/frp/releases</a></p>
 <p>家里的双盘位群晖是arm的cpu所以选了<strong>frp_0.31.2_linux_arm.tar.gz</strong></p>
 <p>直接下载下来，解压，编辑frps.ini</p>
@@ -281,7 +272,7 @@
 <p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/03.png"></p>
 <p>右键属性，给0755权限</p>
 <p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/04.png"></p>
-<p>###启动frps<br>打开终端，cd到/frp目录下</p>
+<h3 id="启动frps"><a href="#启动frps" class="headerlink" title="启动frps"></a>启动frps</h3><p>打开终端，cd到/frp目录下</p>
 <p>然后执行</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./frps -c ./frps.ini </span><br></pre></td></tr></table></figure>
 
@@ -291,7 +282,7 @@
 
 
 <p><strong>ps</strong>:linux退出当前程序是<strong>ctrl+c</strong>或者<strong>q</strong></p>
-<p>###设置群晖nas开机自动运行frps<br>新增用户自定义脚本</p>
+<h3 id="设置群晖nas开机自动运行frps"><a href="#设置群晖nas开机自动运行frps" class="headerlink" title="设置群晖nas开机自动运行frps"></a>设置群晖nas开机自动运行frps</h3><p>新增用户自定义脚本</p>
 <p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/05.png"></p>
 <p>如下图设置</p>
 <p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/06.png"></p>
@@ -315,8 +306,7 @@
 <blockquote>
 <p>当然还有一个问题，那就是我们同样无法关闭dos命令框，如果关闭frp也同时被关闭了，所以我们需要同样需要后台执行，所以我找到了一种办法，可以使其后台运行。编写一个vbs脚本<br><img src="http://www.winotmk.com/wp-content/uploads/2020/02/13.png"><br>（这个方法我没试，<a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1623434266517055314&wfr=spider&for=pc">出处</a></p>
 </blockquote>
-<p>##远程桌面</p>
-<p>ok折腾完了，现在直接点开公司电脑的此电脑右键属性，按下图设置，添加可以访问的用户<br><img src="http://www.winotmk.com/wp-content/uploads/2020/02/14.png"></p>
+<h2 id="远程桌面"><a href="#远程桌面" class="headerlink" title="远程桌面"></a>远程桌面</h2><p>ok折腾完了，现在直接点开公司电脑的此电脑右键属性，按下图设置，添加可以访问的用户<br><img src="http://www.winotmk.com/wp-content/uploads/2020/02/14.png"></p>
 <p>在自己电脑打开远程桌面，就可以连接了</p>
 <p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/15.png"></p>
 <ul>
