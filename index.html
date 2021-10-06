@@ -134,6 +134,10 @@
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
   </nav>
 </div>
 
@@ -161,6 +165,178 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/2021/10/06/nas%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="winotmk">
+      <meta itemprop="description" content="零碎MD收集">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WinNote">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/10/06/nas%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" class="post-title-link" itemprop="url">内网穿透</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-06 13:09:33" itemprop="dateCreated datePublished" datetime="2021-10-06T13:09:33+08:00">2021-10-06</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan：</span>
+    
+    
+      <a title="changyan" href="/2021/10/06/nas%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/#SOHUCS" itemprop="discussionUrl">
+        <span id="url::https://winotmk.github.io/2021/10/06/nas%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" class="cy_cmt_count" data-xid="2021/10/06/nas内网穿透/" itemprop="commentCount"></span>
+      </a>
+    
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>因为疫情严重不得不在家办公，无奈TeamViewer很多软件打开都是白屏，稳定性也很是不爽，所以结合现有资源做了个内网穿透，将公司的电脑远程登陆地址映射到公网上，在家用windows自带的远程桌面连接，实测效果比TeamViewer好得多。</p>
+<p>之前配NAS的时候，家里整过光猫，改成路由拨号所以有公网ip，也在nas上运行了ddns程序，另外这台群晖nas不出意外会一直开机（因为跑了文件存储和日记服务），这样一来就有现成的条件做内网穿透服务器了，搞起来~</p>
+<p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/0000.png"></p>
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ul>
+<li>公司电脑开机,且打开TeamViewer，配好之前还得使它</li>
+<li>家里路由配好端口转发和ddns</li>
+<li>住处有电脑</li>
+</ul>
+<h3 id="NAS上的配置"><a href="#NAS上的配置" class="headerlink" title="NAS上的配置"></a>NAS上的配置</h3><p>登录DSM（群晖的网页系统，很nb），开启SSH</p>
+<p>默认是22端口</p>
+<p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/000.png"></p>
+<p>在路由上设置转发</p>
+<p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/00.png"></p>
+<p>win+R输入<code>cmd</code>打开终端</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh 群晖登录账号@winotmk.***.net</span><br></pre></td></tr></table></figure>
+<p>输入密码回车登录。因为配了ddns直接输域名就好</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -i  //root权限，注意是由$变为#</span><br></pre></td></tr></table></figure>
+<p>用root登录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/ssh</span><br><span class="line">chmod 755 sshd_config //赋权</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
+<p> 修改config文件，输入 i 编辑</p>
+<p>将#PermitRootLogin prohibit password   </p>
+<p>修改为：PermitRootLogin yes         </p>
+<p>去掉#号<br><img src="http://www.winotmk.com/wp-content/uploads/2020/02/01.png"></p>
+<p>之后多按几下ESC 退出编辑模式，再输入 <code>:wq</code> 回车保存</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">synouser --setpw root xxxxxxx</span><br></pre></td></tr></table></figure>
+<p>修改root密码，xxxx换成自己的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot //重启群晖</span><br></pre></td></tr></table></figure>
+
+<p>现在可以直接用root登录ssh了</p>
+<h3 id="winscp登录"><a href="#winscp登录" class="headerlink" title="winscp登录"></a>winscp登录</h3><p>用这个是因为我对linux指令不熟，图形界面很友好，可以本地制作好文件以后再上传运行，非常简单<br><img src="http://www.winotmk.com/wp-content/uploads/2020/02/02.png"><br>和ssh一样输入好地址就能连接用了，注意协议选SCP，第一次选的是SFTP，神奇的是也连上了，但是出现的是NAS的硬盘盘符而不是linux内部的路径，在这里懵了很久</p>
+<h2 id="服务端配置"><a href="#服务端配置" class="headerlink" title="服务端配置"></a>服务端配置</h2><h3 id="配置frps"><a href="#配置frps" class="headerlink" title="配置frps"></a>配置frps</h3><p><strong>github地址：</strong></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases">https://github.com/fatedier/frp/releases</a></p>
+<p>家里的双盘位群晖是arm的cpu所以选了<strong>frp_0.31.2_linux_arm.tar.gz</strong></p>
+<p>直接下载下来，解压，编辑frps.ini</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">bind_port = 7000</span><br><span class="line">dashboard_port = 7500</span><br><span class="line">dashboard_user = admin</span><br><span class="line">dashboard_pwd = admin</span><br></pre></td></tr></table></figure>
+
+<p>加了三行是打开了网页后台界面，可以康康frp的运行情况</p>
+<p>当然，路由上也要给7000和7500添加端口转发</p>
+<p>登录winscp</p>
+<p>根目录下创建frp文件夹</p>
+<p>（其实只用把frps相关的复制过去就好）</p>
+<p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/03.png"></p>
+<p>右键属性，给0755权限</p>
+<p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/04.png"></p>
+<h3 id="启动frps"><a href="#启动frps" class="headerlink" title="启动frps"></a>启动frps</h3><p>打开终端，cd到/frp目录下</p>
+<p>然后执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./frps -c ./frps.ini </span><br></pre></td></tr></table></figure>
+
+<p>出现巴拉巴拉success就是成功了</p>
+<p>但是不能关闭终端，否则程序会关闭。一般来说我们是需要后台一直运行着的，所以我们使用nohup命令让其后台执行。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup ./frps -c frps.ini</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>ps</strong>:linux退出当前程序是<strong>ctrl+c</strong>或者<strong>q</strong></p>
+<h3 id="设置群晖nas开机自动运行frps"><a href="#设置群晖nas开机自动运行frps" class="headerlink" title="设置群晖nas开机自动运行frps"></a>设置群晖nas开机自动运行frps</h3><p>新增用户自定义脚本</p>
+<p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/05.png"></p>
+<p>如下图设置</p>
+<p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/06.png"></p>
+<p>设置脚本</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/frp/frps -c /frp/frps.ini</span><br></pre></td></tr></table></figure>
+<p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/07.png"></p>
+<p>勾选保存</p>
+<p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/09.png"></p>
+<p>至此服务端的部分设置完成，可以通过http://****.net:7500/访问看见界面</p>
+<p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/10.png"></p>
+<p>##客户端配置</p>
+<p>下载<strong>frp_0.31.2_windows_386.zip</strong>windows版本</p>
+<p>解压修改<strong>frpc.ini</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">server_addr = winotmk.imwork.net //服务器地址</span><br><span class="line">server_port = 7000</span><br><span class="line"></span><br><span class="line">[yuanchengzhuomian]  //名字自己起，根据需要可以多写</span><br><span class="line">type = tcp			//远程桌面走的是tcp</span><br><span class="line">local_ip = 127.0.0.1	//当然是本地ip，别写成服务器的了别问我为啥</span><br><span class="line">local_port = 3389		//本地端口，远程桌面默认是3389，想改去改注册表</span><br><span class="line">remote_port = 3389		//给外面访问的端口，需要在路由上配端口转发，不一定和上面本地端口一样</span><br></pre></td></tr></table></figure>
+
+<p>保存关闭，新建一个start.bat批处理，<br>写上</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">frpc.exe -c frpc.ini</span><br></pre></td></tr></table></figure>
+<p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/11.png"></p>
+<p>保存运行就能启动客户端了</p>
+<p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/12.png"></p>
+<blockquote>
+<p>当然还有一个问题，那就是我们同样无法关闭dos命令框，如果关闭frp也同时被关闭了，所以我们需要同样需要后台执行，所以我找到了一种办法，可以使其后台运行。编写一个vbs脚本<br><img src="http://www.winotmk.com/wp-content/uploads/2020/02/13.png"><br>（这个方法我没试，<a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1623434266517055314&wfr=spider&for=pc">出处</a></p>
+</blockquote>
+<h2 id="远程桌面"><a href="#远程桌面" class="headerlink" title="远程桌面"></a>远程桌面</h2><p>ok折腾完了，现在直接点开公司电脑的此电脑右键属性，按下图设置，添加可以访问的用户<br><img src="http://www.winotmk.com/wp-content/uploads/2020/02/14.png"></p>
+<p>在自己电脑打开远程桌面，就可以连接了</p>
+<p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/15.png"></p>
+<ul>
+<li>做完了以后忽然想起来，我为什么不直接把住处的网络整成公网的呢，直接在住处架设frps，省的数据从望京发到昌平再传回望京2333</li>
+<li>至少也可以把frps装在华硕路由上，和nas一样是arm架构，一样有ssh，还省去转发的过程</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -345,179 +521,6 @@
     
     <div class="post-body" itemprop="articleBody">
           
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/2021/09/29/nas%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="winotmk">
-      <meta itemprop="description" content="零碎MD收集">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WinNote">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/09/29/nas%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" class="post-title-link" itemprop="url">内网穿透</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2021-09-29 17:53:10 / 修改时间：17:53:09" itemprop="dateCreated datePublished" datetime="2021-09-29T17:53:10+08:00">2021-09-29</time>
-    </span>
-
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="firestore-visitors-count"></span>
-    </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Changyan：</span>
-    
-    
-      <a title="changyan" href="/2021/09/29/nas%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/#SOHUCS" itemprop="discussionUrl">
-        <span id="url::https://winotmk.github.io/2021/09/29/nas%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" class="cy_cmt_count" data-xid="2021/09/29/nas内网穿透/" itemprop="commentCount"></span>
-      </a>
-    
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>因为疫情严重不得不在家办公，无奈TeamViewer很多软件打开都是白屏，稳定性也很是不爽，所以结合现有资源做了个内网穿透，将公司的电脑远程登陆地址映射到公网上，在家用windows自带的远程桌面连接，实测效果比TeamViewer好得多。</p>
-<p>之前配NAS的时候，家里整过光猫，改成路由拨号所以有公网ip，也在nas上运行了ddns程序，另外这台群晖nas不出意外会一直开机（因为跑了文件存储和日记服务），这样一来就有现成的条件做内网穿透服务器了，搞起来~</p>
-<p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/0000.png"></p>
-<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ul>
-<li>公司电脑开机,且打开TeamViewer，配好之前还得使它</li>
-<li>家里路由配好端口转发和ddns</li>
-<li>住处有电脑</li>
-</ul>
-<h3 id="NAS上的配置"><a href="#NAS上的配置" class="headerlink" title="NAS上的配置"></a>NAS上的配置</h3><p>登录DSM（群晖的网页系统，很nb），开启SSH</p>
-<p>默认是22端口</p>
-<p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/000.png"></p>
-<p>在路由上设置转发</p>
-<p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/00.png"></p>
-<p>win+R输入<code>cmd</code>打开终端</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh 群晖登录账号@winotmk.***.net</span><br></pre></td></tr></table></figure>
-<p>输入密码回车登录。因为配了ddns直接输域名就好</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -i  //root权限，注意是由$变为#</span><br></pre></td></tr></table></figure>
-<p>用root登录</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/ssh</span><br><span class="line">chmod 755 sshd_config //赋权</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
-<p> 修改config文件，输入 i 编辑</p>
-<p>将#PermitRootLogin prohibit password   </p>
-<p>修改为：PermitRootLogin yes         </p>
-<p>去掉#号<br><img src="http://www.winotmk.com/wp-content/uploads/2020/02/01.png"></p>
-<p>之后多按几下ESC 退出编辑模式，再输入 <code>:wq</code> 回车保存</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">synouser --setpw root xxxxxxx</span><br></pre></td></tr></table></figure>
-<p>修改root密码，xxxx换成自己的</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot //重启群晖</span><br></pre></td></tr></table></figure>
-
-<p>现在可以直接用root登录ssh了</p>
-<h3 id="winscp登录"><a href="#winscp登录" class="headerlink" title="winscp登录"></a>winscp登录</h3><p>用这个是因为我对linux指令不熟，图形界面很友好，可以本地制作好文件以后再上传运行，非常简单<br><img src="http://www.winotmk.com/wp-content/uploads/2020/02/02.png"><br>和ssh一样输入好地址就能连接用了，注意协议选SCP，第一次选的是SFTP，神奇的是也连上了，但是出现的是NAS的硬盘盘符而不是linux内部的路径，在这里懵了很久</p>
-<h2 id="服务端配置"><a href="#服务端配置" class="headerlink" title="服务端配置"></a>服务端配置</h2><h3 id="配置frps"><a href="#配置frps" class="headerlink" title="配置frps"></a>配置frps</h3><p><strong>github地址：</strong></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases">https://github.com/fatedier/frp/releases</a></p>
-<p>家里的双盘位群晖是arm的cpu所以选了<strong>frp_0.31.2_linux_arm.tar.gz</strong></p>
-<p>直接下载下来，解压，编辑frps.ini</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">bind_port = 7000</span><br><span class="line">dashboard_port = 7500</span><br><span class="line">dashboard_user = admin</span><br><span class="line">dashboard_pwd = admin</span><br></pre></td></tr></table></figure>
-
-<p>加了三行是打开了网页后台界面，可以康康frp的运行情况</p>
-<p>当然，路由上也要给7000和7500添加端口转发</p>
-<p>登录winscp</p>
-<p>根目录下创建frp文件夹</p>
-<p>（其实只用把frps相关的复制过去就好）</p>
-<p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/03.png"></p>
-<p>右键属性，给0755权限</p>
-<p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/04.png"></p>
-<h3 id="启动frps"><a href="#启动frps" class="headerlink" title="启动frps"></a>启动frps</h3><p>打开终端，cd到/frp目录下</p>
-<p>然后执行</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./frps -c ./frps.ini </span><br></pre></td></tr></table></figure>
-
-<p>出现巴拉巴拉success就是成功了</p>
-<p>但是不能关闭终端，否则程序会关闭。一般来说我们是需要后台一直运行着的，所以我们使用nohup命令让其后台执行。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup ./frps -c frps.ini</span><br></pre></td></tr></table></figure>
-
-
-<p><strong>ps</strong>:linux退出当前程序是<strong>ctrl+c</strong>或者<strong>q</strong></p>
-<h3 id="设置群晖nas开机自动运行frps"><a href="#设置群晖nas开机自动运行frps" class="headerlink" title="设置群晖nas开机自动运行frps"></a>设置群晖nas开机自动运行frps</h3><p>新增用户自定义脚本</p>
-<p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/05.png"></p>
-<p>如下图设置</p>
-<p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/06.png"></p>
-<p>设置脚本</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/frp/frps -c /frp/frps.ini</span><br></pre></td></tr></table></figure>
-<p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/07.png"></p>
-<p>勾选保存</p>
-<p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/09.png"></p>
-<p>至此服务端的部分设置完成，可以通过http://****.net:7500/访问看见界面</p>
-<p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/10.png"></p>
-<p>##客户端配置</p>
-<p>下载<strong>frp_0.31.2_windows_386.zip</strong>windows版本</p>
-<p>解压修改<strong>frpc.ini</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">server_addr = winotmk.imwork.net //服务器地址</span><br><span class="line">server_port = 7000</span><br><span class="line"></span><br><span class="line">[yuanchengzhuomian]  //名字自己起，根据需要可以多写</span><br><span class="line">type = tcp			//远程桌面走的是tcp</span><br><span class="line">local_ip = 127.0.0.1	//当然是本地ip，别写成服务器的了别问我为啥</span><br><span class="line">local_port = 3389		//本地端口，远程桌面默认是3389，想改去改注册表</span><br><span class="line">remote_port = 3389		//给外面访问的端口，需要在路由上配端口转发，不一定和上面本地端口一样</span><br></pre></td></tr></table></figure>
-
-<p>保存关闭，新建一个start.bat批处理，<br>写上</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">frpc.exe -c frpc.ini</span><br></pre></td></tr></table></figure>
-<p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/11.png"></p>
-<p>保存运行就能启动客户端了</p>
-<p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/12.png"></p>
-<blockquote>
-<p>当然还有一个问题，那就是我们同样无法关闭dos命令框，如果关闭frp也同时被关闭了，所以我们需要同样需要后台执行，所以我找到了一种办法，可以使其后台运行。编写一个vbs脚本<br><img src="http://www.winotmk.com/wp-content/uploads/2020/02/13.png"><br>（这个方法我没试，<a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1623434266517055314&wfr=spider&for=pc">出处</a></p>
-</blockquote>
-<h2 id="远程桌面"><a href="#远程桌面" class="headerlink" title="远程桌面"></a>远程桌面</h2><p>ok折腾完了，现在直接点开公司电脑的此电脑右键属性，按下图设置，添加可以访问的用户<br><img src="http://www.winotmk.com/wp-content/uploads/2020/02/14.png"></p>
-<p>在自己电脑打开远程桌面，就可以连接了</p>
-<p><img src="http://www.winotmk.com/wp-content/uploads/2020/02/15.png"></p>
-<ul>
-<li>做完了以后忽然想起来，我为什么不直接把住处的网络整成公网的呢，直接在住处架设frps，省的数据从望京发到昌平再传回望京2333</li>
-<li>至少也可以把frps装在华硕路由上，和nas一样是arm架构，一样有ssh，还省去转发的过程</li>
-</ul>
-
       
     </div>
 
