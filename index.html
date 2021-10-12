@@ -198,7 +198,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-10-13 00:36:46" itemprop="dateCreated datePublished" datetime="2021-10-13T00:36:46+08:00">2021-10-13</time>
+      <time title="创建时间：2021-10-13 01:02:29" itemprop="dateCreated datePublished" datetime="2021-10-13T01:02:29+08:00">2021-10-13</time>
     </span>
 
   
@@ -241,19 +241,116 @@
 <img src="/2021/10/13/Linux%E6%9D%83%E9%99%90/20211012_231624_2018091016360849.png" class="" width="800">
 
 <p>图片来源：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhuoya_/article/details/77418413">https://blog.csdn.net/zhuoya_/article/details/77418413</a></p>
-<p>共显示了七列信息，从左至右依次为：权限、文件数、归属用户、归属群组、文件大小、创建日期、文件名称<br>d ：第一位表示文件类型<br>　　d 文件夹<br>　　- 普通文件<br>　　l 链接<br>　　b 块设备文件<br>　　p 管道文件<br>　　c 字符设备文件<br>　　s 套接口文件</p>
-<p>r(读) —— 4<br>w(写) —— 2<br>x(执行) —– 1</p>
+<p>共显示了七列信息，从左至右依次为：权限、文件数、归属用户、归属群组、文件大小、创建日期、文件名称<br>d ：第一位表示文件类型</p>
+<table>
+<thead>
+<tr>
+<th align="center">第一位字符</th>
+<th>文件类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">d</td>
+<td>文件夹</td>
+</tr>
+<tr>
+<td align="center">-</td>
+<td>普通文件</td>
+</tr>
+<tr>
+<td align="center">l</td>
+<td>链接</td>
+</tr>
+<tr>
+<td align="center">b</td>
+<td>块设备文件</td>
+</tr>
+<tr>
+<td align="center">p</td>
+<td>管道文件</td>
+</tr>
+<tr>
+<td align="center">c</td>
+<td>字符设备文件</td>
+</tr>
+<tr>
+<td align="center">s</td>
+<td>套接口文件</td>
+</tr>
+</tbody></table>
+<p>rxw和数值权限的对应：</p>
+<table>
+<thead>
+<tr>
+<th>rxw</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>r(读)</td>
+<td>4</td>
+</tr>
+<tr>
+<td>w(写)</td>
+<td>2</td>
+</tr>
+<tr>
+<td>x(执行)</td>
+<td>1</td>
+</tr>
+</tbody></table>
 <p>所以，例如：<br>rwx rw- r–<br>7    6    4<br>三个一组,rwx权限分别对应421相加得7,rw-对应42相加,r–对应4</p>
-<img src="/2021/10/13/Linux%E6%9D%83%E9%99%90/20211012_232003_20180910175047158.gif" class="" width="800">
+<img src="/2021/10/13/Linux%E6%9D%83%E9%99%90/20211012_232003_20180910175047158.gif" class="" width="500">
 
 <p>图片来源：<a target="_blank" rel="noopener" href="http://man.linuxde.net/chmod">http://man.linuxde.net/chmod</a></p>
-<p>举例：755权限，即为rwxr-xr-x<br>7对应4+2+1   rwx<br>5对应4+1     r-x<br>那么这个文件的权限就是所有者rwx,所属组r-x,其他人r-x</p>
-<p>常用的linux权限对应：<br>444 r–r–r–<br>600 rw——-<br>644 rw-r–r–<br>666 rw-rw-rw-<br>700 rwx——<br>744 rwxr–r–<br>755 rwxr-xr-x<br>777 rwxrwxrwx</p>
+<p>举例：-rw-r–r–，即为644权限<br>6对应4+2   rw-<br>4对应   r–<br>那么这个文件的权限就是所有者rw-,所属组r–,其他人r–</p>
+<p>常用的linux权限对应：</p>
+<table>
+<thead>
+<tr>
+<th>数值</th>
+<th>rxw</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>444</td>
+<td>r–r–r–</td>
+</tr>
+<tr>
+<td>600</td>
+<td>rw——-</td>
+</tr>
+<tr>
+<td>644</td>
+<td>rw-r–r–</td>
+</tr>
+<tr>
+<td>666</td>
+<td>rw-rw-rw-</td>
+</tr>
+<tr>
+<td>700</td>
+<td>rwx——</td>
+</tr>
+<tr>
+<td>744</td>
+<td>rwxr–r–</td>
+</tr>
+<tr>
+<td>755</td>
+<td>rwxr-xr-x</td>
+</tr>
+<tr>
+<td>777</td>
+<td>rwxrwxrwx</td>
+</tr>
+</tbody></table>
 <h2 id="命令修改权限"><a href="#命令修改权限" class="headerlink" title="命令修改权限"></a>命令修改权限</h2><ol>
 <li><strong>权限管理命令chmod</strong></li>
 </ol>
-<p>修改文件或者目录的权限<br>全拼: change permissions mode of a file<br>语法:<br>chmod [{ugoa}{+-=}{rwx}] [文件或目录]<br>[mode=421] [文件或目录]<br>-R 递归修改</p>
-<p>u:所有者, g:所属组,o:其他人,a:所有;<br>+:添加权限,-减少权限,=直接赋值成这个权限</p>
+<p>修改文件或者目录的权限<br>全拼: change permissions mode of a file<br>语法:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">chmod [&#123;ugoa&#125;&#123;+-=&#125;&#123;rwx&#125;] [文件或目录]</span><br><span class="line">[mode=421] [文件或目录]</span><br><span class="line">-R 递归修改</span><br><span class="line"></span><br><span class="line">u:所有者, g:所属组,o:其他人,a:所有;</span><br><span class="line">+:添加权限,-减少权限,=直接赋值成这个权限</span><br></pre></td></tr></table></figure>
+
 <ol start="2">
 <li><strong>创建目录mkdir时加权限</strong></li>
 </ol>
@@ -261,7 +358,6 @@
 
 <p>上面的命令会创建一个名为 letter 的目录，同时为<strong>目录所有者、用户组和其他用户</strong> 针对该目录赋予<strong>只读权限</strong></p>
 <p>mkdir命令小参考：<a target="_blank" rel="noopener" href="https://linux.cn/article-2713-1.html">在 Linux 下用 mkdir 命令来创建目录和子目录</a></p>
-<p>ps：在搭netatalk的时候试图给/root/目录下的WinSource目录执行 sudo chown -R wintm:wintm /mnt/TimeCapsulechown wint</p>
 <h2 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/tianchao/p/11821556.html">linux权限drwxrwxrwx所代表的意义</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010324331/article/details/88035175/">linux ls -l命令显示详解</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ken1583096683/article/details/82594037">linux更改文件(夹)权限或所有者</a></p>
