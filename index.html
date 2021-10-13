@@ -198,7 +198,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-10-13 11:53:26" itemprop="dateCreated datePublished" datetime="2021-10-13T11:53:26+08:00">2021-10-13</time>
+      <time title="创建时间：2021-10-13 12:04:48" itemprop="dateCreated datePublished" datetime="2021-10-13T12:04:48+08:00">2021-10-13</time>
     </span>
 
   
@@ -234,9 +234,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          
+          <img src="/2021/10/13/%E6%A0%91%E8%8E%93%E6%B4%BETimeMachine/20211013_002640.png" class="" width="800">
 
-<span id="more"></span>
+
 
 <h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><p>前半参考：<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/335259509">从此Mac上的文件再也不会丟了</a></p>
 <p>后半参考：<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d9b180f6d397">如何自己搭建一个Time Machine服务器</a></p>
@@ -251,38 +251,14 @@
 
 <p>然后设置密码</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo passwd wintm</span><br></pre></td></tr></table></figure>
-
-<p>3.配置netatalk</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/netatalk/AppleVolumes.default</span><br></pre></td></tr></table></figure>
-
-<p>这个文件似乎一行代表一个服务<br>可以在</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># The line below sets some DEFAULT, starting with Netatalk 2.1.</span><br><span class="line">:DEFAULT: options:upriv,usedots</span><br><span class="line"></span><br><span class="line"># By default all users have access to their home directories.</span><br><span class="line">~/			&quot;Home Directory&quot;</span><br></pre></td></tr></table></figure>
-
-<p>下面加上一行</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/mnt/WinSource/TimeMachine WinMachine allow:wintm options:tm</span><br><span class="line">#挂在硬盘里的文件夹           afp服务名   允许wintm用户登陆   开启timemachine</span><br></pre></td></tr></table></figure>
-
-<p>4.重启服务</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo service netatalk restart</span><br><span class="line">sudo service avahi-daemon restart</span><br></pre></td></tr></table></figure>
-
-<h2 id="一些坑"><a href="#一些坑" class="headerlink" title="一些坑"></a>一些坑</h2><ul>
-<li>试图直接使用root账户连接，在这里卡了很久，还尝试在<strong>AppleVolumes.default</strong>设置里写上例如</li>
-</ul>
-<p><code>/mnt/WinSource/TimeMachine WinMachine allow:root rwlist:root  options:tm</code></p>
-<p>翻到这篇：<a target="_blank" rel="noopener" href="https://www.it610.com/article/1297957643536637952.htm">[NAS之旅]-基于Centos7搭建Netatalk为Windows增加AFP协议</a></p>
-<p>才忽然醒悟，<strong>root用户是禁止登录AFP服务</strong>的，得嘞，新开个专门的用户吧</p>
-<p>提到了新建一个用户来跑timemachine：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d9b180f6d397">如何自己搭建一个Time Machine服务器</a></p>
-<ul>
-<li>一开始习惯将硬盘挂载到<code>/root/WinSource</code>，然鹅这似乎导致即便mac上TimeMachine连接上了也报错没法开始备份，想想也是wintm用户没有权限进root。。总结为避免不必要的麻烦以后硬盘不挂<code>/root</code>里，这里我挂进了<code>/mnt</code></li>
-</ul>
-<p>ps:当时还试图对<code>/root/WinSource</code>使用chown</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R wintm:wintm /root/WinSource</span><br></pre></td></tr></table></figure>
-
-<p>见这篇：<a target="_blank" rel="noopener" href="https://aaron67.cc/2017/01/14/rpi-as-time-capsule/">用树莓派实现 Time Capsule</a></p>
-<p>无解，chown改不了<code>WinSource</code>目录的所有者，root强而有力，认输</p>
-<h2 id="补充连接"><a href="#补充连接" class="headerlink" title="补充连接"></a>补充连接</h2><p>NetaTalk官方文档和下载：<a target="_blank" rel="noopener" href="http://netatalk.sourceforge.net/3.1/htmldocs/afp.conf.5.html">http://netatalk.sourceforge.net/3.1/htmldocs/afp.conf.5.html</a></p>
-<p><a target="_blank" rel="noopener" href="https://openwrt.org/zh/docs/guide-user/services/nas/netatalk_configuration#afp_netatalk_%E5%88%86%E4%BA%AB%E9%85%8D%E7%BD%AE_%E5%8F%88%E5%90%8D_apple_time_machine">AFP Netatalk 分享配置 (又名 Apple Time Machine).</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.maxisvest.com/%E4%BD%BF%E7%94%A8netatalk%E6%89%93%E9%80%A0%E4%B8%80%E6%AC%BE%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84Time-Machine%E5%9C%A8%E7%BA%BF%E5%A4%87%E4%BB%BD%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用netatalk打造一款属于自己的Time-Machine在线备份服务器</a></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/10/13/%E6%A0%91%E8%8E%93%E6%B4%BETimeMachine/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
