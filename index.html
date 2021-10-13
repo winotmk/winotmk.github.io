@@ -174,333 +174,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/2021/10/13/hexo+github/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="winotmk">
-      <meta itemprop="description" content="零碎MD收集">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WinNote">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/10/13/hexo+github/" class="post-title-link" itemprop="url">hexo+github</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-10-13 11:02:52" itemprop="dateCreated datePublished" datetime="2021-10-13T11:02:52+08:00">2021-10-13</time>
-    </span>
-
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="firestore-visitors-count"></span>
-    </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Changyan：</span>
-    
-    
-      <a title="changyan" href="/2021/10/13/hexo+github/#SOHUCS" itemprop="discussionUrl">
-        <span id="url::https://winotmk.github.io/2021/10/13/hexo+github/" class="cy_cmt_count" data-xid="2021/10/13/hexo+github/" itemprop="commentCount"></span>
-      </a>
-    
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a href="https://winotmk.github.io/">https://winotmk.github.io/</a></p>
-<p>github：<a target="_blank" rel="noopener" href="https://github.com/winotmk/winotmk.github.io">https://github.com/winotmk/winotmk.github.io</a></p>
-<p>总有一些零碎的想法，需要记录下来，写全面的文章没有时间，不写下来又会忘，日记app又不方便整理，同时也想利用一下树莓派，网上搜索便发现hexo+github部署的方式，于是想尝试尝试，一路遇到很多问题</p>
-<p>主要参考：<a target="_blank" rel="noopener" href="https://cuifengwei.com/2020/02/21/%E5%9F%BA%E4%BA%8E%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0GitHub/">基于树莓派搭建Hexo博客部署到GitHub/Gitee</a></p>
-<p>前期第二参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/44233946">hexo——轻量、简易、高逼格的博客</a></p>
-<p>更详细的安装过程：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26625249">GitHub+Hexo 搭建个人网站详细教程</a></p>
-<p>hexo官方文档：<a target="_blank" rel="noopener" href="https://hexo.io/docs/">https://hexo.io/docs/</a></p>
-<p>hexo博客文档（似乎和上面有不少内容重叠）：<a target="_blank" rel="noopener" href="https://theme-next.js.org/docs/">https://theme-next.js.org/docs/</a></p>
-<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><p>下载armv7版本的node.js：<a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">nodejs下载</a></p>
-<h2 id="配置github"><a href="#配置github" class="headerlink" title="配置github"></a>配置github</h2><p>git key配置：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36711388/article/details/88780372">github每次需要输入密码和用户名的问题…</a></p>
-<p>取消使用key令牌后还要输入密码：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1095516">取消 SSH 私钥密码</a></p>
-<h2 id="后期配置"><a href="#后期配置" class="headerlink" title="后期配置"></a>后期配置</h2><h3 id="hexo配置"><a href="#hexo配置" class="headerlink" title="hexo配置"></a>hexo配置</h3><p>官方文档：<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/configuration">https://hexo.io/zh-cn/docs/configuration</a></p>
-<h3 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h3><p>Next主题github：<a target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-theme-next">https://github.com/next-theme/hexo-theme-next</a></p>
-<p>Next主题的文档(ps.页面样式好看可参考)：<a target="_blank" rel="noopener" href="http://theme-next.iissnan.com/third-party-services.html">第三方服务集成</a></p>
-<p>Next主题代码框高亮预览设置：<a target="_blank" rel="noopener" href="https://theme-next.js.org/highlight/">https://theme-next.js.org/highlight/</a></p>
-<h3 id="资产文件夹"><a href="#资产文件夹" class="headerlink" title="资产文件夹"></a>资产文件夹</h3><p><a target="_blank" rel="noopener" href="https://hexo.io/docs/asset-folders">https://hexo.io/docs/asset-folders</a></p>
-<h3 id="访客统计"><a href="#访客统计" class="headerlink" title="访客统计"></a>访客统计</h3><p><a target="_blank" rel="noopener" href="https://www.dazhuanlan.com/jane2382/topics/1350442https:/">DevOps 访客数统计 &amp; google analytics 数据分析</a></p>
-<p><a target="_blank" rel="noopener" href="https://qiuyiwu.github.io/2019/01/26/Hexo-View/">将文章视图添加到您的 Hexo 博客</a>(有LeanCloud和Firebase比较分析）</p>
-<p><a target="_blank" rel="noopener" href="https://zhangjh.me/2016/04/12/hexo-visit-analytics-md/">给hexo博客文章添加阅读次数统计</a></p>
-<p>hexo next主题的leancloud安全插件github：<a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-leancloud-counter-security">https://github.com/theme-nex…</a></p>
-<p>上面链接的说明：<a target="_blank" rel="noopener" href="https://leaferx.online/2018/02/11/lc-security/">Leancloud访客统计插件重大安全漏洞修复指南</a></p>
-<p>Firebase:<a target="_blank" rel="noopener" href="https://console.firebase.google.com/project/winnote-visitor/overview">https://console.firebase.google…</a></p>
-<h3 id="评论"><a href="#评论" class="headerlink" title="评论"></a>评论</h3><p>畅言：<a target="_blank" rel="noopener" href="https://changyan.kuaizhan.com/v3/changyan/overview">https://changyan.kuaizhan.com/v3/changyan/overview</a><br>valine：<a target="_blank" rel="noopener" href="https://valine.js.org/">https://valine.js.org</a></p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="配置vscode："><a href="#配置vscode：" class="headerlink" title="配置vscode："></a>配置vscode：</h3><p>本来都是用<strong>putty</strong>打指令，用<strong>WinSCP</strong>访问我的目录操作的，但是<strong>WinSCP</strong>自带的文本编辑过与拉跨，有几次多打空格没看出来导致直接<code>hexo g</code>失败，后来突发奇想为啥不找个轻量级的IDE直接去写这些呢，于是用起了vscode</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42592326/article/details/108058711https:/">Vscode配置ftp连接远程服务器（上传本地文件）</a></p>
-<p>不过自己测试发现不好用，于是用了<strong>SSH FS</strong>这个vscode插件</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_34769573/article/details/80445681">相对路径./与../区别</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/2021/10/13/Linux%E6%9D%83%E9%99%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="winotmk">
-      <meta itemprop="description" content="零碎MD收集">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WinNote">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/10/13/Linux%E6%9D%83%E9%99%90/" class="post-title-link" itemprop="url">linux文件和目录权限</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-10-13 01:02:29" itemprop="dateCreated datePublished" datetime="2021-10-13T01:02:29+08:00">2021-10-13</time>
-    </span>
-
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="firestore-visitors-count"></span>
-    </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Changyan：</span>
-    
-    
-      <a title="changyan" href="/2021/10/13/Linux%E6%9D%83%E9%99%90/#SOHUCS" itemprop="discussionUrl">
-        <span id="url::https://winotmk.github.io/2021/10/13/Linux%E6%9D%83%E9%99%90/" class="cy_cmt_count" data-xid="2021/10/13/Linux权限/" itemprop="commentCount"></span>
-      </a>
-    
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>*本文摘录整理为主</p>
-<p>用<code>ls -l</code>查看权限：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">文件属性     文件数    拥有者   所属的group    文件大小    建档日期        文件名　　</span><br><span class="line">drwx--x--x   1      root       wheel       6872    2  7 22:41     compressedPackage/</span><br><span class="line">drwxr-xr-x   1      liuml      wheel       8620    2 15 09:32     wwwroot/　　</span><br><span class="line">lrwxrwxrwx   1      liuml      wheel       46      2 24 19:30     abc@ -&gt; home/abc</span><br><span class="line">-rwxr-xr-x   1      liuml      wheel       68568   2 29 07:43     test*　　</span><br><span class="line"> </span><br><span class="line">- 文件名栏位 文件后面的符号含义  </span><br><span class="line">	- / ：表明是一个目录</span><br><span class="line">	- @ ：表明是到其它文件的符号链接</span><br><span class="line">	- * ：表明是一个可执行文件。</span><br><span class="line"></span><br><span class="line">- 对于权限设置的解释</span><br><span class="line">	- r 是读，w 是写，x 是执行</span><br><span class="line"></span><br><span class="line">	- 对应数字如下:</span><br><span class="line">		- r = 4    w = 2    x = 1</span><br><span class="line">		- rwx ：4+2+1 = 7</span><br><span class="line">		- rw- ：4+2 = 6</span><br><span class="line">		- r-x ：4+1 = 5</span><br><span class="line">		- drwxr-xr-x ：755</span><br><span class="line"></span><br><span class="line">- 第 0-1位   文件类型</span><br><span class="line">	- “-” ：表示普通文件；</span><br><span class="line">	- “d” ：表示目录；</span><br><span class="line">	- “l” ：表示链接文件；</span><br><span class="line">	- “p” ：表示管理文件；</span><br><span class="line">	- “b” ：表示块设备文件；</span><br><span class="line">	- “c” ：表示字符设备文件；</span><br><span class="line">	- “s” ：表示套接字文件；</span><br><span class="line"></span><br><span class="line">- 第 2-4位   文件所有者权限 [User]</span><br><span class="line"></span><br><span class="line">- 第 5-7位   文件所有者所在组权限 [Group]</span><br><span class="line"></span><br><span class="line">- 第 8-10位  其他用户权限 [Others]</span><br><span class="line"></span><br><span class="line">- 没有的权限用 “-” 来表示</span><br><span class="line">————————————————</span><br><span class="line">版权声明：本文为CSDN博主「烟雨弥漫了江南」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。</span><br><span class="line">原文链接：https://blog.csdn.net/u010324331/article/details/88035175/</span><br></pre></td></tr></table></figure>
-
-<img src="/2021/10/13/Linux%E6%9D%83%E9%99%90/20211012_231624_2018091016360849.png" class="" width="800">
-
-<p>图片来源：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhuoya_/article/details/77418413">https://blog.csdn.net/zhuoya_/article/details/77418413</a></p>
-<p>共显示了七列信息，从左至右依次为：权限、文件数、归属用户、归属群组、文件大小、创建日期、文件名称<br>d ：第一位表示文件类型</p>
-<table>
-<thead>
-<tr>
-<th align="center">第一位字符</th>
-<th>文件类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">d</td>
-<td>文件夹</td>
-</tr>
-<tr>
-<td align="center">-</td>
-<td>普通文件</td>
-</tr>
-<tr>
-<td align="center">l</td>
-<td>链接</td>
-</tr>
-<tr>
-<td align="center">b</td>
-<td>块设备文件</td>
-</tr>
-<tr>
-<td align="center">p</td>
-<td>管道文件</td>
-</tr>
-<tr>
-<td align="center">c</td>
-<td>字符设备文件</td>
-</tr>
-<tr>
-<td align="center">s</td>
-<td>套接口文件</td>
-</tr>
-</tbody></table>
-<p>rxw和数值权限的对应：</p>
-<table>
-<thead>
-<tr>
-<th>rxw</th>
-<th>数值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>r(读)</td>
-<td>4</td>
-</tr>
-<tr>
-<td>w(写)</td>
-<td>2</td>
-</tr>
-<tr>
-<td>x(执行)</td>
-<td>1</td>
-</tr>
-</tbody></table>
-<p>所以，例如：<br>rwx rw- r–<br>7    6    4<br>三个一组,rwx权限分别对应421相加得7,rw-对应42相加,r–对应4</p>
-<img src="/2021/10/13/Linux%E6%9D%83%E9%99%90/20211012_232003_20180910175047158.gif" class="" width="500">
-
-<p>图片来源：<a target="_blank" rel="noopener" href="http://man.linuxde.net/chmod">http://man.linuxde.net/chmod</a></p>
-<p>举例：-rw-r–r–，即为644权限<br>6对应4+2   rw-<br>4对应   r–<br>那么这个文件的权限就是所有者rw-,所属组r–,其他人r–</p>
-<p>常用的linux权限对应：</p>
-<table>
-<thead>
-<tr>
-<th>数值</th>
-<th>rxw</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>444</td>
-<td>r–r–r–</td>
-</tr>
-<tr>
-<td>600</td>
-<td>rw——-</td>
-</tr>
-<tr>
-<td>644</td>
-<td>rw-r–r–</td>
-</tr>
-<tr>
-<td>666</td>
-<td>rw-rw-rw-</td>
-</tr>
-<tr>
-<td>700</td>
-<td>rwx——</td>
-</tr>
-<tr>
-<td>744</td>
-<td>rwxr–r–</td>
-</tr>
-<tr>
-<td>755</td>
-<td>rwxr-xr-x</td>
-</tr>
-<tr>
-<td>777</td>
-<td>rwxrwxrwx</td>
-</tr>
-</tbody></table>
-<h2 id="命令修改权限"><a href="#命令修改权限" class="headerlink" title="命令修改权限"></a>命令修改权限</h2><ol>
-<li><strong>权限管理命令chmod</strong></li>
-</ol>
-<p>修改文件或者目录的权限<br>全拼: change permissions mode of a file<br>语法:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">chmod [&#123;ugoa&#125;&#123;+-=&#125;&#123;rwx&#125;] [文件或目录]</span><br><span class="line">[mode=421] [文件或目录]</span><br><span class="line">-R 递归修改</span><br><span class="line"></span><br><span class="line">u:所有者, g:所属组,o:其他人,a:所有;</span><br><span class="line">+:添加权限,-减少权限,=直接赋值成这个权限</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><strong>创建目录mkdir时加权限</strong></li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir -m=r-- letter</span><br></pre></td></tr></table></figure>
-
-<p>上面的命令会创建一个名为 letter 的目录，同时为<strong>目录所有者、用户组和其他用户</strong> 针对该目录赋予<strong>只读权限</strong></p>
-<p>mkdir命令小参考：<a target="_blank" rel="noopener" href="https://linux.cn/article-2713-1.html">在 Linux 下用 mkdir 命令来创建目录和子目录</a></p>
-<h2 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/tianchao/p/11821556.html">linux权限drwxrwxrwx所代表的意义</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010324331/article/details/88035175/">linux ls -l命令显示详解</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ken1583096683/article/details/82594037">linux更改文件(夹)权限或所有者</a></p>
-<p><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/4853e1e5413b541909f72632.html">Linux 文件权限查看及修改</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/2021/10/13/%E6%A0%91%E8%8E%93%E6%B4%BETimeMachine/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -525,7 +198,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-10-13 00:33:16" itemprop="dateCreated datePublished" datetime="2021-10-13T00:33:16+08:00">2021-10-13</time>
+      <time title="创建时间：2021-10-13 11:53:26" itemprop="dateCreated datePublished" datetime="2021-10-13T11:53:26+08:00">2021-10-13</time>
     </span>
 
   
@@ -562,6 +235,8 @@
     
     <div class="post-body" itemprop="articleBody">
           
+
+<span id="more"></span>
 
 <h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><p>前半参考：<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/335259509">从此Mac上的文件再也不会丟了</a></p>
 <p>后半参考：<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d9b180f6d397">如何自己搭建一个Time Machine服务器</a></p>
@@ -633,7 +308,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/2021/10/09/Maya_MASH/">
+    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/2021/10/13/hexo+github/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -646,7 +321,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/10/09/Maya_MASH/" class="post-title-link" itemprop="url">MayaMASH动力学做链子</a>
+          <a href="/2021/10/13/hexo+github/" class="post-title-link" itemprop="url">hexo+github</a>
         </h2>
 
         <div class="post-meta-container">
@@ -657,7 +332,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-10-09 16:55:38" itemprop="dateCreated datePublished" datetime="2021-10-09T16:55:38+08:00">2021-10-09</time>
+      <time title="创建时间：2021-10-13 11:53:06" itemprop="dateCreated datePublished" datetime="2021-10-13T11:53:06+08:00">2021-10-13</time>
     </span>
 
   
@@ -677,8 +352,8 @@
       <span class="post-meta-item-text">Changyan：</span>
     
     
-      <a title="changyan" href="/2021/10/09/Maya_MASH/#SOHUCS" itemprop="discussionUrl">
-        <span id="url::https://winotmk.github.io/2021/10/09/Maya_MASH/" class="cy_cmt_count" data-xid="2021/10/09/Maya_MASH/" itemprop="commentCount"></span>
+      <a title="changyan" href="/2021/10/13/hexo+github/#SOHUCS" itemprop="discussionUrl">
+        <span id="url::https://winotmk.github.io/2021/10/13/hexo+github/" class="cy_cmt_count" data-xid="2021/10/13/hexo+github/" itemprop="commentCount"></span>
       </a>
     
   </span>
@@ -693,11 +368,207 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <img src="/2021/10/09/Maya_MASH/20211009_110403_2021100901.gif" class="" width="500">
+          <p><a href="https://winotmk.github.io/">https://winotmk.github.io/</a></p>
+<p>github：<a target="_blank" rel="noopener" href="https://github.com/winotmk/winotmk.github.io">https://github.com/winotmk/winotmk.github.io</a></p>
+<p>总有一些零碎的想法，需要记录下来，写全面的文章没有时间，不写下来又会忘，日记app又不方便整理，同时也想利用一下树莓派，网上搜索便发现hexo+github部署的方式，于是想尝试尝试，一路遇到很多问题</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/10/13/hexo+github/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
 
 
 
-<img src="/2021/10/09/Maya_MASH/20211009_110414_2021100902.jpg" class="" width="750">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/2021/10/13/Linux%E6%9D%83%E9%99%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="winotmk">
+      <meta itemprop="description" content="零碎MD收集">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WinNote">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/10/13/Linux%E6%9D%83%E9%99%90/" class="post-title-link" itemprop="url">linux文件和目录权限</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-13 11:52:57" itemprop="dateCreated datePublished" datetime="2021-10-13T11:52:57+08:00">2021-10-13</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan：</span>
+    
+    
+      <a title="changyan" href="/2021/10/13/Linux%E6%9D%83%E9%99%90/#SOHUCS" itemprop="discussionUrl">
+        <span id="url::https://winotmk.github.io/2021/10/13/Linux%E6%9D%83%E9%99%90/" class="cy_cmt_count" data-xid="2021/10/13/Linux权限/" itemprop="commentCount"></span>
+      </a>
+    
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>*本文摘录整理为主</p>
+<p>用<code>ls -l</code>查看权限：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">文件属性     文件数    拥有者   所属的group    文件大小    建档日期        文件名　　</span><br><span class="line">drwx--x--x   1      root       wheel       6872    2  7 22:41     compressedPackage/</span><br><span class="line">drwxr-xr-x   1      liuml      wheel       8620    2 15 09:32     wwwroot/　　</span><br><span class="line">lrwxrwxrwx   1      liuml      wheel       46      2 24 19:30     abc@ -&gt; home/abc</span><br><span class="line">-rwxr-xr-x   1      liuml      wheel       68568   2 29 07:43     test*　　</span><br><span class="line"> </span><br><span class="line">- 文件名栏位 文件后面的符号含义  </span><br><span class="line">	- / ：表明是一个目录</span><br><span class="line">	- @ ：表明是到其它文件的符号链接</span><br><span class="line">	- * ：表明是一个可执行文件。</span><br><span class="line"></span><br><span class="line">- 对于权限设置的解释</span><br><span class="line">	- r 是读，w 是写，x 是执行</span><br><span class="line"></span><br><span class="line">	- 对应数字如下:</span><br><span class="line">		- r = 4    w = 2    x = 1</span><br><span class="line">		- rwx ：4+2+1 = 7</span><br><span class="line">		- rw- ：4+2 = 6</span><br><span class="line">		- r-x ：4+1 = 5</span><br><span class="line">		- drwxr-xr-x ：755</span><br><span class="line"></span><br><span class="line">- 第 0-1位   文件类型</span><br><span class="line">	- “-” ：表示普通文件；</span><br><span class="line">	- “d” ：表示目录；</span><br><span class="line">	- “l” ：表示链接文件；</span><br><span class="line">	- “p” ：表示管理文件；</span><br><span class="line">	- “b” ：表示块设备文件；</span><br><span class="line">	- “c” ：表示字符设备文件；</span><br><span class="line">	- “s” ：表示套接字文件；</span><br><span class="line"></span><br><span class="line">- 第 2-4位   文件所有者权限 [User]</span><br><span class="line"></span><br><span class="line">- 第 5-7位   文件所有者所在组权限 [Group]</span><br><span class="line"></span><br><span class="line">- 第 8-10位  其他用户权限 [Others]</span><br><span class="line"></span><br><span class="line">- 没有的权限用 “-” 来表示</span><br><span class="line">————————————————</span><br><span class="line">版权声明：本文为CSDN博主「烟雨弥漫了江南」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。</span><br><span class="line">原文链接：https://blog.csdn.net/u010324331/article/details/88035175/</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/10/13/Linux%E6%9D%83%E9%99%90/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/2021/10/13/Maya_MASH/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="winotmk">
+      <meta itemprop="description" content="零碎MD收集">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WinNote">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/10/13/Maya_MASH/" class="post-title-link" itemprop="url">MayaMASH动力学做链子</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-13 11:52:45" itemprop="dateCreated datePublished" datetime="2021-10-13T11:52:45+08:00">2021-10-13</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan：</span>
+    
+    
+      <a title="changyan" href="/2021/10/13/Maya_MASH/#SOHUCS" itemprop="discussionUrl">
+        <span id="url::https://winotmk.github.io/2021/10/13/Maya_MASH/" class="cy_cmt_count" data-xid="2021/10/13/Maya_MASH/" itemprop="commentCount"></span>
+      </a>
+    
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <img src="/2021/10/13/Maya_MASH/20211009_110403_2021100901.gif" class="" width="500">
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/10/13/Maya_MASH/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
