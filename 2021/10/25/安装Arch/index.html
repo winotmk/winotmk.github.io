@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"winotmk.github.io","root":"/","images":"/images","scheme":"Pisces","version":"8.7.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="参考文章：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;138951848 官方WIKI安装指南（上文和本文大致流程基于此）：https:&#x2F;&#x2F;wiki.archlinux.org&#x2F;title&#x2F;Installation_guide 家里旧笔记本淘汰装个Linux跑跑服务发挥余热，这里是彻底格式化硬盘新安装，而不需要多系统引导 我的环境有：  2核  Intel(R) Pentium(R)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安装ArchLinux系统（详细过程）">
+<meta property="og:url" content="https://winotmk.github.io/2021/10/25/%E5%AE%89%E8%A3%85Arch/index.html">
+<meta property="og:site_name" content="WinNote">
+<meta property="og:description" content="参考文章：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;138951848 官方WIKI安装指南（上文和本文大致流程基于此）：https:&#x2F;&#x2F;wiki.archlinux.org&#x2F;title&#x2F;Installation_guide 家里旧笔记本淘汰装个Linux跑跑服务发挥余热，这里是彻底格式化硬盘新安装，而不需要多系统引导 我的环境有：  2核  Intel(R) Pentium(R)">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://winotmk.github.io/2021/10/25/%E5%AE%89%E8%A3%85Arch/20211024_224554_v2-da5d5bc2996a7b6990673c4c4700d77a_1440w.png">
+<meta property="og:image" content="https://winotmk.github.io/2021/10/25/%E5%AE%89%E8%A3%85Arch/20211024_234039_v2-54fc38004dc15b76d68983a78e59928a_r.jpg">
+<meta property="og:image" content="https://winotmk.github.io/2021/10/25/%E5%AE%89%E8%A3%85Arch/20211025_000315_87B60562-6700-4593-B70A-F543B38B30E5_1_105_c.jpeg">
+<meta property="article:published_time" content="2021-10-24T16:05:39.870Z">
+<meta property="article:modified_time" content="2021-10-24T16:05:39.870Z">
+<meta property="article:author" content="winotmk">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://winotmk.github.io/2021/10/25/%E5%AE%89%E8%A3%85Arch/20211024_224554_v2-da5d5bc2996a7b6990673c4c4700d77a_1440w.png">
+
+
+<link rel="canonical" href="https://winotmk.github.io/2021/10/25/%E5%AE%89%E8%A3%85Arch/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://winotmk.github.io/2021/10/25/%E5%AE%89%E8%A3%85Arch/","path":"2021/10/25/安装Arch/","title":"安装ArchLinux系统（详细过程）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>安装ArchLinux系统（详细过程） | WinNote</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">WinNote</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-%E5%87%86%E5%A4%87%E9%95%9C%E5%83%8F"><span class="nav-number">1.</span> <span class="nav-text">0.准备镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%A1%AC%E7%9B%98%E5%87%86%E5%A4%87"><span class="nav-number">2.</span> <span class="nav-text">1.硬盘准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E7%A1%AC%E7%9B%98"><span class="nav-number">2.1.</span> <span class="nav-text">检查硬盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E5%88%86%E5%8C%BA"><span class="nav-number">2.2.</span> <span class="nav-text">建立分区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="nav-number">2.3.</span> <span class="nav-text">格式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%82%E8%BD%BD%E5%88%86%E5%8C%BA"><span class="nav-number">2.4.</span> <span class="nav-text">挂载分区</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F"><span class="nav-number">3.</span> <span class="nav-text">2.安装系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%94%9F%E6%88%90fstab%E6%96%87%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">3.生成fstab文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E9%85%8D%E7%BD%AE%E6%96%B0%E7%B3%BB%E7%BB%9F"><span class="nav-number">5.</span> <span class="nav-text">4.配置新系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%87%E6%8D%A2%E5%88%B0%E8%A3%85%E5%A5%BD%E7%9A%84%E7%B3%BB%E7%BB%9F"><span class="nav-number">5.1.</span> <span class="nav-text">切换到装好的系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%97%B6%E5%8C%BA"><span class="nav-number">5.2.</span> <span class="nav-text">设置时区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AElocale"><span class="nav-number">5.3.</span> <span class="nav-text">设置locale</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%86%99%E5%85%A5hostname"><span class="nav-number">5.4.</span> <span class="nav-text">创建并写入hostname</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9hosts"><span class="nav-number">5.5.</span> <span class="nav-text">修改hosts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#root%E7%94%A8%E6%88%B7%E5%88%9B%E5%BB%BA%E5%AF%86%E7%A0%81"><span class="nav-number">5.6.</span> <span class="nav-text">root用户创建密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A3%85%E5%90%AF%E5%8A%A8%E5%99%A8%E5%92%8C%E4%B8%80%E4%BA%9B%E8%BD%AF%E4%BB%B6"><span class="nav-number">5.7.</span> <span class="nav-text">装启动器和一些软件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E9%80%80%E5%87%BA%E6%96%B0%E7%B3%BB%E7%BB%9F%E9%87%8D%E5%90%AF"><span class="nav-number">6.</span> <span class="nav-text">5.退出新系统重启</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%96%B0%E5%BB%BA%E7%94%A8%E6%88%B7%E5%B9%B6%E6%8E%88%E6%9D%83"><span class="nav-number">7.</span> <span class="nav-text">6.新建用户并授权</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%AE%89%E8%A3%85Display-Server%E5%92%8CDisplay-Manager"><span class="nav-number">8.</span> <span class="nav-text">7.安装Display Server和Display Manager</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E5%AE%89%E8%A3%85Desktop-Environment"><span class="nav-number">9.</span> <span class="nav-text">8.安装Desktop Environment</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="winotmk"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">winotmk</p>
+  <div class="site-description" itemprop="description">零碎MD收集</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/2021/10/25/%E5%AE%89%E8%A3%85Arch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="winotmk">
+      <meta itemprop="description" content="零碎MD收集">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WinNote">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          安装ArchLinux系统（详细过程）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-25 00:05:39" itemprop="dateCreated datePublished" datetime="2021-10-25T00:05:39+08:00">2021-10-25</time>
+    </span>
+
+  
+    <span id="/2021/10/25/%E5%AE%89%E8%A3%85Arch/" class="post-meta-item leancloud_visitors" data-flag-title="安装ArchLinux系统（详细过程）" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>参考文章：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/138951848">https://zhuanlan.zhihu.com/p/138951848</a></p>
+<p>官方WIKI安装指南（上文和本文大致流程基于此）：<a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Installation_guide">https://wiki.archlinux.org/title/Installation_guide</a></p>
+<p>家里旧笔记本淘汰装个Linux跑跑服务发挥余热，<br>这里是彻底格式化硬盘新安装，而不需要多系统引导</p>
+<p>我的环境有：</p>
+<ul>
+<li>2核  Intel(R) Pentium(R) CPU 997 @ 1.60GHz</li>
+<li>4GB 1600内存</li>
+<li>UEFI启动（不能为BIOS）</li>
+<li>Samsang 850 EVO 250G 2.5寸SATA接口</li>
+<li>无线网卡拆掉了，用得是网线</li>
+<li>路由器上全局梯子（所以我没有换源，用官方源速度足够了）</li>
+</ul>
+<h2 id="0-准备镜像"><a href="#0-准备镜像" class="headerlink" title="0.准备镜像"></a>0.准备镜像</h2><p><a target="_blank" rel="noopener" href="https://archlinux.org/download/">https://archlinux.org/download/</a><br>下载发行版的Linux的ISO<br>然后制作U盘启动，我是在mac下用balenaEtcher做的，操作非常方便</p>
+
+<span id="more"></span>
+
+<p>然后重启电脑从U盘启动</p>
+<h2 id="1-硬盘准备"><a href="#1-硬盘准备" class="headerlink" title="1.硬盘准备"></a>1.硬盘准备</h2><p>进入U盘系统后先连pacman试试</p>
+<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">pacman -Syyy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<img src="/2021/10/25/%E5%AE%89%E8%A3%85Arch/20211024_224554_v2-da5d5bc2996a7b6990673c4c4700d77a_1440w.png" class="" width="800">
+
+<h3 id="检查硬盘"><a href="#检查硬盘" class="headerlink" title="检查硬盘"></a>检查硬盘</h3><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">lsblk<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h3 id="建立分区"><a href="#建立分区" class="headerlink" title="建立分区"></a>建立分区</h3><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">cfdisk &#x2F;dev&#x2F;sda<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>选择New 回车，然后<br>选择Write 回车 输入 yes 回车<br>写入完成 选择Quit 回车退出</p>
+<h3 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h3><p>将刚刚分好的区格式化为ext4格式，这里认准分区号sda1</p>
+<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">mkfs.ext4 &#x2F;dev&#x2F;sda1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="挂载分区"><a href="#挂载分区" class="headerlink" title="挂载分区"></a>挂载分区</h3><p>sda1</p>
+<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">mount &#x2F;dev&#x2F;sda1 &#x2F;mnt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="2-安装系统"><a href="#2-安装系统" class="headerlink" title="2.安装系统"></a>2.安装系统</h2><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">pacstrap &#x2F;mnt base linux linux-firmware nano<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="3-生成fstab文件"><a href="#3-生成fstab文件" class="headerlink" title="3.生成fstab文件"></a>3.生成fstab文件</h2><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">genfstab -U &#x2F;mnt &gt;&gt; &#x2F;mnt&#x2F;etc&#x2F;fstab<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>检查生成的fstab文件</p>
+<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">cat &#x2F;mnt&#x2F;etc&#x2F;fstab<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="4-配置新系统"><a href="#4-配置新系统" class="headerlink" title="4.配置新系统"></a>4.配置新系统</h2><h3 id="切换到装好的系统"><a href="#切换到装好的系统" class="headerlink" title="切换到装好的系统"></a>切换到装好的系统</h3><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">arch-chroot &#x2F;mnt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h3><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">ln -sf &#x2F;usr&#x2F;share&#x2F;zoneinfo&#x2F;Asia&#x2F;Shanghai &#x2F;etc&#x2F;localtime<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="设置locale"><a href="#设置locale" class="headerlink" title="设置locale"></a>设置locale</h3><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">nano &#x2F;etc&#x2F;locale.gen<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>Ctrl+W 输入 #en_US 回车 找到UTF-8那一行 删掉前面的#</p>
+<p>Ctrl+W 输入 #zh_CN 回车 找到UTF-8那一行 删掉前面的#<br>Ctrl+X 然后Y保存退出<br>生成locale</p>
+<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">locale-gen<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>创建并写入/etc/locale.conf文件</p>
+<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">nano &#x2F;etc&#x2F;locale.conf <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>填入内容，注意这里只能填这个</p>
+<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">LANG&#x3D;en_US.UTF-8<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="创建并写入hostname"><a href="#创建并写入hostname" class="headerlink" title="创建并写入hostname"></a>创建并写入hostname</h3><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">nano &#x2F;etc&#x2F;hostname<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>我这里名字叫WinArch<br>保存退出</p>
+<h3 id="修改hosts"><a href="#修改hosts" class="headerlink" title="修改hosts"></a>修改hosts</h3><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">nano &#x2F;etc&#x2F;hosts<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>写入内容如图（中间的空白用tab而非空格），arch替换为你之前在hostname里写入的内容，其他都按照图里面的写（注意最后一行的ip是127.0.1.1）</p>
+<img src="/2021/10/25/%E5%AE%89%E8%A3%85Arch/20211024_234039_v2-54fc38004dc15b76d68983a78e59928a_r.jpg" class="" width="800">
+
+<p>保存退出</p>
+<p>建议上述编辑的内容都用cat输出检查一下</p>
+<h3 id="root用户创建密码"><a href="#root用户创建密码" class="headerlink" title="root用户创建密码"></a>root用户创建密码</h3><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">passwd<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>然后输入并确认密码</p>
+<h3 id="装启动器和一些软件"><a href="#装启动器和一些软件" class="headerlink" title="装启动器和一些软件"></a>装启动器和一些软件</h3><p>包含了一些常用到的软件</p>
+<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">pacman -S grub efibootmgr networkmanager network-manager-applet dialog wireless_tools wpa_supplicant os-prober mtools dosfstools ntfs-3g base-devel linux-headers reflector git sudo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>intel的cpu，需要安装intel的微码文件</p>
+<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">pacman -S intel-ucode<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>完成之后输入</p>
+<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">grub-install &#x2F;dev&#x2F;sda<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>注意是硬盘位置不是分区位置，硬盘上也只有刚刚安装的Arch系统</p>
+<p>生成grub.cfg</p>
+<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">grub-mkconfig -o &#x2F;boot&#x2F;grub&#x2F;grub.cfg<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>出现吧啦吧啦done就完成了</p>
+<h2 id="5-退出新系统重启"><a href="#5-退出新系统重启" class="headerlink" title="5.退出新系统重启"></a>5.退出新系统重启</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">exit
+reboot<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>不装桌面环境的话，到这步即可使用了，后续需要什么再装不迟</p>
+<h2 id="6-新建用户并授权"><a href="#6-新建用户并授权" class="headerlink" title="6.新建用户并授权"></a>6.新建用户并授权</h2><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">useradd -m -G wheel winotmk<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>我的用户是winotkm，这里主要是创建一个非root的账户，桌面环境一般无法用root登陆的<br>创建密码</p>
+<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">passwd winotmk<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>授权</p>
+<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">EDITOR&#x3D;nano visudo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>Ctrl+W 输入 # %wheel 回车 找到这行 删除前面的 #（取消注释）</p>
+<h2 id="7-安装Display-Server和Display-Manager"><a href="#7-安装Display-Server和Display-Manager" class="headerlink" title="7.安装Display Server和Display Manager"></a>7.安装Display Server和Display Manager</h2><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">pacman -S xorg<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>然后我喜欢KDE桌面，所以装：</p>
+<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">pacman -S sddm<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>设置开机启动</p>
+<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">systemctl enable sddm<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>PS.取消开机启动是</p>
+<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">systemctl disable sddm<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="8-安装Desktop-Environment"><a href="#8-安装Desktop-Environment" class="headerlink" title="8.安装Desktop Environment"></a>8.安装Desktop Environment</h2><p>KDE：</p>
+<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">pacman -S plasma kde-applications packagekit-qt5<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>安装中文的字体</p>
+<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">pacman -S noto-fonts-cjk<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>好了，大功告成</p>
+<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">reboot<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<img src="/2021/10/25/%E5%AE%89%E8%A3%85Arch/20211025_000315_87B60562-6700-4593-B70A-F543B38B30E5_1_105_c.jpeg" class="" width="800">
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/10/24/ArchLinux%E5%91%BD%E4%BB%A4/" rel="prev" title="ArchLinux命令集">
+                  <i class="fa fa-chevron-left"></i> ArchLinux命令集
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">winotmk</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"6zJke9pA3bdn6QmGMqRkRMmw-MdYXbMMI","app_key":"EOtqRFkR8k3SbWMABSXT29O0","security":false}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+
+</body>
+</html>
