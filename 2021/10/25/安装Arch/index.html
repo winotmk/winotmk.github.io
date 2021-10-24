@@ -30,8 +30,8 @@
 <meta property="og:image" content="https://winotmk.github.io/2021/10/25/%E5%AE%89%E8%A3%85Arch/20211024_224554_v2-da5d5bc2996a7b6990673c4c4700d77a_1440w.png">
 <meta property="og:image" content="https://winotmk.github.io/2021/10/25/%E5%AE%89%E8%A3%85Arch/20211024_234039_v2-54fc38004dc15b76d68983a78e59928a_r.jpg">
 <meta property="og:image" content="https://winotmk.github.io/2021/10/25/%E5%AE%89%E8%A3%85Arch/20211025_000315_87B60562-6700-4593-B70A-F543B38B30E5_1_105_c.jpeg">
-<meta property="article:published_time" content="2021-10-24T16:05:39.870Z">
-<meta property="article:modified_time" content="2021-10-24T16:05:39.870Z">
+<meta property="article:published_time" content="2021-10-24T16:19:13.056Z">
+<meta property="article:modified_time" content="2021-10-24T16:18:55.806Z">
 <meta property="article:author" content="winotmk">
 <meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
@@ -122,7 +122,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-%E5%87%86%E5%A4%87%E9%95%9C%E5%83%8F"><span class="nav-number">1.</span> <span class="nav-text">0.准备镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%A1%AC%E7%9B%98%E5%87%86%E5%A4%87"><span class="nav-number">2.</span> <span class="nav-text">1.硬盘准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E7%A1%AC%E7%9B%98"><span class="nav-number">2.1.</span> <span class="nav-text">检查硬盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E5%88%86%E5%8C%BA"><span class="nav-number">2.2.</span> <span class="nav-text">建立分区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="nav-number">2.3.</span> <span class="nav-text">格式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%82%E8%BD%BD%E5%88%86%E5%8C%BA"><span class="nav-number">2.4.</span> <span class="nav-text">挂载分区</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F"><span class="nav-number">3.</span> <span class="nav-text">2.安装系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%94%9F%E6%88%90fstab%E6%96%87%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">3.生成fstab文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E9%85%8D%E7%BD%AE%E6%96%B0%E7%B3%BB%E7%BB%9F"><span class="nav-number">5.</span> <span class="nav-text">4.配置新系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%87%E6%8D%A2%E5%88%B0%E8%A3%85%E5%A5%BD%E7%9A%84%E7%B3%BB%E7%BB%9F"><span class="nav-number">5.1.</span> <span class="nav-text">切换到装好的系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%97%B6%E5%8C%BA"><span class="nav-number">5.2.</span> <span class="nav-text">设置时区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AElocale"><span class="nav-number">5.3.</span> <span class="nav-text">设置locale</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%86%99%E5%85%A5hostname"><span class="nav-number">5.4.</span> <span class="nav-text">创建并写入hostname</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9hosts"><span class="nav-number">5.5.</span> <span class="nav-text">修改hosts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#root%E7%94%A8%E6%88%B7%E5%88%9B%E5%BB%BA%E5%AF%86%E7%A0%81"><span class="nav-number">5.6.</span> <span class="nav-text">root用户创建密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A3%85%E5%90%AF%E5%8A%A8%E5%99%A8%E5%92%8C%E4%B8%80%E4%BA%9B%E8%BD%AF%E4%BB%B6"><span class="nav-number">5.7.</span> <span class="nav-text">装启动器和一些软件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E9%80%80%E5%87%BA%E6%96%B0%E7%B3%BB%E7%BB%9F%E9%87%8D%E5%90%AF"><span class="nav-number">6.</span> <span class="nav-text">5.退出新系统重启</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%96%B0%E5%BB%BA%E7%94%A8%E6%88%B7%E5%B9%B6%E6%8E%88%E6%9D%83"><span class="nav-number">7.</span> <span class="nav-text">6.新建用户并授权</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%AE%89%E8%A3%85Display-Server%E5%92%8CDisplay-Manager"><span class="nav-number">8.</span> <span class="nav-text">7.安装Display Server和Display Manager</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E5%AE%89%E8%A3%85Desktop-Environment"><span class="nav-number">9.</span> <span class="nav-text">8.安装Desktop Environment</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E9%95%9C%E5%83%8F"><span class="nav-number">1.</span> <span class="nav-text">准备镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A1%AC%E7%9B%98%E5%87%86%E5%A4%87"><span class="nav-number">2.</span> <span class="nav-text">硬盘准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E7%A1%AC%E7%9B%98"><span class="nav-number">2.1.</span> <span class="nav-text">检查硬盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E5%88%86%E5%8C%BA"><span class="nav-number">2.2.</span> <span class="nav-text">建立分区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="nav-number">2.3.</span> <span class="nav-text">格式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%82%E8%BD%BD%E5%88%86%E5%8C%BA"><span class="nav-number">2.4.</span> <span class="nav-text">挂载分区</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F"><span class="nav-number">3.</span> <span class="nav-text">安装系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E6%88%90fstab%E6%96%87%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">生成fstab文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%B0%E7%B3%BB%E7%BB%9F"><span class="nav-number">5.</span> <span class="nav-text">配置新系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%87%E6%8D%A2%E5%88%B0%E8%A3%85%E5%A5%BD%E7%9A%84%E7%B3%BB%E7%BB%9F"><span class="nav-number">5.1.</span> <span class="nav-text">切换到装好的系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%97%B6%E5%8C%BA"><span class="nav-number">5.2.</span> <span class="nav-text">设置时区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AElocale"><span class="nav-number">5.3.</span> <span class="nav-text">设置locale</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%86%99%E5%85%A5hostname"><span class="nav-number">5.4.</span> <span class="nav-text">创建并写入hostname</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9hosts"><span class="nav-number">5.5.</span> <span class="nav-text">修改hosts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#root%E7%94%A8%E6%88%B7%E5%88%9B%E5%BB%BA%E5%AF%86%E7%A0%81"><span class="nav-number">5.6.</span> <span class="nav-text">root用户创建密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A3%85%E5%90%AF%E5%8A%A8%E5%99%A8%E5%92%8C%E4%B8%80%E4%BA%9B%E8%BD%AF%E4%BB%B6"><span class="nav-number">5.7.</span> <span class="nav-text">装启动器和一些软件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%80%E5%87%BA%E6%96%B0%E7%B3%BB%E7%BB%9F%E9%87%8D%E5%90%AF"><span class="nav-number">6.</span> <span class="nav-text">退出新系统重启</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E7%94%A8%E6%88%B7%E5%B9%B6%E6%8E%88%E6%9D%83"><span class="nav-number">7.</span> <span class="nav-text">新建用户并授权</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Display-Server%E5%92%8CDisplay-Manager"><span class="nav-number">8.</span> <span class="nav-text">安装Display Server和Display Manager</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Desktop-Environment"><span class="nav-number">9.</span> <span class="nav-text">安装Desktop Environment</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -206,8 +206,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2021-10-25 00:05:39" itemprop="dateCreated datePublished" datetime="2021-10-25T00:05:39+08:00">2021-10-25</time>
+      <time title="创建时间：2021-10-25 00:19:13 / 修改时间：00:18:55" itemprop="dateCreated datePublished" datetime="2021-10-25T00:19:13+08:00">2021-10-25</time>
     </span>
 
   
@@ -239,12 +240,12 @@
 <li>无线网卡拆掉了，用得是网线</li>
 <li>路由器上全局梯子（所以我没有换源，用官方源速度足够了）</li>
 </ul>
-<h2 id="0-准备镜像"><a href="#0-准备镜像" class="headerlink" title="0.准备镜像"></a>0.准备镜像</h2><p><a target="_blank" rel="noopener" href="https://archlinux.org/download/">https://archlinux.org/download/</a><br>下载发行版的Linux的ISO<br>然后制作U盘启动，我是在mac下用balenaEtcher做的，操作非常方便</p>
+<h2 id="准备镜像"><a href="#准备镜像" class="headerlink" title="准备镜像"></a>准备镜像</h2><p><a target="_blank" rel="noopener" href="https://archlinux.org/download/">https://archlinux.org/download/</a><br>下载发行版的Linux的ISO<br>然后制作U盘启动，我是在mac下用balenaEtcher做的，操作非常方便</p>
 
 <span id="more"></span>
 
 <p>然后重启电脑从U盘启动</p>
-<h2 id="1-硬盘准备"><a href="#1-硬盘准备" class="headerlink" title="1.硬盘准备"></a>1.硬盘准备</h2><p>进入U盘系统后先连pacman试试</p>
+<h2 id="硬盘准备"><a href="#硬盘准备" class="headerlink" title="硬盘准备"></a>硬盘准备</h2><p>进入U盘系统后先连pacman试试</p>
 <pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">pacman -Syyy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <img src="/2021/10/25/%E5%AE%89%E8%A3%85Arch/20211024_224554_v2-da5d5bc2996a7b6990673c4c4700d77a_1440w.png" class="" width="800">
@@ -262,14 +263,14 @@
 <h3 id="挂载分区"><a href="#挂载分区" class="headerlink" title="挂载分区"></a>挂载分区</h3><p>sda1</p>
 <pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">mount &#x2F;dev&#x2F;sda1 &#x2F;mnt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h2 id="2-安装系统"><a href="#2-安装系统" class="headerlink" title="2.安装系统"></a>2.安装系统</h2><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">pacstrap &#x2F;mnt base linux linux-firmware nano<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="安装系统"><a href="#安装系统" class="headerlink" title="安装系统"></a>安装系统</h2><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">pacstrap &#x2F;mnt base linux linux-firmware nano<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h2 id="3-生成fstab文件"><a href="#3-生成fstab文件" class="headerlink" title="3.生成fstab文件"></a>3.生成fstab文件</h2><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">genfstab -U &#x2F;mnt &gt;&gt; &#x2F;mnt&#x2F;etc&#x2F;fstab<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="生成fstab文件"><a href="#生成fstab文件" class="headerlink" title="生成fstab文件"></a>生成fstab文件</h2><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">genfstab -U &#x2F;mnt &gt;&gt; &#x2F;mnt&#x2F;etc&#x2F;fstab<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>检查生成的fstab文件</p>
 <pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">cat &#x2F;mnt&#x2F;etc&#x2F;fstab<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h2 id="4-配置新系统"><a href="#4-配置新系统" class="headerlink" title="4.配置新系统"></a>4.配置新系统</h2><h3 id="切换到装好的系统"><a href="#切换到装好的系统" class="headerlink" title="切换到装好的系统"></a>切换到装好的系统</h3><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">arch-chroot &#x2F;mnt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="配置新系统"><a href="#配置新系统" class="headerlink" title="配置新系统"></a>配置新系统</h2><h3 id="切换到装好的系统"><a href="#切换到装好的系统" class="headerlink" title="切换到装好的系统"></a>切换到装好的系统</h3><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">arch-chroot &#x2F;mnt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h3 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h3><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">ln -sf &#x2F;usr&#x2F;share&#x2F;zoneinfo&#x2F;Asia&#x2F;Shanghai &#x2F;etc&#x2F;localtime<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
@@ -312,11 +313,11 @@
 <pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">grub-mkconfig -o &#x2F;boot&#x2F;grub&#x2F;grub.cfg<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>出现吧啦吧啦done就完成了</p>
-<h2 id="5-退出新系统重启"><a href="#5-退出新系统重启" class="headerlink" title="5.退出新系统重启"></a>5.退出新系统重启</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">exit
+<h2 id="退出新系统重启"><a href="#退出新系统重启" class="headerlink" title="退出新系统重启"></a>退出新系统重启</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">exit
 reboot<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>不装桌面环境的话，到这步即可使用了，后续需要什么再装不迟</p>
-<h2 id="6-新建用户并授权"><a href="#6-新建用户并授权" class="headerlink" title="6.新建用户并授权"></a>6.新建用户并授权</h2><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">useradd -m -G wheel winotmk<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="新建用户并授权"><a href="#新建用户并授权" class="headerlink" title="新建用户并授权"></a>新建用户并授权</h2><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">useradd -m -G wheel winotmk<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>我的用户是winotkm，这里主要是创建一个非root的账户，桌面环境一般无法用root登陆的<br>创建密码</p>
 <pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">passwd winotmk<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -325,7 +326,7 @@ reboot<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
 <pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">EDITOR&#x3D;nano visudo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>Ctrl+W 输入 # %wheel 回车 找到这行 删除前面的 #（取消注释）</p>
-<h2 id="7-安装Display-Server和Display-Manager"><a href="#7-安装Display-Server和Display-Manager" class="headerlink" title="7.安装Display Server和Display Manager"></a>7.安装Display Server和Display Manager</h2><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">pacman -S xorg<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="安装Display-Server和Display-Manager"><a href="#安装Display-Server和Display-Manager" class="headerlink" title="安装Display Server和Display Manager"></a>安装Display Server和Display Manager</h2><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">pacman -S xorg<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>然后我喜欢KDE桌面，所以装：</p>
 <pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">pacman -S sddm<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -336,7 +337,7 @@ reboot<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
 <p>PS.取消开机启动是</p>
 <pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">systemctl disable sddm<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h2 id="8-安装Desktop-Environment"><a href="#8-安装Desktop-Environment" class="headerlink" title="8.安装Desktop Environment"></a>8.安装Desktop Environment</h2><p>KDE：</p>
+<h2 id="安装Desktop-Environment"><a href="#安装Desktop-Environment" class="headerlink" title="安装Desktop Environment"></a>安装Desktop Environment</h2><p>KDE：</p>
 <pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">pacman -S plasma kde-applications packagekit-qt5<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>安装中文的字体</p>
