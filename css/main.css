@@ -17,10 +17,10 @@
   --btn-default-hover-bg: #222;
   --btn-default-hover-color: #fff;
   --btn-default-hover-border-color: #222;
-  --highlight-background: #333;
-  --highlight-foreground: #fff;
-  --highlight-gutter-background: #474747;
-  --highlight-gutter-foreground: #eaeaea;
+  --highlight-background: #f1efee;
+  --highlight-foreground: #68615e;
+  --highlight-gutter-background: #e3e0df;
+  --highlight-gutter-foreground: #756f6c;
 }
 html {
   line-height: 1.15; /* 1 */
@@ -357,46 +357,75 @@ td {
   top: -5px;
   transform: rotate(45deg);
 }
-pre[class*="language-"].line-numbers {
-	position: relative;
-	padding-left: 3.8em;
-	counter-reset: linenumber;
+/* Base16 Atelier Forest Light - Theme */
+/* by Bram de Haan (http://atelierbram.github.io/syntax-highlighting/atelier-schemes/forest) */
+/* Original Base16 color scheme by Chris Kempson (https://github.com/chriskempson/base16) */
+
+/* Atelier-Forest Comment */
+.hljs-comment,
+.hljs-quote {
+  color: #766e6b;
 }
 
-pre[class*="language-"].line-numbers > code {
-	position: relative;
-	white-space: inherit;
+/* Atelier-Forest Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-attribute,
+.hljs-tag,
+.hljs-name,
+.hljs-regexp,
+.hljs-link,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class {
+  color: #f22c40;
 }
 
-.line-numbers .line-numbers-rows {
-	position: absolute;
-	pointer-events: none;
-	top: 0;
-	font-size: 100%;
-	left: -3.8em;
-	width: 3em; /* works for line-numbers below 1000 lines */
-	letter-spacing: -1px;
-	border-right: 1px solid #999;
-
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-
+/* Atelier-Forest Orange */
+.hljs-number,
+.hljs-meta,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params {
+  color: #df5320;
 }
 
-	.line-numbers-rows > span {
-		display: block;
-		counter-increment: linenumber;
-	}
+/* Atelier-Forest Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet {
+  color: #7b9726;
+}
 
-		.line-numbers-rows > span:before {
-			content: counter(linenumber);
-			color: #999;
-			display: block;
-			padding-right: 0.8em;
-			text-align: right;
-		}
+/* Atelier-Forest Blue */
+.hljs-title,
+.hljs-section {
+  color: #407ee7;
+}
+
+/* Atelier-Forest Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+  color: #6666ea;
+}
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  background: #f1efee;
+  color: #68615e;
+  padding: 0.5em;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
 
 .highlight:hover .copy-btn,
 pre:hover .copy-btn {

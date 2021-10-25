@@ -248,105 +248,104 @@
 
 <p>然后重启电脑从U盘启动</p>
 <h2 id="硬盘准备"><a href="#硬盘准备" class="headerlink" title="硬盘准备"></a>硬盘准备</h2><p>进入U盘系统后先连pacman试试</p>
-<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">pacman -Syyy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -Syyy</span><br></pre></td></tr></table></figure>
 
 <img src="/2021/10/25/%E5%AE%89%E8%A3%85Arch/20211024_224554_v2-da5d5bc2996a7b6990673c4c4700d77a_1440w.png" class="" width="800">
 
-<h3 id="检查硬盘"><a href="#检查硬盘" class="headerlink" title="检查硬盘"></a>检查硬盘</h3><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">lsblk<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="检查硬盘"><a href="#检查硬盘" class="headerlink" title="检查硬盘"></a>检查硬盘</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsblk</span><br></pre></td></tr></table></figure>
 
 <img src="/2021/10/25/%E5%AE%89%E8%A3%85Arch/20211024_231805.png" class="" width="500">
 
-<h3 id="建立分区"><a href="#建立分区" class="headerlink" title="建立分区"></a>建立分区</h3><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">cfdisk &#x2F;dev&#x2F;sda<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="建立分区"><a href="#建立分区" class="headerlink" title="建立分区"></a>建立分区</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cfdisk /dev/sda</span><br></pre></td></tr></table></figure>
 
 <p>选择New 回车，然后<br>选择Write 回车 输入 yes 回车<br>写入完成 选择Quit 回车退出</p>
 <h3 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h3><p>将刚刚分好的区格式化为ext4格式，这里认准分区号sda1</p>
-<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">mkfs.ext4 &#x2F;dev&#x2F;sda1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs.ext4 /dev/sda1</span><br></pre></td></tr></table></figure>
 
 <h3 id="挂载分区"><a href="#挂载分区" class="headerlink" title="挂载分区"></a>挂载分区</h3><p>sda1</p>
-<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">mount &#x2F;dev&#x2F;sda1 &#x2F;mnt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/sda1 /mnt</span><br></pre></td></tr></table></figure>
 
-<h2 id="安装系统"><a href="#安装系统" class="headerlink" title="安装系统"></a>安装系统</h2><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">pacstrap &#x2F;mnt base linux linux-firmware nano<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="安装系统"><a href="#安装系统" class="headerlink" title="安装系统"></a>安装系统</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacstrap /mnt base linux linux-firmware nano</span><br></pre></td></tr></table></figure>
 
-<h2 id="生成fstab文件"><a href="#生成fstab文件" class="headerlink" title="生成fstab文件"></a>生成fstab文件</h2><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">genfstab -U &#x2F;mnt &gt;&gt; &#x2F;mnt&#x2F;etc&#x2F;fstab<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="生成fstab文件"><a href="#生成fstab文件" class="headerlink" title="生成fstab文件"></a>生成fstab文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</span><br></pre></td></tr></table></figure>
 
 <p>检查生成的fstab文件</p>
-<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">cat &#x2F;mnt&#x2F;etc&#x2F;fstab<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /mnt/etc/fstab</span><br></pre></td></tr></table></figure>
 
-<h2 id="配置新系统"><a href="#配置新系统" class="headerlink" title="配置新系统"></a>配置新系统</h2><h3 id="切换到装好的系统"><a href="#切换到装好的系统" class="headerlink" title="切换到装好的系统"></a>切换到装好的系统</h3><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">arch-chroot &#x2F;mnt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="配置新系统"><a href="#配置新系统" class="headerlink" title="配置新系统"></a>配置新系统</h2><h3 id="切换到装好的系统"><a href="#切换到装好的系统" class="headerlink" title="切换到装好的系统"></a>切换到装好的系统</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arch-chroot /mnt</span><br></pre></td></tr></table></figure>
 
-<h3 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h3><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">ln -sf &#x2F;usr&#x2F;share&#x2F;zoneinfo&#x2F;Asia&#x2F;Shanghai &#x2F;etc&#x2F;localtime<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</span><br></pre></td></tr></table></figure>
 
-<h3 id="设置locale"><a href="#设置locale" class="headerlink" title="设置locale"></a>设置locale</h3><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">nano &#x2F;etc&#x2F;locale.gen<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="设置locale"><a href="#设置locale" class="headerlink" title="设置locale"></a>设置locale</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/locale.gen</span><br></pre></td></tr></table></figure>
 
 <p>Ctrl+W 输入 #en_US 回车 找到UTF-8那一行 删掉前面的#</p>
 <p>Ctrl+W 输入 #zh_CN 回车 找到UTF-8那一行 删掉前面的#<br>Ctrl+X 然后Y保存退出<br>生成locale</p>
-<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">locale-gen<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">locale-gen</span><br></pre></td></tr></table></figure>
 
 <p>创建并写入/etc/locale.conf文件</p>
-<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">nano &#x2F;etc&#x2F;locale.conf <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/locale.conf </span><br></pre></td></tr></table></figure>
 
 <p>填入内容，注意这里只能填这个</p>
-<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">LANG&#x3D;en_US.UTF-8<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LANG=en_US.UTF-8</span><br></pre></td></tr></table></figure>
 
-<h3 id="创建并写入hostname"><a href="#创建并写入hostname" class="headerlink" title="创建并写入hostname"></a>创建并写入hostname</h3><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">nano &#x2F;etc&#x2F;hostname<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="创建并写入hostname"><a href="#创建并写入hostname" class="headerlink" title="创建并写入hostname"></a>创建并写入hostname</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/hostname</span><br></pre></td></tr></table></figure>
 
 <p>我这里名字叫WinArch<br>保存退出</p>
-<h3 id="修改hosts"><a href="#修改hosts" class="headerlink" title="修改hosts"></a>修改hosts</h3><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">nano &#x2F;etc&#x2F;hosts<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="修改hosts"><a href="#修改hosts" class="headerlink" title="修改hosts"></a>修改hosts</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/hosts</span><br></pre></td></tr></table></figure>
 
 <p>写入内容如图（中间的空白用tab而非空格），arch替换为你之前在hostname里写入的内容，其他都按照图里面的写（注意最后一行的ip是127.0.1.1）</p>
 <img src="/2021/10/25/%E5%AE%89%E8%A3%85Arch/20211024_234039_v2-54fc38004dc15b76d68983a78e59928a_r.jpg" class="" width="800">
 
 <p>保存退出</p>
 <p>建议上述编辑的内容都用cat输出检查一下</p>
-<h3 id="root用户创建密码"><a href="#root用户创建密码" class="headerlink" title="root用户创建密码"></a>root用户创建密码</h3><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">passwd<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="root用户创建密码"><a href="#root用户创建密码" class="headerlink" title="root用户创建密码"></a>root用户创建密码</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd</span><br></pre></td></tr></table></figure>
 
 <p>然后输入并确认密码</p>
 <h3 id="装启动器和一些软件"><a href="#装启动器和一些软件" class="headerlink" title="装启动器和一些软件"></a>装启动器和一些软件</h3><p>包含了一些常用到的软件</p>
-<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">pacman -S grub efibootmgr networkmanager network-manager-applet dialog wireless_tools wpa_supplicant os-prober mtools dosfstools ntfs-3g base-devel linux-headers reflector git sudo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S grub efibootmgr networkmanager network-manager-applet dialog wireless_tools wpa_supplicant os-prober mtools dosfstools ntfs-3g base-devel linux-headers reflector git sudo</span><br></pre></td></tr></table></figure>
 
 <p>intel的cpu，需要安装intel的微码文件</p>
-<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">pacman -S intel-ucode<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S intel-ucode</span><br></pre></td></tr></table></figure>
 
 <p>完成之后输入</p>
-<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">grub-install &#x2F;dev&#x2F;sda<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grub-install /dev/sda</span><br></pre></td></tr></table></figure>
 
 <p>注意是硬盘位置不是分区位置，硬盘上也只有刚刚安装的Arch系统</p>
 <p>生成grub.cfg</p>
-<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">grub-mkconfig -o &#x2F;boot&#x2F;grub&#x2F;grub.cfg<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grub-mkconfig -o /boot/grub/grub.cfg</span><br></pre></td></tr></table></figure>
 
 <p>出现吧啦吧啦done就完成了</p>
-<h2 id="退出新系统重启"><a href="#退出新系统重启" class="headerlink" title="退出新系统重启"></a>退出新系统重启</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">exit
-reboot<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="退出新系统重启"><a href="#退出新系统重启" class="headerlink" title="退出新系统重启"></a>退出新系统重启</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
 
 <p>不装桌面环境的话，到这步即可使用了，后续需要什么再装不迟</p>
-<h2 id="新建用户并授权"><a href="#新建用户并授权" class="headerlink" title="新建用户并授权"></a>新建用户并授权</h2><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">useradd -m -G wheel winotmk<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="新建用户并授权"><a href="#新建用户并授权" class="headerlink" title="新建用户并授权"></a>新建用户并授权</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd -m -G wheel winotmk</span><br></pre></td></tr></table></figure>
 
 <p>我的用户是winotkm，这里主要是创建一个非root的账户，桌面环境一般无法用root登陆的<br>创建密码</p>
-<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">passwd winotmk<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd winotmk</span><br></pre></td></tr></table></figure>
 
 <p>授权</p>
-<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">EDITOR&#x3D;nano visudo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EDITOR=nano visudo</span><br></pre></td></tr></table></figure>
 
 <p>Ctrl+W 输入 # %wheel 回车 找到这行 删除前面的 #（取消注释）</p>
-<h2 id="安装Display-Server和Display-Manager"><a href="#安装Display-Server和Display-Manager" class="headerlink" title="安装Display Server和Display Manager"></a>安装Display Server和Display Manager</h2><pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">pacman -S xorg<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="安装Display-Server和Display-Manager"><a href="#安装Display-Server和Display-Manager" class="headerlink" title="安装Display Server和Display Manager"></a>安装Display Server和Display Manager</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S xorg</span><br></pre></td></tr></table></figure>
 
 <p>然后我喜欢KDE桌面，所以装：</p>
-<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">pacman -S sddm<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S sddm</span><br></pre></td></tr></table></figure>
 
 <p>设置开机启动</p>
-<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">systemctl enable sddm<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable sddm</span><br></pre></td></tr></table></figure>
 
 <p>PS.取消开机启动是</p>
-<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">systemctl disable sddm<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl disable sddm</span><br></pre></td></tr></table></figure>
 
 <h2 id="安装Desktop-Environment"><a href="#安装Desktop-Environment" class="headerlink" title="安装Desktop Environment"></a>安装Desktop Environment</h2><p>KDE：</p>
-<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">pacman -S plasma kde-applications packagekit-qt5<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S plasma kde-applications packagekit-qt5</span><br></pre></td></tr></table></figure>
 
 <p>安装中文的字体</p>
-<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">pacman -S noto-fonts-cjk<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S noto-fonts-cjk</span><br></pre></td></tr></table></figure>
 
 <p>好了，大功告成</p>
-<pre class="line-numbers language-Shell" data-language="Shell"><code class="language-Shell">reboot<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure>
 <img src="/2021/10/25/%E5%AE%89%E8%A3%85Arch/20211025_000315_87B60562-6700-4593-B70A-F543B38B30E5_1_105_c.jpeg" class="" width="800">
 
 
