@@ -20,12 +20,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"winotmk.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="*本文摘录整理为主 用ls -l查看权限： 文件属性     文件数    拥有者   所属的group    文件大小    建档日期        文件名　　 drwx--x--x   1      root       wheel       6872    2  7 22:41     compressedPackage&#x2F; drwxr-xr-x   1      liuml">
+<meta name="description" content="*本文摘录整理为主 用ls -l查看权限： 12345678910111213141516171819202122232425262728293031323334353637383940文件属性     文件数    拥有者   所属的group    文件大小    建档日期        文件名　　drwx--x--x   1      root       wheel       6872">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux文件和目录权限">
 <meta property="og:url" content="https://winotmk.github.io/Linux%E6%9D%83%E9%99%90/index.html">
 <meta property="og:site_name" content="WinNote">
-<meta property="og:description" content="*本文摘录整理为主 用ls -l查看权限： 文件属性     文件数    拥有者   所属的group    文件大小    建档日期        文件名　　 drwx--x--x   1      root       wheel       6872    2  7 22:41     compressedPackage&#x2F; drwxr-xr-x   1      liuml">
+<meta property="og:description" content="*本文摘录整理为主 用ls -l查看权限： 12345678910111213141516171819202122232425262728293031323334353637383940文件属性     文件数    拥有者   所属的group    文件大小    建档日期        文件名　　drwx--x--x   1      root       wheel       6872">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://winotmk.github.io/Linux%E6%9D%83%E9%99%90/20211012_231624_2018091016360849.png">
 <meta property="og:image" content="https://winotmk.github.io/Linux%E6%9D%83%E9%99%90/20211012_232003_20180910175047158.gif">
@@ -208,46 +208,7 @@
     <div class="post-body" itemprop="articleBody">
         <p>*本文摘录整理为主</p>
 <p>用<code>ls -l</code>查看权限：</p>
-<pre class="line-numbers language-none"><code class="language-none">文件属性     文件数    拥有者   所属的group    文件大小    建档日期        文件名　　
-drwx--x--x   1      root       wheel       6872    2  7 22:41     compressedPackage&#x2F;
-drwxr-xr-x   1      liuml      wheel       8620    2 15 09:32     wwwroot&#x2F;　　
-lrwxrwxrwx   1      liuml      wheel       46      2 24 19:30     abc@ -&gt; home&#x2F;abc
--rwxr-xr-x   1      liuml      wheel       68568   2 29 07:43     test*　　
- 
-- 文件名栏位 文件后面的符号含义  
-	- &#x2F; ：表明是一个目录
-	- @ ：表明是到其它文件的符号链接
-	- * ：表明是一个可执行文件。
-
-- 对于权限设置的解释
-	- r 是读，w 是写，x 是执行
-
-	- 对应数字如下:
-		- r &#x3D; 4    w &#x3D; 2    x &#x3D; 1
-		- rwx ：4+2+1 &#x3D; 7
-		- rw- ：4+2 &#x3D; 6
-		- r-x ：4+1 &#x3D; 5
-		- drwxr-xr-x ：755
-
-- 第 0-1位   文件类型
-	- “-” ：表示普通文件；
-	- “d” ：表示目录；
-	- “l” ：表示链接文件；
-	- “p” ：表示管理文件；
-	- “b” ：表示块设备文件；
-	- “c” ：表示字符设备文件；
-	- “s” ：表示套接字文件；
-
-- 第 2-4位   文件所有者权限 [User]
-
-- 第 5-7位   文件所有者所在组权限 [Group]
-
-- 第 8-10位  其他用户权限 [Others]
-
-- 没有的权限用 “-” 来表示
-————————————————
-版权声明：本文为CSDN博主「烟雨弥漫了江南」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https:&#x2F;&#x2F;blog.csdn.net&#x2F;u010324331&#x2F;article&#x2F;details&#x2F;88035175&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">文件属性     文件数    拥有者   所属的group    文件大小    建档日期        文件名　　</span><br><span class="line">drwx--x--x   1      root       wheel       6872    2  7 22:41     compressedPackage/</span><br><span class="line">drwxr-xr-x   1      liuml      wheel       8620    2 15 09:32     wwwroot/　　</span><br><span class="line">lrwxrwxrwx   1      liuml      wheel       46      2 24 19:30     abc@ -&gt; home/abc</span><br><span class="line">-rwxr-xr-x   1      liuml      wheel       68568   2 29 07:43     test*　　</span><br><span class="line"> </span><br><span class="line">- 文件名栏位 文件后面的符号含义  </span><br><span class="line">	- / ：表明是一个目录</span><br><span class="line">	- @ ：表明是到其它文件的符号链接</span><br><span class="line">	- * ：表明是一个可执行文件。</span><br><span class="line"></span><br><span class="line">- 对于权限设置的解释</span><br><span class="line">	- r 是读，w 是写，x 是执行</span><br><span class="line"></span><br><span class="line">	- 对应数字如下:</span><br><span class="line">		- r = 4    w = 2    x = 1</span><br><span class="line">		- rwx ：4+2+1 = 7</span><br><span class="line">		- rw- ：4+2 = 6</span><br><span class="line">		- r-x ：4+1 = 5</span><br><span class="line">		- drwxr-xr-x ：755</span><br><span class="line"></span><br><span class="line">- 第 0-1位   文件类型</span><br><span class="line">	- “-” ：表示普通文件；</span><br><span class="line">	- “d” ：表示目录；</span><br><span class="line">	- “l” ：表示链接文件；</span><br><span class="line">	- “p” ：表示管理文件；</span><br><span class="line">	- “b” ：表示块设备文件；</span><br><span class="line">	- “c” ：表示字符设备文件；</span><br><span class="line">	- “s” ：表示套接字文件；</span><br><span class="line"></span><br><span class="line">- 第 2-4位   文件所有者权限 [User]</span><br><span class="line"></span><br><span class="line">- 第 5-7位   文件所有者所在组权限 [Group]</span><br><span class="line"></span><br><span class="line">- 第 8-10位  其他用户权限 [Others]</span><br><span class="line"></span><br><span class="line">- 没有的权限用 “-” 来表示</span><br><span class="line">————————————————</span><br><span class="line">版权声明：本文为CSDN博主「烟雨弥漫了江南」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。</span><br><span class="line">原文链接：https://blog.csdn.net/u010324331/article/details/88035175/</span><br></pre></td></tr></table></figure>
 <span id="more"></span>
 <img src="/Linux%E6%9D%83%E9%99%90/20211012_231624_2018091016360849.png" class="" width="800">
 
@@ -360,17 +321,12 @@ lrwxrwxrwx   1      liuml      wheel       46      2 24 19:30     abc@ -&gt; hom
 <li><strong>权限管理命令chmod</strong></li>
 </ol>
 <p>修改文件或者目录的权限<br>全拼: change permissions mode of a file<br>语法:</p>
-<pre class="line-numbers language-none"><code class="language-none">chmod [&#123;ugoa&#125;&#123;+-&#x3D;&#125;&#123;rwx&#125;] [文件或目录]
-[mode&#x3D;421] [文件或目录]
--R 递归修改
-
-u:所有者, g:所属组,o:其他人,a:所有;
-+:添加权限,-减少权限,&#x3D;直接赋值成这个权限<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">chmod [&#123;ugoa&#125;&#123;+-=&#125;&#123;rwx&#125;] [文件或目录]</span><br><span class="line">[mode=421] [文件或目录]</span><br><span class="line">-R 递归修改</span><br><span class="line"></span><br><span class="line">u:所有者, g:所属组,o:其他人,a:所有;</span><br><span class="line">+:添加权限,-减少权限,=直接赋值成这个权限</span><br></pre></td></tr></table></figure>
 
 <ol start="2">
 <li><strong>创建目录mkdir时加权限</strong></li>
 </ol>
-<pre class="line-numbers language-none"><code class="language-none">$ mkdir -m&#x3D;r-- letter<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir -m=r-- letter</span><br></pre></td></tr></table></figure>
 
 <p>上面的命令会创建一个名为 letter 的目录，同时为<strong>目录所有者、用户组和其他用户</strong> 针对该目录赋予<strong>只读权限</strong></p>
 <p>mkdir命令小参考：<a target="_blank" rel="noopener" href="https://linux.cn/article-2713-1.html">在 Linux 下用 mkdir 命令来创建目录和子目录</a></p>
