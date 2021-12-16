@@ -331,10 +331,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-12-14 00:00:00 / 修改时间：17:45:54" itemprop="dateCreated datePublished" datetime="2021-12-14T00:00:00+08:00">2021-12-14</time>
+      <time title="创建时间：2021-12-14 00:00:00" itemprop="dateCreated datePublished" datetime="2021-12-14T00:00:00+08:00">2021-12-14</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-12-16 15:32:31" itemprop="dateModified" datetime="2021-12-16T15:32:31+08:00">2021-12-16</time>
+      </span>
 
   
 </div>
@@ -352,7 +358,7 @@
 <p>工作需要整理目录文件，要将多组资产目录（Assets01,Assets02,Assets03…内的Resource目录下的Texture和Mesh目录加编号)</p>
 <p>感觉这是一个可以用批处理脚本做到的事情，所以稍微研究了一下</p>
 <h2 id="改名实现"><a href="#改名实现" class="headerlink" title="改名实现"></a>改名实现</h2><p>如果单只是改名其实很简单，只需要几行即可实现：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">for /f &quot;delims=&quot; %%a in (&#x27;dir /ad/s/b &quot;Mesh&quot;&#x27;) do ren &quot;%%~a&quot; 01-Mesh</span><br><span class="line">for /f &quot;delims=&quot; %%b in (&#x27;dir /ad/s/b &quot;Texture&quot;&#x27;) do ren &quot;%%~b&quot; 00-Texture</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="keyword">for</span> /f &quot;delims=&quot; <span class="variable">%%a</span> <span class="keyword">in</span> (&#x27;<span class="built_in">dir</span> /ad/s/b &quot;Mesh&quot;&#x27;) <span class="keyword">do</span> <span class="built_in">ren</span> &quot;<span class="variable">%%~</span>a&quot; <span class="number">01</span>-Mesh</span><br><span class="line"><span class="keyword">for</span> /f &quot;delims=&quot; <span class="variable">%%b</span> <span class="keyword">in</span> (&#x27;<span class="built_in">dir</span> /ad/s/b &quot;Texture&quot;&#x27;) <span class="keyword">do</span> <span class="built_in">ren</span> &quot;<span class="variable">%%~</span>b&quot; <span class="number">00</span>-Texture</span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/bat/#more" rel="contents">
