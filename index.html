@@ -271,7 +271,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-12-15 14:23:37" itemprop="dateCreated datePublished" datetime="2021-12-15T14:23:37+08:00">2021-12-15</time>
+      <time title="创建时间：2021-12-16 16:36:51" itemprop="dateCreated datePublished" datetime="2021-12-16T16:36:51+08:00">2021-12-16</time>
     </span>
 
   
@@ -292,15 +292,15 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>刚装完archlinux后ifconfig无法使用?</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S net-tools dnsutils inetutils iproute2</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> pacman -S net-tools dnsutils inetutils iproute2</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="Archlinux开启ssh服务命令："><a href="#Archlinux开启ssh服务命令：" class="headerlink" title="Archlinux开启ssh服务命令："></a>Archlinux开启ssh服务命令：</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable sshd.service  开机启动</span><br><span class="line"></span><br><span class="line">systemctl start sshd.service     立即启动</span><br><span class="line"></span><br><span class="line">systemctl restart sshd.service   立即重启</span><br></pre></td></tr></table></figure>
+<h3 id="Archlinux开启ssh服务命令："><a href="#Archlinux开启ssh服务命令：" class="headerlink" title="Archlinux开启ssh服务命令："></a>Archlinux开启ssh服务命令：</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> systemctl <span class="built_in">enable</span> sshd.service  开机启动</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> systemctl start sshd.service     立即启动</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> systemctl restart sshd.service   立即重启</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="关于systemctl"><a href="#关于systemctl" class="headerlink" title="关于systemctl:"></a>关于systemctl:</h3><p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Systemd_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">https://wiki.archlinux.org/title/Systemd_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)</a></p>
 <p>比如：关闭开机启用KDE桌面环境</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> systemctl <span class="built_in">disable</span> sddm</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="切换到root用户："><a href="#切换到root用户：" class="headerlink" title="切换到root用户："></a>切换到root用户：</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su</span><br></pre></td></tr></table></figure>
+<h3 id="切换到root用户："><a href="#切换到root用户：" class="headerlink" title="切换到root用户："></a>切换到root用户：</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> su</span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/ArchLinux%E5%91%BD%E4%BB%A4/#more" rel="contents">
