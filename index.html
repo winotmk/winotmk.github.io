@@ -129,7 +129,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -221,6 +221,84 @@
 
 <p>一个轻量级MD文档收集博客，不保证阅读性</p>
 <p>正式站：<a target="_blank" rel="noopener" href="https://www.winotmk.com/">winotmk.com</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="winotmk">
+      <meta itemprop="description" content="零碎MD文档收集 | 生命在于折腾">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WinNote">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-06-18 00:38:50" itemprop="dateCreated datePublished" datetime="2023-06-18T00:38:50+08:00">2023-06-18</time>
+    </span>
+
+  
+    <span id="/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/" class="post-meta-item leancloud_visitors" data-flag-title="" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="生成秘钥"><a href="#生成秘钥" class="headerlink" title="生成秘钥"></a>生成秘钥</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t ed25519 -C &quot;550330147@qq.com&quot;</span><br></pre></td></tr></table></figure>
+<p>邮箱自然是我的git注册邮箱</p>
+<h2 id="如果修改passphrade密码"><a href="#如果修改passphrade密码" class="headerlink" title="如果修改passphrade密码"></a>如果修改passphrade密码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -p -f ~/.ssh/id_ed25519</span><br></pre></td></tr></table></figure>
+<p>直接enter即密码为空，这是秘钥的密码</p>
+<h2 id="复制秘钥到github"><a href="#复制秘钥到github" class="headerlink" title="复制秘钥到github"></a>复制秘钥到github</h2><p><img src="/images/20230618002355.png"><br>打开/root/.ssh/id_ed25519.pub<br>复制到这里<br><img src="/images/20230618002554.png"><br><a target="_blank" rel="noopener" href="https://github.com/settings/ssh/new">https://github.com/settings/ssh/new</a></p>
+<p>PS官方已不推荐用rsa加密</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<p><img src="/images/20230618003332.png"><br>这里输入yes<br><img src="/images/20230618003428.png"><br>成功！</p>
 
       
     </div>
@@ -913,92 +991,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/%E6%A0%91%E8%8E%93%E6%B4%BETimeMachine/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/hexo+github/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="winotmk">
-      <meta itemprop="description" content="零碎MD文档收集 | 生命在于折腾">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WinNote">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/hexo+github/" class="post-title-link" itemprop="url">hexo+github</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-10-13 14:19:53" itemprop="dateCreated datePublished" datetime="2021-10-13T14:19:53+08:00">2021-10-13</time>
-    </span>
-
-  
-    <span id="/hexo+github/" class="post-meta-item leancloud_visitors" data-flag-title="hexo+github" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a href="https://winotmk.github.io/">https://winotmk.github.io/</a></p>
-<p>github：<a target="_blank" rel="noopener" href="https://github.com/winotmk/winotmk.github.io">https://github.com/winotmk/winotmk.github.io</a></p>
-<p>总有一些零碎的想法，需要记录下来，写全面的文章没有时间，不写下来又会忘，日记app又不方便整理，同时也想利用一下树莓派，网上搜索便发现hexo+github部署的方式，于是想尝试尝试，一路遇到很多问题</p>
-<p>主要参考：<a target="_blank" rel="noopener" href="https://cuifengwei.com/2020/02/21/%E5%9F%BA%E4%BA%8E%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0GitHub/">基于树莓派搭建Hexo博客部署到GitHub/Gitee</a></p>
-<p>前期第二参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/44233946">hexo——轻量、简易、高逼格的博客</a></p>
-<p>更详细的安装过程：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26625249">GitHub+Hexo 搭建个人网站详细教程</a></p>
-<p>hexo官方文档：<a target="_blank" rel="noopener" href="https://hexo.io/docs/">https://hexo.io/docs/</a></p>
-<p>hexo博客文档（似乎和上面有不少内容重叠）：<a target="_blank" rel="noopener" href="https://theme-next.js.org/docs/">https://theme-next.js.org/docs/</a></p>
-<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><p>下载armv7版本的node.js：<a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">nodejs下载</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/hexo+github/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
