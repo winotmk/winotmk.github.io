@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"winotmk.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="树莓派CM4的 openWrt web界面安装中文https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;da01ce070688更新包目录： 1opkg update 这里一开始我不行，ping1.1.1.1和ping8.8.8.8都ping不通，然后忽然想起自己的科学梯子路由网关是192.168.50.4改之!!  可能还不行这俩防火墙设置一下 如果还不行DNS记得指定一下 这下就能通了 PS也可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树莓派路由器">
+<meta property="og:url" content="https://winotmk.github.io/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/index.html">
+<meta property="og:site_name" content="WinNote">
+<meta property="og:description" content="树莓派CM4的 openWrt web界面安装中文https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;da01ce070688更新包目录： 1opkg update 这里一开始我不行，ping1.1.1.1和ping8.8.8.8都ping不通，然后忽然想起自己的科学梯子路由网关是192.168.50.4改之!!  可能还不行这俩防火墙设置一下 如果还不行DNS记得指定一下 这下就能通了 PS也可">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://winotmk.github.io/images/20230614212800.png">
+<meta property="og:image" content="https://winotmk.github.io/images/20230614001635.png">
+<meta property="og:image" content="https://winotmk.github.io/images/20230617224422.png">
+<meta property="og:image" content="https://winotmk.github.io/images/20230617231305.png">
+<meta property="og:image" content="https://winotmk.github.io/images/20230614001825.png">
+<meta property="og:image" content="https://winotmk.github.io/images/20230614002052.png">
+<meta property="og:image" content="https://winotmk.github.io/images/20230617234921.png">
+<meta property="og:image" content="https://winotmk.github.io/images/20230614003210.png">
+<meta property="og:image" content="https://winotmk.github.io/images/20230614003850.png">
+<meta property="og:image" content="https://winotmk.github.io/images/20230617234233.png">
+<meta property="og:image" content="https://winotmk.github.io/images/20230614222923.png">
+<meta property="og:image" content="https://winotmk.github.io/images/20230614223908.png">
+<meta property="og:image" content="https://winotmk.github.io/images/20230617234310.png">
+<meta property="article:published_time" content="2023-06-17T16:07:25.296Z">
+<meta property="article:modified_time" content="2023-06-17T16:07:25.296Z">
+<meta property="article:author" content="winotmk">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="rashbeerypi">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://winotmk.github.io/images/20230614212800.png">
+
+
+<link rel="canonical" href="https://winotmk.github.io/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://winotmk.github.io/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/","path":"树莓派路由器/","title":"树莓派路由器"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>树莓派路由器 | WinNote</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">WinNote</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E8%8E%93%E6%B4%BECM4%E7%9A%84"><span class="nav-number">1.</span> <span class="nav-text">树莓派CM4的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#openWrt-web%E7%95%8C%E9%9D%A2%E5%AE%89%E8%A3%85%E4%B8%AD%E6%96%87"><span class="nav-number">2.</span> <span class="nav-text">openWrt web界面安装中文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E8%A6%81%E5%BC%80%E5%90%AFsftp%E4%BC%A0%E8%BE%93%E6%9C%8D%E5%8A%A1"><span class="nav-number">3.</span> <span class="nav-text">如果要开启sftp传输服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A3%85%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8"><span class="nav-number">4.</span> <span class="nav-text">装网卡驱动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E8%B7%AF%E7%94%B1%E5%99%A8WAN%E5%8F%A3"><span class="nav-number">5.</span> <span class="nav-text">设置路由器WAN口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E8%A6%81%E8%87%AA%E5%B7%B1%E5%8A%A0%E5%AE%89%E8%A3%85%E5%8C%85%EF%BC%9A"><span class="nav-number">6.</span> <span class="nav-text">如果要自己加安装包：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E6%89%A9%E5%AE%B9%E6%8C%82%E8%BD%BD%E7%82%B9"><span class="nav-number">7.</span> <span class="nav-text">关于扩容挂载点</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="winotmk"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">winotmk</p>
+  <div class="site-description" itemprop="description">零碎MD文档收集 | 生命在于折腾</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="winotmk">
+      <meta itemprop="description" content="零碎MD文档收集 | 生命在于折腾">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WinNote">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          树莓派路由器
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-06-18 00:07:25" itemprop="dateCreated datePublished" datetime="2023-06-18T00:07:25+08:00">2023-06-18</time>
+    </span>
+
+  
+    <span id="/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/" class="post-meta-item leancloud_visitors" data-flag-title="树莓派路由器" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="树莓派CM4的"><a href="#树莓派CM4的" class="headerlink" title="树莓派CM4的"></a>树莓派CM4的</h2><p><img src="/images/20230614212800.png"></p>
+<h2 id="openWrt-web界面安装中文"><a href="#openWrt-web界面安装中文" class="headerlink" title="openWrt web界面安装中文"></a>openWrt web界面安装中文</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/da01ce070688">https://www.jianshu.com/p/da01ce070688</a><br>更新包目录：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">opkg update</span><br></pre></td></tr></table></figure>
+<p>这里一开始我不行，ping1.1.1.1和ping8.8.8.8都ping不通，然后忽然想起自己的科学梯子路由网关是192.168.50.4<br>改之!!</p>
+<p><img src="/images/20230614001635.png"></p>
+<p>可能还不行<br><img src="/images/20230617224422.png"><br>这俩防火墙设置一下</p>
+<p>如果还不行<br><img src="/images/20230617231305.png"><br>DNS记得指定一下</p>
+<p>这下就能通了</p>
+<p>PS也可以点配置opkg，然后加一条</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">src/gz openwrt_packages https://mirrors.ustc.edu.cn/openwrt/releases/22.03.5/packages/aarch64_cortex-a72/packages/</span><br></pre></td></tr></table></figure>
+<p>把源换为国内</p>
+<p>然后</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">opkg install luci-i18n-base-zh-cn</span><br></pre></td></tr></table></figure>
+<p>提示</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Configuring luci-i18n-base-zh-cn</span><br></pre></td></tr></table></figure>
+<p>再回来看web界面就已经是中文了<br><img src="/images/20230614001825.png"></p>
+<span id="more"></span>
+
+<h2 id="如果要开启sftp传输服务"><a href="#如果要开启sftp传输服务" class="headerlink" title="如果要开启sftp传输服务"></a>如果要开启sftp传输服务</h2><p><a target="_blank" rel="noopener" href="https://github.com/twn39/code/issues/279">https://github.com/twn39/code/issues/279</a></p>
+<p>开启sftp的话可以很方便用WinSCP登录，文件管理神器<br><img src="/images/20230614002052.png"><br>那么如何启用 sftp 服务呢？先安装对应的软件：</p>
+<p>opkg install vsftpd openssh-sftp-server<br>设置系统开启后自动启动 sftp 服务：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/vsftpd enable</span><br></pre></td></tr></table></figure>
+<p>启动 sftp 服务：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/vsftpd start</span><br></pre></td></tr></table></figure>
+<p>这样 Openwrt 就已经启用了 sftp 服务了，可以使用客户端进行文件的传输。</p>
+<h2 id="装网卡驱动"><a href="#装网卡驱动" class="headerlink" title="装网卡驱动"></a>装网卡驱动</h2><p>我的CM4拓展板子是微雪的这个<br><img src="/images/20230617234921.png"><br><a target="_blank" rel="noopener" href="https://www.waveshare.net/wiki/CM4-DUAL-ETH-MINI">https://www.waveshare.net/wiki/CM4-DUAL-ETH-MINI</a><br>有两个网口ETH0是原生ETH1是PCIe转出来的，需要安装RTL8111H芯片的网卡驱动，查了一下软件包里是有的<br><a target="_blank" rel="noopener" href="https://openwrt.org/packages/pkgdata/kmod-r8169">https://openwrt.org/packages/pkgdata/kmod-r8169</a><br>那么就好办了<br>安装就行了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">opkg install kmod-r8169</span><br></pre></td></tr></table></figure>
+<p> 安装完成以重启openwrt我们看到这里已经读到了eth1口<br> <img src="/images/20230614003210.png"></p>
+<h2 id="设置路由器WAN口"><a href="#设置路由器WAN口" class="headerlink" title="设置路由器WAN口"></a>设置路由器WAN口</h2><p> 添加新端口，设备选装好驱动以后出现的eth1，协议我选pppoe因为我拿路由拨号</p>
+<p> <img src="/images/20230614003850.png"></p>
+<h2 id="如果要自己加安装包："><a href="#如果要自己加安装包：" class="headerlink" title="如果要自己加安装包："></a>如果要自己加安装包：</h2><p> 放到一个tmp目录里<br> CD到tmp目录<br> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">opkg install *.ipk</span><br></pre></td></tr></table></figure></p>
+<h2 id="关于扩容挂载点"><a href="#关于扩容挂载点" class="headerlink" title="关于扩容挂载点"></a>关于扩容挂载点</h2><p> 参考资料：<br> <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e83459242afb">https://www.jianshu.com/p/e83459242afb</a><br> <a target="_blank" rel="noopener" href="https://blog.csdn.net/ls0111/article/details/128769859">https://blog.csdn.net/ls0111/article/details/128769859</a></p>
+<p> PS我选的是树莓派cpu对应的ext4文件系统的固件，SQUASHFS就不碰了不熟悉<br> 首先安装安装cfdisk，注意这里要先更新下opkg</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">opkg update</span><br><span class="line">opkg install cfdisk</span><br></pre></td></tr></table></figure>
+<p>然后打开cfdisk</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cfdisk</span><br></pre></td></tr></table></figure>
+<p>但是我打不开<br>比如我的这块硬盘是内置EMMC硬盘, 显示名称是/dev/mmcblk0.<br>一般的内置硬盘应该是/dev/sda之类的.</p>
+<p>使用cfdisk命令，进入分区页面</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cfdisk /dev/mmcblk0</span><br></pre></td></tr></table></figure>
+<p>如果普通是内置硬盘</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cfdisk</span><br></pre></td></tr></table></figure>
+<p><img src="/images/20230617234233.png"><br>按照参考资料中的教程一路继续<br>做到格式化新分区就可以了，注意mmcblk0p3要替换成自己的盘符</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs.ext4 /dev/mmcblk0p3</span><br></pre></td></tr></table></figure>
+<p>运行 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure>
+<p> 命令，查看是否成功创建新分区。</p>
+<p>然后在Luci web界面里面增加挂载点：<br>我是直接从OpenWrt官网下的，不是修改版，所以木有这个选项。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">opkg update</span><br><span class="line">opkg install block-mount</span><br></pre></td></tr></table></figure>
+<p>重启路由，界面会有挂载点出现，进入<br><img src="/images/20230614222923.png"></p>
+<p>挂载刚才格式化的硬盘以后<br><img src="/images/20230614223908.png"></p>
+<p>复制这段</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /tmp/introot</span><br><span class="line">mkdir -p /tmp/extroot</span><br><span class="line">mount --bind / /tmp/introot</span><br><span class="line">mount /dev/sda1 /tmp/extroot</span><br><span class="line">tar -C /tmp/introot -cvf - . | tar -C /tmp/extroot -xf -</span><br><span class="line">umount /tmp/introot</span><br><span class="line">umount /tmp/extroot</span><br></pre></td></tr></table></figure>
+<p>其中的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/sda1 /tmp/extroot</span><br></pre></td></tr></table></figure>
+<p>要改为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/mmcblk0p3 /tmp/extroot</span><br></pre></td></tr></table></figure>
+<p><img src="/images/20230617234310.png"><br>满血了！！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+              <a href="/tags/rashbeerypi/" rel="tag"># rashbeerypi</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E6%B5%81%E9%87%8F%E5%BC%82%E5%B8%B8%E6%8E%92%E6%9F%A5/" rel="prev" title="">
+                  <i class="fa fa-chevron-left"></i> 
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">winotmk</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"6zJke9pA3bdn6QmGMqRkRMmw-MdYXbMMI","app_key":"EOtqRFkR8k3SbWMABSXT29O0","security":false}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+
+</body>
+</html>
