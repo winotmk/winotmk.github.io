@@ -2781,3 +2781,10 @@ ul.breadcrumb li:last-child {
     padding: 10px 12px;
   }
 }
+body {
+  counter-reset: postsSidebarNumbsection;
+}
+.postsSidebarNumb::before {
+  counter-increment: postsSidebarNumbsection;
+  content: counter(postsSidebarNumbsection) ": ";
+}
