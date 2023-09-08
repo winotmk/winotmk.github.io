@@ -2808,3 +2808,13 @@ blockquote {
   border-bottom: 1px solid #137f8b !important;
   color: #2497b3 !important;
 }
+.post-body a:hover {
+  border-bottom: 1px solid #7f811a !important;
+  color: #7f811a !important;
+}
+code,
+kbd,
+figure.highlight,
+pre {
+  border-radius: 6px !important;
+}
