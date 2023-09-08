@@ -2804,7 +2804,7 @@ blockquote {
   background: #f3f5f7 !important;
   border-left: 8px solid #1fc167 !important;
 }
-a.post-content {
+a.post-body {
   border-bottom: 1px solid #137f8b !important;
   color: #2497b3 !important;
 }
