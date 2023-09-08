@@ -18,10 +18,10 @@
   --btn-default-hover-bg: #222;
   --btn-default-hover-color: #fff;
   --btn-default-hover-border-color: #222;
-  --highlight-background: #f6f6f6;
-  --highlight-foreground: #2f3337;
-  --highlight-gutter-background: #e2e2e2;
-  --highlight-gutter-foreground: #42464a;
+  --highlight-background: #f0f0f0;
+  --highlight-foreground: #444;
+  --highlight-gutter-background: #dedede;
+  --highlight-gutter-foreground: #555;
   color-scheme: light;
 }
 html {
@@ -360,76 +360,106 @@ td {
   top: -5px;
   transform: rotate(45deg);
 }
-/*!
- * StackOverflow.com light style
- *
- * @stackoverflow/stacks v0.56.0
- * https://github.com/StackExchange/Stacks
- */
+/*
+
+ highlight.js style for Microtik RouterOS script
+
+*/
 
 .hljs {
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  color: #2f3337;
-  background: #f6f6f6;
+  background: #F0F0F0;
+}
+
+/* Base color: saturation 0; */
+
+.hljs,
+.hljs-subst {
+  color: #444;
 }
 
 .hljs-comment {
-  color: #656e77;
+  color: #888888;
 }
 
 .hljs-keyword,
 .hljs-selector-tag,
 .hljs-meta-keyword,
 .hljs-doctag,
-.hljs-section,
-.hljs-selector-class,
-.hljs-meta,
-.hljs-selector-pseudo,
-.hljs-attr {
-  color: #015692;
+.hljs-name {
+  font-weight: bold;
 }
 
 .hljs-attribute {
-  color: #803378;
+  color: #0E9A00;
+}    
+
+.hljs-function {
+  color: #99069A;
 }
 
-.hljs-name,
+.hljs-builtin-name {
+  color: #99069A;
+}
+
+/* User color: hue: 0 */
+
 .hljs-type,
+.hljs-string,
 .hljs-number,
 .hljs-selector-id,
+.hljs-selector-class,
 .hljs-quote,
 .hljs-template-tag,
-.hljs-built_in,
-.hljs-title,
-.hljs-literal {
-  color: #b75501;
+.hljs-deletion {
+  color: #880000;
 }
 
-.hljs-string,
+.hljs-title,
+.hljs-section {
+  color: #880000;
+  font-weight: bold;
+}
+
 .hljs-regexp,
 .hljs-symbol,
 .hljs-variable,
 .hljs-template-variable,
 .hljs-link,
 .hljs-selector-attr,
-.hljs-meta-string {
-  color: #54790d;
+.hljs-selector-pseudo {
+  color: #BC6060;
 }
 
+
+/* Language color: hue: 90; */
+
+.hljs-literal {
+  color: #78A960;
+}
+
+.hljs-built_in,
 .hljs-bullet,
-.hljs-code {
-  color: #535a60;
-}
-
-.hljs-deletion {
-  color: #c02d2e;
-}
-
+.hljs-code,
 .hljs-addition {
-  color: #2f6f44;
+  color: #0C9A9A;
 }
+
+
+/* Meta color: hue: 200 */
+
+.hljs-meta {
+  color: #1f7199;
+}
+
+.hljs-meta-string {
+  color: #4d99bf;
+}
+
+
+/* Misc effects */
 
 .hljs-emphasis {
   font-style: italic;
@@ -2769,4 +2799,12 @@ body {
 .postsSidebarNumb::before {
   counter-increment: postsSidebarNumbsection;
   content: counter(postsSidebarNumbsection) ": ";
+}
+blockquote {
+  background: #f3f5f7 !important;
+  border-left: 8px solid #1fc167 !important;
+}
+a.post-content {
+  border-bottom: 1px solid #137f8b !important;
+  color: #2497b3 !important;
 }
