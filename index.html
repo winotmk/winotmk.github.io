@@ -176,11 +176,11 @@
           <!-- 显示postnumb设置数目的文章 -->
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
-                  <a href="/Docker01.1_%E4%BB%B7%E6%A0%BC%E8%AE%A1%E7%AE%97%E8%A1%A8/" title="eci价格计算表" target="_blank">eci价格计算表</a>
+                  <a href="/Docker01_%E5%88%B6%E4%BD%9Cdocker%E7%9A%84node%E9%95%9C%E5%83%8F%E8%B7%91hexo%E5%B9%B6%E4%B8%94%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E5%AE%B9%E5%99%A8%E6%9C%8D%E5%8A%A1%E8%BF%90%E8%A1%8C/" title="制作docker的node镜像跑hexo并且用阿里云容器服务ECI运行" target="_blank">制作docker的node镜像跑hexo并且用阿里云容器服务ECI运行</a>
                 </li>
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
-                  <a href="/Docker01_%E5%88%B6%E4%BD%9Cdocker%E7%9A%84node%E9%95%9C%E5%83%8F%E8%B7%91hexo%E5%B9%B6%E4%B8%94%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E5%AE%B9%E5%99%A8%E6%9C%8D%E5%8A%A1%E8%BF%90%E8%A1%8C/" title="制作docker的node镜像跑hexo并且用阿里云容器服务ECI运行" target="_blank">制作docker的node镜像跑hexo并且用阿里云容器服务ECI运行</a>
+                  <a href="/Docker01.1_%E4%BB%B7%E6%A0%BC%E8%AE%A1%E7%AE%97%E8%A1%A8/" title="eci价格计算表" target="_blank">eci价格计算表</a>
                 </li>
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
@@ -577,7 +577,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2023-09-08 06:58:38" itemprop="dateModified" datetime="2023-09-08T06:58:38+00:00">2023-09-08</time>
+        <time title="修改时间：2023-09-08 07:26:52" itemprop="dateModified" datetime="2023-09-08T07:26:52+00:00">2023-09-08</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -606,7 +606,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>一口气步子迈得有大，慢慢记录一下,如果你碰巧看到这个文章，希望这个文章的某些部分对你有帮助，来源我已尽量在文章中标出，还有很多部分是自己敲的</p>
+          <style type="text/css" rel="stylesheet">
+.nav-number { 
+    display:none !important;
+}
+.post-toc .nav-item {
+    white-space: normal !important;
+}
+</style>
+
+<p>一口气步子迈得有大，慢慢记录一下,如果你碰巧看到这个文章，希望这个文章的某些部分对你有帮助，来源我已尽量在文章中标出，还有很多部分是自己敲的</p>
 <p>了解ECI弹性容器：<a target="_blank" rel="noopener" href="https://www.aliyun.com/product/eci">https://www.aliyun.com/product/eci</a><br>了解阿里云NAS文件存储：<a target="_blank" rel="noopener" href="https://www.aliyun.com/product/nas">https://www.aliyun.com/product/nas</a></p>
 <p><strong>为什么要用eci来运行hexo？</strong><br>因为好玩，同时来学习从pull到发布到运行整个docker镜像的流程，也想给自己的hexo博客找个新家，酷酷的那种<br>本博客之前是由树莓派上的hexo生成，部署到github上的<br>最近在捣鼓docker，一时想不起来有什么灵活小巧的服务拿来用docker玩，那么想着干脆把树莓派上hexo这部分服务做成镜像，需要用的时候拿出来用用想必是极好的（这么一来好像树莓派又要吃灰了）<br>恰巧最近又在琢磨阿里云ECI容器服务，所以理论上是可以用我自己打包好的镜像的<br>最后成品的结构大致如下图：</p>
 <p><img src="/images/20230829140549.png"></p>
