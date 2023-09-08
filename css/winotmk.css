@@ -14,12 +14,15 @@ blockquote {
   color: #2497b3 !important;
 }
 .post-body a:hover {
-  border-bottom: 1px solid #7f811a !important;
-  color: #7f811a !important;
+  border-bottom: 1px solid #ffb933 !important;
+  color: #ffb933 !important;
 }
 code,
 kbd,
 figure.highlight,
 pre {
   border-radius: 6px !important;
+}
+.fa-file {
+  padding-right: 8px;
 }
