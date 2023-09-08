@@ -181,11 +181,11 @@
           <!-- 显示postnumb设置数目的文章 -->
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
-                  <a href="/Docker01.1_%E4%BB%B7%E6%A0%BC%E8%AE%A1%E7%AE%97%E8%A1%A8/" title="Docker01.1_eci价格计算表" target="_blank">Docker01.1_eci价格计算表</a>
+                  <a href="/Docker01_%E5%88%B6%E4%BD%9Cdocker%E7%9A%84node%E9%95%9C%E5%83%8F%E8%B7%91hexo%E5%B9%B6%E4%B8%94%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E5%AE%B9%E5%99%A8%E6%9C%8D%E5%8A%A1%E8%BF%90%E8%A1%8C/" title="Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行" target="_blank">Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行</a>
                 </li>
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
-                  <a href="/Docker01_%E5%88%B6%E4%BD%9Cdocker%E7%9A%84node%E9%95%9C%E5%83%8F%E8%B7%91hexo%E5%B9%B6%E4%B8%94%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E5%AE%B9%E5%99%A8%E6%9C%8D%E5%8A%A1%E8%BF%90%E8%A1%8C/" title="Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行" target="_blank">Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行</a>
+                  <a href="/Docker01.1_%E4%BB%B7%E6%A0%BC%E8%AE%A1%E7%AE%97%E8%A1%A8/" title="Docker01.1_eci价格计算表" target="_blank">Docker01.1_eci价格计算表</a>
                 </li>
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
@@ -388,12 +388,12 @@
 <p>screen -S yourname -&gt; 新建一个叫yourname的session<br>screen -ls         -&gt; 列出当前所有的session<br>screen -r yourname -&gt; 回到yourname这个session<br>screen -d yourname -&gt; 远程detach某个session<br>screen -d -r yourname -&gt; 结束当前session并回到yourname这个session</p>
 </blockquote>
 <p>回到MCSManager的面板</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># screen -r mcsm</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># screen -r mcsm</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="看进程"><a href="#看进程" class="headerlink" title="看进程"></a>看进程</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ps aux</span></span><br><span class="line">或者</span><br><span class="line"><span class="meta">#</span><span class="bash"> top</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h3><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/59d93f942506">https://www.jianshu.com/p/59d93f942506</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">01-.tar格式</span><br><span class="line">解包：# tar xvf FileName.tar</span><br><span class="line">打包：# tar cvf FileName.tar DirName（注：tar是打包，不是压缩！）</span><br><span class="line">02-.gz格式</span><br><span class="line">解压1：# gunzip FileName.gz</span><br><span class="line">解压2：# gzip -d FileName.gz</span><br><span class="line">压 缩：# gzip FileName</span><br><span class="line"></span><br><span class="line">03-.tar.gz格式</span><br><span class="line">解压：# tar zxvf FileName.tar.gz</span><br><span class="line">压缩：# tar zcvf FileName.tar.gz DirName</span><br></pre></td></tr></table></figure>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">01</span>-.tar格式</span><br><span class="line">解包：# tar xvf <span class="module-access"><span class="module"><span class="identifier">FileName</span>.</span></span>tar</span><br><span class="line">打包：# tar cvf <span class="module-access"><span class="module"><span class="identifier">FileName</span>.</span></span>tar DirName（注：tar是打包，不是压缩！）</span><br><span class="line"><span class="number">02</span>-.gz格式</span><br><span class="line">解压<span class="number">1</span>：# gunzip <span class="module-access"><span class="module"><span class="identifier">FileName</span>.</span></span>gz</span><br><span class="line">解压<span class="number">2</span>：# gzip -d <span class="module-access"><span class="module"><span class="identifier">FileName</span>.</span></span>gz</span><br><span class="line">压 缩：# gzip FileName</span><br><span class="line"></span><br><span class="line"><span class="number">03</span>-.tar.gz格式</span><br><span class="line">解压：# tar zxvf <span class="module-access"><span class="module"><span class="identifier">FileName</span>.</span></span>tar.gz</span><br><span class="line">压缩：# tar zcvf <span class="module-access"><span class="module"><span class="identifier">FileName</span>.</span></span>tar.gz DirName</span><br></pre></td></tr></table></figure>
     </div>
 
     

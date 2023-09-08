@@ -196,11 +196,11 @@
           <!-- 显示postnumb设置数目的文章 -->
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
-                  <a href="/Docker01.1_%E4%BB%B7%E6%A0%BC%E8%AE%A1%E7%AE%97%E8%A1%A8/" title="Docker01.1_eci价格计算表" target="_blank">Docker01.1_eci价格计算表</a>
+                  <a href="/Docker01_%E5%88%B6%E4%BD%9Cdocker%E7%9A%84node%E9%95%9C%E5%83%8F%E8%B7%91hexo%E5%B9%B6%E4%B8%94%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E5%AE%B9%E5%99%A8%E6%9C%8D%E5%8A%A1%E8%BF%90%E8%A1%8C/" title="Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行" target="_blank">Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行</a>
                 </li>
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
-                  <a href="/Docker01_%E5%88%B6%E4%BD%9Cdocker%E7%9A%84node%E9%95%9C%E5%83%8F%E8%B7%91hexo%E5%B9%B6%E4%B8%94%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E5%AE%B9%E5%99%A8%E6%9C%8D%E5%8A%A1%E8%BF%90%E8%A1%8C/" title="Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行" target="_blank">Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行</a>
+                  <a href="/Docker01.1_%E4%BB%B7%E6%A0%BC%E8%AE%A1%E7%AE%97%E8%A1%A8/" title="Docker01.1_eci价格计算表" target="_blank">Docker01.1_eci价格计算表</a>
                 </li>
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
@@ -369,7 +369,7 @@
 <p> 安装完成以重启openwrt我们看到这里已经读到了eth1口<br> <img src="/images/20230614003210.png"></p>
 <h2 id="设置路由器WAN口"><a href="#设置路由器WAN口" class="headerlink" title="设置路由器WAN口"></a>设置路由器WAN口</h2><p> 添加新端口，设备选装好驱动以后出现的eth1，协议我选pppoe因为我拿路由拨号</p>
 <p> <img src="/images/20230614003850.png"></p>
-<h2 id="如果要自己加安装包："><a href="#如果要自己加安装包：" class="headerlink" title="如果要自己加安装包："></a>如果要自己加安装包：</h2><p> 放到一个tmp目录里<br> CD到tmp目录<br> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">opkg install *.ipk</span><br></pre></td></tr></table></figure></p>
+<h2 id="如果要自己加安装包："><a href="#如果要自己加安装包：" class="headerlink" title="如果要自己加安装包："></a>如果要自己加安装包：</h2><p> 放到一个tmp目录里<br> CD到tmp目录<br> <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">opkg</span> install <span class="regexp">*.ipk</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="关于扩容挂载点"><a href="#关于扩容挂载点" class="headerlink" title="关于扩容挂载点"></a>关于扩容挂载点</h2><p> 参考资料：<br> <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e83459242afb">https://www.jianshu.com/p/e83459242afb</a><br> <a target="_blank" rel="noopener" href="https://blog.csdn.net/ls0111/article/details/128769859">https://blog.csdn.net/ls0111/article/details/128769859</a></p>
 <p> PS我选的是树莓派cpu对应的ext4文件系统的固件，SQUASHFS就不碰了不熟悉<br> 首先安装安装cfdisk，注意这里要先更新下opkg</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">opkg update</span><br><span class="line">opkg install cfdisk</span><br></pre></td></tr></table></figure>
@@ -383,9 +383,9 @@
 <p><img src="/images/20230617234233.png"><br>按照参考资料中的教程一路继续<br>做到格式化新分区就可以了，注意mmcblk0p3要替换成自己的盘符</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs.ext4 /dev/mmcblk0p3</span><br></pre></td></tr></table></figure>
 <p>运行 </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">fdisk -l</span></span><br></pre></td></tr></table></figure>
 <p>或者</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">df -h</span></span><br></pre></td></tr></table></figure>
 <p> 命令，查看是否成功创建新分区。</p>
 <p>然后在Luci web界面里面增加挂载点：<br>我是直接从OpenWrt官网下的，不是修改版，所以木有这个选项。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">opkg update</span><br><span class="line">opkg install block-mount</span><br></pre></td></tr></table></figure>
@@ -394,9 +394,9 @@
 <p>复制这段</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /tmp/introot</span><br><span class="line">mkdir -p /tmp/extroot</span><br><span class="line">mount --bind / /tmp/introot</span><br><span class="line">mount /dev/sda1 /tmp/extroot</span><br><span class="line">tar -C /tmp/introot -cvf - . | tar -C /tmp/extroot -xf -</span><br><span class="line">umount /tmp/introot</span><br><span class="line">umount /tmp/extroot</span><br></pre></td></tr></table></figure>
 <p>其中的</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/sda1 /tmp/extroot</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount <span class="regexp">/dev/</span>sda1 <span class="regexp">/tmp/</span>extroot</span><br></pre></td></tr></table></figure>
 <p>要改为</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/mmcblk0p3 /tmp/extroot</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount <span class="regexp">/dev/mm</span>cblk0p3 <span class="regexp">/tmp/</span>extroot</span><br></pre></td></tr></table></figure>
 <p><img src="/images/20230617234310.png"><br>满血了！！</p>
 
     </div>
@@ -432,13 +432,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/%E6%A0%91%E8%8E%93%E6%B4%BETimeMachine/" rel="prev" title="树莓派上架设TimeMachine服务">
-                  <i class="fa fa-chevron-left"></i> 树莓派上架设TimeMachine服务
+                <a href="/%E6%B5%81%E9%87%8F%E5%BC%82%E5%B8%B8%E6%8E%92%E6%9F%A5/" rel="prev" title="流量异常排查">
+                  <i class="fa fa-chevron-left"></i> 流量异常排查
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/%E5%AE%89%E8%A3%85Arch/" rel="next" title="安装ArchLinux系统（详细过程）">
-                  安装ArchLinux系统（详细过程） <i class="fa fa-chevron-right"></i>
+                <a href="/%E6%A0%91%E8%8E%93%E6%B4%BETimeMachine/" rel="next" title="树莓派上架设TimeMachine服务">
+                  树莓派上架设TimeMachine服务 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>

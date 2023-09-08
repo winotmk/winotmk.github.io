@@ -184,11 +184,11 @@
           <!-- 显示postnumb设置数目的文章 -->
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
-                  <a href="/Docker01.1_%E4%BB%B7%E6%A0%BC%E8%AE%A1%E7%AE%97%E8%A1%A8/" title="Docker01.1_eci价格计算表" target="_blank">Docker01.1_eci价格计算表</a>
+                  <a href="/Docker01_%E5%88%B6%E4%BD%9Cdocker%E7%9A%84node%E9%95%9C%E5%83%8F%E8%B7%91hexo%E5%B9%B6%E4%B8%94%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E5%AE%B9%E5%99%A8%E6%9C%8D%E5%8A%A1%E8%BF%90%E8%A1%8C/" title="Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行" target="_blank">Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行</a>
                 </li>
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
-                  <a href="/Docker01_%E5%88%B6%E4%BD%9Cdocker%E7%9A%84node%E9%95%9C%E5%83%8F%E8%B7%91hexo%E5%B9%B6%E4%B8%94%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E5%AE%B9%E5%99%A8%E6%9C%8D%E5%8A%A1%E8%BF%90%E8%A1%8C/" title="Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行" target="_blank">Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行</a>
+                  <a href="/Docker01.1_%E4%BB%B7%E6%A0%BC%E8%AE%A1%E7%AE%97%E8%A1%A8/" title="Docker01.1_eci价格计算表" target="_blank">Docker01.1_eci价格计算表</a>
                 </li>
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
@@ -334,29 +334,29 @@
 <h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><p>前半参考：<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/335259509">从此Mac上的文件再也不会丟了</a></p>
 <p>后半参考：<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d9b180f6d397">如何自己搭建一个Time Machine服务器</a></p>
 <p>挂载硬盘目录</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mount /dev/sda2 /mnt/WinSource</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mount <span class="regexp">/dev/</span>sda2 <span class="regexp">/mnt/</span>WinSource</span><br></pre></td></tr></table></figure>
 
 <p>1.安装netatalk和avahi（自己感觉avahi不装也行</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install netatalk avahi-daemon -y</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt <span class="keyword">install</span> netatalk avahi-daemon -y</span><br></pre></td></tr></table></figure>
 
 <p>2.创建账户wintm来访问TimeMachine，<strong>至少别用root，root访问不能！</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd -c &quot;Time machine&quot; -m -s /bin/bash wintm</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd -c <span class="string">&quot;Time machine&quot;</span> -m -s <span class="regexp">/bin/</span>bash wintm</span><br></pre></td></tr></table></figure>
 
 <p>然后设置密码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo passwd wintm</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sudo passwd wintm</span></span><br></pre></td></tr></table></figure>
 <span id="more"></span>
 
 <p>3.配置netatalk</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/netatalk/AppleVolumes.default</span><br></pre></td></tr></table></figure>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano <span class="regexp">/etc/</span>netatalk/AppleVolumes.<span class="keyword">default</span></span><br></pre></td></tr></table></figure>
 
 <p>这个文件似乎一行代表一个服务<br>可以在</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># The line below sets some DEFAULT, starting with Netatalk 2.1.</span><br><span class="line">:DEFAULT: options:upriv,usedots</span><br><span class="line"></span><br><span class="line"># By default all users have access to their home directories.</span><br><span class="line">~/			&quot;Home Directory&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># The <span class="type">line</span> below sets <span class="keyword">some</span> <span class="keyword">DEFAULT</span>, starting <span class="keyword">with</span> Netatalk <span class="number">2.1</span>.</span><br><span class="line">:<span class="keyword">DEFAULT</span>: <span class="keyword">options</span>:upriv,usedots</span><br><span class="line"></span><br><span class="line"># <span class="keyword">By</span> <span class="keyword">default</span> <span class="keyword">all</span> users have <span class="keyword">access</span> <span class="keyword">to</span> their home directories.</span><br><span class="line">~/			&quot;Home Directory&quot;</span><br></pre></td></tr></table></figure>
 
 <p>下面加上一行</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/mnt/WinSource/TimeMachine WinMachine allow:wintm options:tm</span><br><span class="line">#挂在硬盘里的文件夹           afp服务名   允许wintm用户登陆   开启timemachine</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/mnt/</span>WinSource/TimeMachine WinMachine allow:wintm options:tm</span><br><span class="line"><span class="comment">#挂在硬盘里的文件夹           afp服务名   允许wintm用户登陆   开启timemachine</span></span><br></pre></td></tr></table></figure>
 
 <p>4.重启服务</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo service netatalk restart</span><br><span class="line">sudo service avahi-daemon restart</span><br></pre></td></tr></table></figure>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo service netatalk <span class="built_in">restart</span></span><br><span class="line">sudo service avahi-daemon <span class="built_in">restart</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="一些坑"><a href="#一些坑" class="headerlink" title="一些坑"></a>一些坑</h2><ul>
 <li>试图直接使用root账户连接，在这里卡了很久，还尝试在<strong>AppleVolumes.default</strong>设置里写上例如</li>
@@ -369,7 +369,7 @@
 <li>一开始习惯将硬盘挂载到<code>/root/WinSource</code>，然鹅这似乎导致即便mac上TimeMachine连接上了也报错没法开始备份，想想也是wintm用户没有权限进root。。总结为避免不必要的麻烦以后硬盘不挂<code>/root</code>里，这里我挂进了<code>/mnt</code></li>
 </ul>
 <p>ps:当时还试图对<code>/root/WinSource</code>使用chown</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R wintm:wintm /root/WinSource</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R wintm:wintm <span class="regexp">/root/</span>WinSource</span><br></pre></td></tr></table></figure>
 
 <p>见这篇：<a target="_blank" rel="noopener" href="https://aaron67.cc/2017/01/14/rpi-as-time-capsule/">用树莓派实现 Time Capsule</a></p>
 <p>无解，chown改不了<code>WinSource</code>目录的所有者，root强而有力，认输</p>
@@ -410,13 +410,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/%E6%B5%81%E9%87%8F%E5%BC%82%E5%B8%B8%E6%8E%92%E6%9F%A5/" rel="prev" title="流量异常排查">
-                  <i class="fa fa-chevron-left"></i> 流量异常排查
+                <a href="/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/" rel="prev" title="树莓派路由器">
+                  <i class="fa fa-chevron-left"></i> 树莓派路由器
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/" rel="next" title="树莓派路由器">
-                  树莓派路由器 <i class="fa fa-chevron-right"></i>
+                <a href="/%E5%AE%89%E8%A3%85Arch/" rel="next" title="安装ArchLinux系统（详细过程）">
+                  安装ArchLinux系统（详细过程） <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
