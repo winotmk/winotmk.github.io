@@ -1656,6 +1656,12 @@ pre code {
   display: inline-block;
   margin: 0 5px;
 }
+.busuanzi-count #busuanzi_container_site_uv {
+  display: none;
+}
+.busuanzi-count #busuanzi_container_site_pv {
+  display: none;
+}
 @-moz-keyframes icon-animate {
   0%, 100% {
     transform: scale(1);
@@ -2119,6 +2125,9 @@ pre code {
   flex-basis: 100%;
   height: 0;
 }
+#busuanzi_container_page_pv {
+  display: none;
+}
 .post-nav {
   border-top: 1px solid #eee;
   display: flex;
@@ -2498,7 +2507,7 @@ ul.breadcrumb li:last-child {
   background: var(--content-bg-color);
   border-radius: initial;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
-  width: 240px;
+  width: 360px;
 }
 @media (max-width: 991px) {
   .header-inner {
@@ -2533,7 +2542,7 @@ ul.breadcrumb li:last-child {
 .main-inner {
   border-radius: initial;
   box-sizing: border-box;
-  width: calc(100% - 252px);
+  width: calc(100% - 372px);
 }
 @media (max-width: 991px) {
   .main-inner {
@@ -2542,7 +2551,7 @@ ul.breadcrumb li:last-child {
   }
 }
 .footer-inner {
-  padding-right: 252px;
+  padding-right: 372px;
 }
 @media (max-width: 991px) {
   .footer-inner {
@@ -2649,7 +2658,7 @@ ul.breadcrumb li:last-child {
   position: -webkit-sticky;
   position: sticky;
   top: 12px;
-  width: 240px;
+  width: 360px;
   visibility: hidden;
 }
 @media (max-width: 991px) {
