@@ -20,25 +20,46 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"winotmk.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"right","width":360,"display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="零碎MD文档收集 | 生命在于折腾">
-<meta property="og:type" content="website">
-<meta property="og:title" content="WinNote">
-<meta property="og:url" content="https://winotmk.github.io/tags/next/index.html">
+<meta name="description" content="事先：我是用路由拨号所以家里已经有外网直连IP，且配置了DDNS和端口转发，所以一个域名即可连上NAS另外我的群晖是DS720+，是块X86intel的CPU，所以和PC一样用X86的容器镜像就可以，如果是ARM机NAS应该是不通用的 所用镜像：https:&#x2F;&#x2F;hub.docker.com&#x2F;r&#x2F;garethflowers&#x2F;svn-server备选镜像（看起来也很不错还提供http访问，拉取次数也过">
+<meta property="og:type" content="article">
+<meta property="og:title" content="群晖上用容器搭建SVN服务器">
+<meta property="og:url" content="https://winotmk.github.io/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/index.html">
 <meta property="og:site_name" content="WinNote">
-<meta property="og:description" content="零碎MD文档收集 | 生命在于折腾">
+<meta property="og:description" content="事先：我是用路由拨号所以家里已经有外网直连IP，且配置了DDNS和端口转发，所以一个域名即可连上NAS另外我的群晖是DS720+，是块X86intel的CPU，所以和PC一样用X86的容器镜像就可以，如果是ARM机NAS应该是不通用的 所用镜像：https:&#x2F;&#x2F;hub.docker.com&#x2F;r&#x2F;garethflowers&#x2F;svn-server备选镜像（看起来也很不错还提供http访问，拉取次数也过">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://winotmk.github.io/images/20231214182733.png">
+<meta property="og:image" content="https://winotmk.github.io/images/20231213184128.png">
+<meta property="og:image" content="https://winotmk.github.io/images/20231214164925.png">
+<meta property="og:image" content="https://winotmk.github.io/images/20231214165029.png">
+<meta property="og:image" content="https://winotmk.github.io/images/20231214165249.png">
+<meta property="og:image" content="https://winotmk.github.io/images/20231214171830.png">
+<meta property="og:image" content="https://winotmk.github.io/images/20231214172511.png">
+<meta property="og:image" content="https://winotmk.github.io/images/20231214173112.png">
+<meta property="og:image" content="https://winotmk.github.io/images/20231214175225.png">
+<meta property="og:image" content="https://winotmk.github.io/images/20231214175133.png">
+<meta property="og:image" content="https://winotmk.github.io/images/20231214175701.png">
+<meta property="og:image" content="https://winotmk.github.io/images/20231214180021.png">
+<meta property="og:image" content="https://winotmk.github.io/images/20231214181003.png">
+<meta property="og:image" content="https://winotmk.github.io/images/20231214181456.png">
+<meta property="og:image" content="https://winotmk.github.io/images/20231214181617.png">
+<meta property="article:published_time" content="2023-12-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-12-14T10:29:02.702Z">
 <meta property="article:author" content="winotmk">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="NAS">
+<meta property="article:tag" content="SVN">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://winotmk.github.io/images/20231214182733.png">
 
 
-<link rel="canonical" href="https://winotmk.github.io/tags/next/">
+<link rel="canonical" href="https://winotmk.github.io/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"tags/next/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://winotmk.github.io/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/","path":"群晖上搭建SVN服务器/","title":"群晖上用容器搭建SVN服务器"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>标签: next | WinNote</title>
+<title>群晖上用容器搭建SVN服务器 | WinNote</title>
   
 
 
@@ -103,7 +124,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -116,6 +137,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E9%95%9C%E5%83%8F"><span class="nav-number">1.</span> <span class="nav-text">准备镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E9%95%9C%E5%83%8F"><span class="nav-number">2.</span> <span class="nav-text">配置镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E8%BF%9E%E6%8E%A5"><span class="nav-number">3.</span> <span class="nav-text">测试连接</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -262,70 +284,147 @@
 </noscript>
 
 
-    <div class="main-inner tag posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">next
-          <small>标签</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="winotmk">
+      <meta itemprop="description" content="零碎MD文档收集 | 生命在于折腾">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WinNote">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          群晖上用容器搭建SVN服务器
         </h1>
-      </div>
 
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
+
+      <time title="创建时间：2023-12-14 00:00:00 / 修改时间：18:29:02" itemprop="dateCreated datePublished" datetime="2023-12-14T00:00:00+08:00">2023-12-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img src="/images/20231214182733.png"><br>事先：我是用路由拨号所以家里已经有外网直连IP，且配置了DDNS和端口转发，所以一个域名即可连上NAS<br>另外我的群晖是DS720+，是块X86intel的CPU，所以和PC一样用X86的容器镜像就可以，如果是ARM机NAS应该是不通用的</p>
+<p>所用镜像：<a target="_blank" rel="noopener" href="https://hub.docker.com/r/garethflowers/svn-server">https://hub.docker.com/r/garethflowers/svn-server</a><br>备选镜像（看起来也很不错还提供http访问，拉取次数也过1M：<a target="_blank" rel="noopener" href="https://hub.docker.com/r/elleflorio/svn-server">https://hub.docker.com/r/elleflorio/svn-server</a></p>
+<p>SVN网站：<a target="_blank" rel="noopener" href="https://subversion.apache.org/">https://subversion.apache.org/</a></p>
+<p>参考：<br><a target="_blank" rel="noopener" href="https://blog.51cto.com/u_12701820/6544028">https://blog.51cto.com/u_12701820/6544028</a></p>
+<h2 id="准备镜像"><a href="#准备镜像" class="headerlink" title="准备镜像"></a>准备镜像</h2><p><img src="/images/20231213184128.png"><br>由于在群晖的ContainerManager里直接添加镜像不能，应该是要配个docker的镜像站加速或者整个NAS在梯子环境里，懒得整了，我这次选择PC上保存镜像包再拖来NAS里用的形式，个人感觉更方便些</p>
+<p>先在PC上拉个镜像，直接</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull garethflowers/svn-<span class="keyword">server</span>:latest</span><br></pre></td></tr></table></figure>
+<p>然后把镜像打包成文件</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker save -o svn-<span class="keyword">server</span>.tar garethflowers/svn-<span class="keyword">server</span>:latest</span><br></pre></td></tr></table></figure>
+<p>就能得到一个<code>svn-server.tar</code>的文件了，把这个文件上传到ContainerManager里<br><img src="/images/20231214164925.png"><br><img src="/images/20231214165029.png"></p>
+<p>然后左边的TAG里选容器》新增，选择刚上传的svn-server<br><img src="/images/20231214165249.png"></p>
+<h2 id="配置镜像"><a href="#配置镜像" class="headerlink" title="配置镜像"></a>配置镜像</h2><p><img src="/images/20231214171830.png"><br>镜像用法说明，基本上配置个端口和映射库就行<br><img src="/images/20231214172511.png"><br><code>/SVN_library/SVN_Folder</code>是我专门创建的新的NAS文件夹</p>
+<p>之后下一步容器就能启动起来了<br><img src="/images/20231214173112.png"><br>打开终端机》通过命令启动》用<code>/bin/sh</code> 来开一个交互的shell<br>然后我输入</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">svnadmin create WinSVN</span></span><br></pre></td></tr></table></figure>
+<p>来建我的第一个SVN仓库名为<code>WinSVN</code></p>
+<p>部分参考: <a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1650131">https://cloud.tencent.com/developer/article/1650131</a></p>
+<p>然后找到<code>/SVN_library/SVN_Folder/WinSVN/conf</code>，里面是SVN的配置文件了<br><img src="/images/20231214175225.png"><br>编辑<code>svnserve.conf</code><br><img src="/images/20231214175133.png"></p>
+<p>anon-access = none    #取消匿名访问<br>auth-access = write    #授权用户有可写权限<br>password-db = passwd    #指定用户配置文件，后面会用到</p>
+<p>编辑<code>passwd</code><br><img src="/images/20231214175701.png"><br>添加了自己的账户，至于分区权限我暂时用不到</p>
+<p>记得重启容器，服务器部分好像就差不多了</p>
+<p>最后别忘记配个3690端口转发来远程访问这个仓库，我用的是ikuai的路由OS<br><img src="/images/20231214180021.png"></p>
+<h2 id="测试连接"><a href="#测试连接" class="headerlink" title="测试连接"></a>测试连接</h2><p>pc端新建个文件夹，右键SVN CheckOut<br><img src="/images/20231214181003.png"><br>地址可以输入<code>svn://DDNS的域名:3690/WinSVN</code>，输入上面<code>passwd</code>文件里设置好的用户名和密码就好了！！</p>
+<p>之后就是svn客户端的基本用法了，随便放一个文件尝试上传<br><img src="/images/20231214181456.png"><br>很快就传好了，至此这个SVN仓库宣告可用！<br><img src="/images/20231214181617.png"></p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-08-05T00:00:00+08:00"
-              content="2023-08-05">
-          08-05
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/Docker01/" itemprop="url">
-            <span itemprop="name">Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          
 
-      
-    </header>
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>winotmk
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://winotmk.github.io/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="群晖上用容器搭建SVN服务器">https://winotmk.github.io/群晖上搭建SVN服务器/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+  <li class="post-copyright-wintomk">
+    <strong>本站为MD文档托管，如果你想评论或者联系我，欢迎来主站发表：</strong><a target="_blank" rel="noopener" href="https://winotmk.com">winotmk.com</a>
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/docker/" rel="tag"># docker</a>
+              <a href="/tags/NAS/" rel="tag"># NAS</a>
+              <a href="/tags/SVN/" rel="tag"># SVN</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/WinNote/" rel="prev" title="WinNote">
+                  <i class="fa fa-chevron-left"></i> WinNote
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-07-27T00:00:00+08:00"
-              content="2023-07-27">
-          07-27
-        </time>
-      </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/next%E4%B8%BB%E9%A2%98%E5%A2%9E%E5%8A%A0%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0%E4%BE%A7%E8%BE%B9%E6%A0%8F/" itemprop="url">
-            <span itemprop="name">next主题增加近期文章侧边栏</span>
-          </a>
-      </div>
 
-      
-    </header>
-  </article>
 
-    </div>
-  </div>
-  
-  
-  
+
 
 </div>
   </main>
