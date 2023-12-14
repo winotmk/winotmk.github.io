@@ -374,7 +374,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-12-14 00:00:00 / 修改时间：18:29:02" itemprop="dateCreated datePublished" datetime="2023-12-14T00:00:00+08:00">2023-12-14</time>
+      <time title="创建时间：2023-12-14 00:00:00 / 修改时间：18:33:03" itemprop="dateCreated datePublished" datetime="2023-12-14T00:00:00+08:00">2023-12-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -405,21 +405,14 @@
 <figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull garethflowers/svn-<span class="keyword">server</span>:latest</span><br></pre></td></tr></table></figure>
 <p>然后把镜像打包成文件</p>
 <figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker save -o svn-<span class="keyword">server</span>.tar garethflowers/svn-<span class="keyword">server</span>:latest</span><br></pre></td></tr></table></figure>
-<p>就能得到一个<code>svn-server.tar</code>的文件了，把这个文件上传到ContainerManager里<br><img src="/images/20231214164925.png"><br><img src="/images/20231214165029.png"></p>
-<p>然后左边的TAG里选容器》新增，选择刚上传的svn-server<br><img src="/images/20231214165249.png"></p>
-<h2 id="配置镜像"><a href="#配置镜像" class="headerlink" title="配置镜像"></a>配置镜像</h2><p><img src="/images/20231214171830.png"><br>镜像用法说明，基本上配置个端口和映射库就行<br><img src="/images/20231214172511.png"><br><code>/SVN_library/SVN_Folder</code>是我专门创建的新的NAS文件夹</p>
-<p>之后下一步容器就能启动起来了<br><img src="/images/20231214173112.png"><br>打开终端机》通过命令启动》用<code>/bin/sh</code> 来开一个交互的shell<br>然后我输入</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">svnadmin create WinSVN</span></span><br></pre></td></tr></table></figure>
-<p>来建我的第一个SVN仓库名为<code>WinSVN</code></p>
-<p>部分参考: <a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1650131">https://cloud.tencent.com/developer/article/1650131</a></p>
-<p>然后找到<code>/SVN_library/SVN_Folder/WinSVN/conf</code>，里面是SVN的配置文件了<br><img src="/images/20231214175225.png"><br>编辑<code>svnserve.conf</code><br><img src="/images/20231214175133.png"></p>
-<p>anon-access = none    #取消匿名访问<br>auth-access = write    #授权用户有可写权限<br>password-db = passwd    #指定用户配置文件，后面会用到</p>
-<p>编辑<code>passwd</code><br><img src="/images/20231214175701.png"><br>添加了自己的账户，至于分区权限我暂时用不到</p>
-<p>记得重启容器，服务器部分好像就差不多了</p>
-<p>最后别忘记配个3690端口转发来远程访问这个仓库，我用的是ikuai的路由OS<br><img src="/images/20231214180021.png"></p>
-<h2 id="测试连接"><a href="#测试连接" class="headerlink" title="测试连接"></a>测试连接</h2><p>pc端新建个文件夹，右键SVN CheckOut<br><img src="/images/20231214181003.png"><br>地址可以输入<code>svn://DDNS的域名:3690/WinSVN</code>，输入上面<code>passwd</code>文件里设置好的用户名和密码就好了！！</p>
-<p>之后就是svn客户端的基本用法了，随便放一个文件尝试上传<br><img src="/images/20231214181456.png"><br>很快就传好了，至此这个SVN仓库宣告可用！<br><img src="/images/20231214181617.png"></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
