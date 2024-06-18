@@ -177,15 +177,15 @@
           <!-- 显示postnumb设置数目的文章 -->
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/240617_%E5%9C%B0%E7%90%86%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%99%A8%E8%AE%A1%E5%88%92/" title="地理数据采集器计划" target="_blank">地理数据采集器计划</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
                   <a href="/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/" title="令人头疼的vsftpd,ftp端口修改设置配置" target="_blank">令人头疼的vsftpd,ftp端口修改设置配置</a>
                 </li>
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
                   <a href="/WinNote/" title="WinNote" target="_blank">WinNote</a>
-                </li>
-              
-                <li class="postsSidebarNumb" style="text-indent: -1em;">
-                  <a href="/240617_%E5%9C%B0%E7%90%86%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%99%A8%E8%AE%A1%E5%88%92/" title="地理数据采集器计划" target="_blank">地理数据采集器计划</a>
                 </li>
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
@@ -396,10 +396,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-06-17 00:00:00 / 修改时间：17:28:35" itemprop="dateCreated datePublished" datetime="2024-06-17T00:00:00+08:00">2024-06-17</time>
+      <time title="创建时间：2024-06-17 00:00:00" itemprop="dateCreated datePublished" datetime="2024-06-17T00:00:00+08:00">2024-06-17</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2024-06-18 18:59:50" itemprop="dateModified" datetime="2024-06-18T18:59:50+08:00">2024-06-18</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -442,6 +448,9 @@
 </ul>
 <p>下面这是树莓派zero2w跑通串口通信时的样子</p>
 <p><img src="/images/20240617150029.png"></p>
+<p>这个网站不错：<a target="_blank" rel="noopener" href="https://pinout.xyz/">https://pinout.xyz/</a></p>
+<p><img src="/images/20240618185812.png"></p>
+<p>可知右上这几个接口就可以实现TTL的UART连接了，我尝试ground是要接的</p>
 
       
     </div>
@@ -499,7 +508,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2024-06-18 17:47:44" itemprop="dateModified" datetime="2024-06-18T17:47:44+08:00">2024-06-18</time>
+        <time title="修改时间：2024-06-18 18:57:47" itemprop="dateModified" datetime="2024-06-18T18:57:47+08:00">2024-06-18</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -534,7 +543,7 @@
 <p>一篇不错的配置说明<br><a target="_blank" rel="noopener" href="https://blog.starryvoid.com/archives/1044.html">https://blog.starryvoid.com/archives/1044.html</a><br>主要提到了utf8的编码问题</p>
 <p><code>utf8_filesystem=YES</code></p>
 <p>如果这样还没解决，考虑是要修改容器本身的<code>LANG</code><br>可以直接进入容器然后类似：<br>export LANG=C.UTF-8<br>或者<br>export LANG=en_US.UTF-8<br>输入locale查看结果<br>当然这样关了这个sh就没了，所以可以直接加到docker启动时的环境变量里<br><a target="_blank" rel="noopener" href="https://zihengcat.github.io/2018/09/10/change-locale-system-encoding-in-docker-container/">https://zihengcat.github.io/2018/09/10/change-locale-system-encoding-in-docker-container/</a><br>然后你猜怎么着，做完这些设置以后中文依然显示为乱码，但是在FileZilla里看却没问题</p>
-<p><img src="C:/Images/20240618170337.png"></p>
+<p><img src="/images/20240618170337.png"></p>
 <p>现在高度怀疑是VScode的这个SFTP同步插件的锅</p>
 
       
