@@ -85,7 +85,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">20</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">21</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a></li>
   </ul>
 </nav>
 
@@ -130,7 +130,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -177,11 +177,15 @@
           <!-- 显示postnumb设置数目的文章 -->
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
-                  <a href="/240619_%E8%BD%AF%E4%BB%B6%E6%94%B6%E9%9B%86/" title="软件收集" target="_blank">软件收集</a>
+                  <a href="/240617_%E5%9C%B0%E7%90%86%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%99%A8%E8%AE%A1%E5%88%92/" title="地理数据采集器计划" target="_blank">地理数据采集器计划</a>
                 </li>
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
-                  <a href="/240617_%E5%9C%B0%E7%90%86%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%99%A8%E8%AE%A1%E5%88%92/" title="地理数据采集器计划" target="_blank">地理数据采集器计划</a>
+                  <a href="/240619_Linux%E5%91%BD%E4%BB%A4/" title="Linux命令" target="_blank">Linux命令</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/240619_%E8%BD%AF%E4%BB%B6%E6%94%B6%E9%9B%86/" title="软件收集" target="_blank">软件收集</a>
                 </li>
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
@@ -250,10 +254,6 @@
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
                   <a href="/%E6%A0%91%E8%8E%93%E6%B4%BETimeMachine/" title="树莓派上架设TimeMachine服务" target="_blank">树莓派上架设TimeMachine服务</a>
-                </li>
-              
-                <li class="postsSidebarNumb" style="text-indent: -1em;">
-                  <a href="/hexo+github/" title="hexo+github" target="_blank">hexo+github</a>
                 </li>
               
             </ul>
@@ -462,6 +462,87 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/240619_Linux%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="winotmk">
+      <meta itemprop="description" content="零碎MD文档收集 | 生命在于折腾">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WinNote">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/240619_Linux%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">Linux命令</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-06-19 00:00:00 / 修改时间：15:38:39" itemprop="dateCreated datePublished" datetime="2024-06-19T00:00:00+08:00">2024-06-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>还是会有很多不常用的命令要来回查，仅记录，绝非完整命令参考</p>
+<h2 id="文件操作相关"><a href="#文件操作相关" class="headerlink" title="文件操作相关"></a>文件操作相关</h2><h3 id="复制目录"><a href="#复制目录" class="headerlink" title="复制目录"></a>复制目录</h3><p>复制目录dir1和dir1目录下的文件到dir2目录里</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">cp</span> -r dir<span class="number">1</span> dir<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h3 id="挂载U盘"><a href="#挂载U盘" class="headerlink" title="挂载U盘"></a>挂载U盘</h3><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">fdisk -l</span></span><br></pre></td></tr></table></figure>
+<p><img src="/images/20240619152526.png"><br>可以看到一块14.84GB的SD卡，位置在<code>/dev/sda1</code><br>使用</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount -t vfat <span class="regexp">/dev/</span>sda1 /mnt</span><br></pre></td></tr></table></figure>
+<p>来挂载U盘<br><img src="/images/20240619152710.png"><br><code>cd</code>到<code>/mnt</code>即可看到U盘里的文件了，另外可以在<code>/mnt</code>里新建文件夹<code>mkdir xxxxx</code>，再挂载到文件夹里</p>
+<p>卸载：</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">umount <span class="string">/mnt</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/240617_%E5%9C%B0%E7%90%86%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%99%A8%E8%AE%A1%E5%88%92/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -493,7 +574,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2024-06-18 18:59:50" itemprop="dateModified" datetime="2024-06-18T18:59:50+08:00">2024-06-18</time>
+        <time title="修改时间：2024-06-19 16:08:44" itemprop="dateModified" datetime="2024-06-19T16:08:44+08:00">2024-06-19</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -540,6 +621,11 @@
 <p>这个网站不错：<a target="_blank" rel="noopener" href="https://pinout.xyz/">https://pinout.xyz/</a></p>
 <p><img src="/images/20240618185812.png"></p>
 <p>可知右上这几个接口就可以实现TTL的UART连接了，我尝试ground是要接的</p>
+<h2 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h2><h3 id="FT232串口工具"><a href="#FT232串口工具" class="headerlink" title="FT232串口工具"></a>FT232串口工具</h3><p><a target="_blank" rel="noopener" href="https://www.waveshare.net/wiki/FT232_USB_UART_Board">https://www.waveshare.net/wiki/FT232_USB_UART_Board</a><br><img src="/images/20240619160444.png"></p>
+<h3 id="GPS模块"><a href="#GPS模块" class="headerlink" title="GPS模块"></a>GPS模块</h3><p><a target="_blank" rel="noopener" href="https://www.waveshare.net/wiki/LC76G_GPS_Module">https://www.waveshare.net/wiki/LC76G_GPS_Module</a><br><img src="/images/20240619160514.png"><br>在准备安装micropyGPS时<br><img src="/images/20240619160324.png"><br>提示<code>No module namd setuptools</code><br>怀疑需要执行<br><code>apt-get install python3-setuptools</code><br>可惜目前没有网络环境，回家尝试了</p>
+<h3 id="Raspberry-Zero-2W"><a href="#Raspberry-Zero-2W" class="headerlink" title="Raspberry Zero 2W"></a>Raspberry Zero 2W</h3><p><a target="_blank" rel="noopener" href="https://www.waveshare.net/wiki/Raspberry_Pi_Zero_2_W">https://www.waveshare.net/wiki/Raspberry_Pi_Zero_2_W</a><br><img src="/images/20240619160629.png"></p>
+<h3 id="UPS-模块"><a href="#UPS-模块" class="headerlink" title="UPS 模块"></a>UPS 模块</h3><p><a target="_blank" rel="noopener" href="https://www.waveshare.net/wiki/UPS_HAT_(C)">https://www.waveshare.net/wiki/UPS_HAT_(C)</a><br><img src="/images/20240619160718.png"></p>
+<h3 id="环境传感器"><a href="#环境传感器" class="headerlink" title="环境传感器"></a>环境传感器</h3><p><a target="_blank" rel="noopener" href="https://www.waveshare.net/shop/Environment-Sensor-HAT.htm">https://www.waveshare.net/shop/Environment-Sensor-HAT.htm</a><br><img src="/images/20240619160754.png"></p>
 
       
     </div>
@@ -1179,80 +1265,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/Docker01/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/next%E4%B8%BB%E9%A2%98%E5%A2%9E%E5%8A%A0%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0%E4%BE%A7%E8%BE%B9%E6%A0%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="winotmk">
-      <meta itemprop="description" content="零碎MD文档收集 | 生命在于折腾">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WinNote">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/next%E4%B8%BB%E9%A2%98%E5%A2%9E%E5%8A%A0%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0%E4%BE%A7%E8%BE%B9%E6%A0%8F/" class="post-title-link" itemprop="url">next主题增加近期文章侧边栏</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-07-27 00:00:00 / 修改时间：12:19:35" itemprop="dateCreated datePublished" datetime="2023-07-27T00:00:00+08:00">2023-07-27</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="边栏显示文章列表效果"><a href="#边栏显示文章列表效果" class="headerlink" title="边栏显示文章列表效果"></a>边栏显示文章列表效果</h2><p>我还奇怪next没用提供这样的功能，文章一多一篇篇翻实在是累，还好找到了有人实现最近文章的功能，那么做文章列表也就同理了<br><img src="/images/20230727113321.png"><br>我修改过的代码<br>首先是：</p>
-<h3 id="sidebar-njk"><a href="#sidebar-njk" class="headerlink" title="sidebar.njk"></a>sidebar.njk</h3><p><code>/hexo-theme-next/layout/_macro/sidebar.njk</code><br>在最后一个<code>&#123;% endif %&#125;</code>后面加入</p>
-<figure class="highlight twig"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="keyword">if</span></span> theme.recent_posts.enable %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;links-of-blogroll&quot;</span> <span class="attr">style</span>=<span class="string">&quot;margin-top:20px; border-style:dotted none none none; padding-top:5px; text-align:left;padding-left: 20px; padding-right: 10px; padding-bottom: 5px;&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;links-of-blogroll-title&quot;</span> <span class="attr">style</span>=<span class="string">&quot;padding-bottom: 5px; padding-top: 5px; padding-left: 0px; padding-right: 20px; font-size: 1.6em; argin-right: 5px;&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!-- 选择合适的icon --&gt;</span></span></span><br><span class="line"><span class="xml">    </span><span class="template-tag">&#123;%- <span class="name"><span class="keyword">if</span></span> theme.recent_posts.icon %&#125;</span><span class="xml"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">&quot;</span></span></span><span class="template-variable">&#123;&#123; theme.recent_posts.icon &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">&quot;</span> <span class="attr">aria-hidden</span>=<span class="string">&quot;true&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><span class="template-tag">&#123;%- <span class="name"><span class="keyword">endif</span></span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">b</span> <span class="attr">style</span>=<span class="string">&quot;font-size: 0.65em; padding-left: 8px; position: relative; top: -2px;&quot;</span>&gt;</span></span><span class="template-variable">&#123;&#123; theme.recent_posts.description &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">b</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;links-of-blogroll-list&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!-- 文章排序规格,-updated 按照文章更新时间倒排 --&gt;</span></span></span><br><span class="line"><span class="xml">        </span><span class="template-tag">&#123;% <span class="name"><span class="keyword">set</span></span> posts = site.posts.sort(&#x27;-updated&#x27;).toArray() %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!-- 显示20数目的文章 --&gt;</span></span></span><br><span class="line"><span class="xml">        </span><span class="template-tag">&#123;% <span class="name"><span class="keyword">for</span></span> post in posts.slice(&#x27;0&#x27;,&#x27;20&#x27;) %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">          <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;postsSidebarNumb&quot;</span> <span class="attr">style</span>=<span class="string">&quot;text-indent: -1em;&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;</span></span></span><span class="template-variable">&#123;&#123; url_for(post.path) &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">&quot;</span> <span class="attr">title</span>=<span class="string">&quot;</span></span></span><span class="template-variable">&#123;&#123; post.title &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span></span><span class="template-variable">&#123;&#123; post.title &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml">          <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">        </span><span class="template-tag">&#123;% <span class="name"><span class="keyword">endfor</span></span> %&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name"><span class="keyword">endif</span></span> %&#125;</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/next%E4%B8%BB%E9%A2%98%E5%A2%9E%E5%8A%A0%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0%E4%BE%A7%E8%BE%B9%E6%A0%8F/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
