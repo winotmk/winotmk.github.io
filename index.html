@@ -177,19 +177,19 @@
           <!-- 显示postnumb设置数目的文章 -->
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
-                  <a href="/240619_Linux%E5%91%BD%E4%BB%A4/" title="Linux命令" target="_blank">Linux命令</a>
-                </li>
-              
-                <li class="postsSidebarNumb" style="text-indent: -1em;">
                   <a href="/240617_%E5%9C%B0%E7%90%86%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%99%A8%E8%AE%A1%E5%88%92/" title="地理数据采集器计划" target="_blank">地理数据采集器计划</a>
                 </li>
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
-                  <a href="/240619_%E8%BD%AF%E4%BB%B6%E6%94%B6%E9%9B%86/" title="软件收集" target="_blank">软件收集</a>
+                  <a href="/240619_Linux%E5%91%BD%E4%BB%A4/" title="Linux命令" target="_blank">Linux命令</a>
                 </li>
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
                   <a href="/240617_%E4%BB%A4%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84vsftpd/" title="令人头疼的vsftpd,ftp端口修改设置配置" target="_blank">令人头疼的vsftpd,ftp端口修改设置配置</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/240619_%E8%BD%AF%E4%BB%B6%E6%94%B6%E9%9B%86/" title="软件收集" target="_blank">软件收集</a>
                 </li>
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
@@ -493,7 +493,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2024-06-21 11:49:18" itemprop="dateModified" datetime="2024-06-21T11:49:18+08:00">2024-06-21</time>
+        <time title="修改时间：2024-06-21 11:53:12" itemprop="dateModified" datetime="2024-06-21T11:53:12+08:00">2024-06-21</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -530,15 +530,14 @@
 
 <h3 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h3><p>run：</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker</span> run -it -d --name hexo_debian -p <span class="number">22</span>:<span class="number">22</span> -p <span class="number">4000</span>:<span class="number">4000</span> -v XXX:/hexo/ hexo_debian:V<span class="number">02</span></span><br></pre></td></tr></table></figure>
-<h4 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker compose"></a>docker compose</h4><p>启动组<br><code>docker compose -f hexo_debian_DockerCompose.yml up -d </code><br>关闭组<br><code>docker compose -f hexo_debian_DockerCompose.yml down -v</code><br>进入docker容器</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it XXX <span class="regexp">/bin/</span>bash</span><br></pre></td></tr></table></figure>
-<p>退出容器但保留按<code>ctrl+P+Q</code><br>也可以直接接要在容器里执行的命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> hexo hexo g -d</span><br></pre></td></tr></table></figure>
-<p>拷贝容器内的文件出来，在宿主机上输入：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp -a vsftpd:<span class="regexp">/etc/</span>services <span class="regexp">/root/</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="screen"><a href="#screen" class="headerlink" title="screen"></a>screen</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个新的窗口</span></span><br><span class="line">screen -S test</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 进入窗口后 执行文件</span></span><br><span class="line">python test.py</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 退出当前窗口</span></span><br><span class="line">ctrl+a+d   （方法<span class="number">1</span>：保留当前窗口）</span><br><span class="line">screen -d  （方法<span class="number">2</span>：保留当前窗口）</span><br><span class="line"><span class="keyword">exit</span>       （方法<span class="number">3</span>：退出程序，并关闭窗口）</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 查看窗口</span></span><br><span class="line">screen -ls</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 重新连接窗口</span></span><br><span class="line">screen -r id或窗口名称</span><br></pre></td></tr></table></figure>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/240619_Linux%E5%91%BD%E4%BB%A4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -595,7 +594,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2024-06-19 16:08:44" itemprop="dateModified" datetime="2024-06-19T16:08:44+08:00">2024-06-19</time>
+        <time title="修改时间：2024-06-21 11:53:32" itemprop="dateModified" datetime="2024-06-21T11:53:32+08:00">2024-06-21</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -639,15 +638,14 @@
 </ul>
 <p>下面这是树莓派zero2w跑通串口通信时的样子</p>
 <p><img src="/images/20240617150029.png"></p>
-<p>这个网站不错：<a target="_blank" rel="noopener" href="https://pinout.xyz/">https://pinout.xyz/</a></p>
-<p><img src="/images/20240618185812.png"></p>
-<p>可知右上这几个接口就可以实现TTL的UART连接了，我尝试ground是要接的</p>
-<h2 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h2><h3 id="FT232串口工具"><a href="#FT232串口工具" class="headerlink" title="FT232串口工具"></a>FT232串口工具</h3><p><a target="_blank" rel="noopener" href="https://www.waveshare.net/wiki/FT232_USB_UART_Board">https://www.waveshare.net/wiki/FT232_USB_UART_Board</a><br><img src="/images/20240619160444.png"></p>
-<h3 id="GPS模块"><a href="#GPS模块" class="headerlink" title="GPS模块"></a>GPS模块</h3><p><a target="_blank" rel="noopener" href="https://www.waveshare.net/wiki/LC76G_GPS_Module">https://www.waveshare.net/wiki/LC76G_GPS_Module</a><br><img src="/images/20240619160514.png"><br>在准备安装micropyGPS时<br><img src="/images/20240619160324.png"><br>提示<code>No module namd setuptools</code><br>怀疑需要执行<br><code>apt-get install python3-setuptools</code><br>可惜目前没有网络环境，回家尝试了</p>
-<h3 id="Raspberry-Zero-2W"><a href="#Raspberry-Zero-2W" class="headerlink" title="Raspberry Zero 2W"></a>Raspberry Zero 2W</h3><p><a target="_blank" rel="noopener" href="https://www.waveshare.net/wiki/Raspberry_Pi_Zero_2_W">https://www.waveshare.net/wiki/Raspberry_Pi_Zero_2_W</a><br><img src="/images/20240619160629.png"></p>
-<h3 id="UPS-模块"><a href="#UPS-模块" class="headerlink" title="UPS 模块"></a>UPS 模块</h3><p><a target="_blank" rel="noopener" href="https://www.waveshare.net/wiki/UPS_HAT_(C)">https://www.waveshare.net/wiki/UPS_HAT_(C)</a><br><img src="/images/20240619160718.png"></p>
-<h3 id="环境传感器"><a href="#环境传感器" class="headerlink" title="环境传感器"></a>环境传感器</h3><p><a target="_blank" rel="noopener" href="https://www.waveshare.net/shop/Environment-Sensor-HAT.htm">https://www.waveshare.net/shop/Environment-Sensor-HAT.htm</a><br><img src="/images/20240619160754.png"></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/240617_%E5%9C%B0%E7%90%86%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%99%A8%E8%AE%A1%E5%88%92/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -704,7 +702,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2024-06-18 18:57:47" itemprop="dateModified" datetime="2024-06-18T18:57:47+08:00">2024-06-18</time>
+        <time title="修改时间：2024-06-21 11:51:00" itemprop="dateModified" datetime="2024-06-21T11:51:00+08:00">2024-06-21</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -735,6 +733,9 @@
 <p>pasv模式时的端口范围设置，假如用docker运行这些端口都要转出来</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">pasv_promiscuous</span>=<span class="literal">YES</span></span><br><span class="line"><span class="attr">pasv_min_port</span>=<span class="number">31100</span></span><br><span class="line"><span class="attr">pasv_max_port</span>=<span class="number">31110</span></span><br></pre></td></tr></table></figure>
 <p>我至今没太搞明白ftp的主动与被动模式的区别，以及能不能只用其中一种模式来工作..</p>
+<p>另外还有系统的services里</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">vim</span> /etc/services</span><br><span class="line"></span><br><span class="line"><span class="meta">#ftp-data        20/tcp</span></span><br><span class="line"><span class="meta">#ftp-data        20/udp</span></span><br><span class="line"><span class="title">ftp</span>-<span class="class"><span class="keyword">data</span>        12520/tcp</span></span><br><span class="line"><span class="title">ftp</span>-<span class="class"><span class="keyword">data</span>        12520/udp</span></span><br></pre></td></tr></table></figure>
+<p>这个不确定是否必要但还是改了吧</p>
 <h2 id="中文乱码"><a href="#中文乱码" class="headerlink" title="中文乱码"></a>中文乱码</h2><p><img src="/images/20240617155755.png"></p>
 <p>一篇不错的配置说明<br><a target="_blank" rel="noopener" href="https://blog.starryvoid.com/archives/1044.html">https://blog.starryvoid.com/archives/1044.html</a><br>主要提到了utf8的编码问题</p>
 <p><code>utf8_filesystem=YES</code></p>
