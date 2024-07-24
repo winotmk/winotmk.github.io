@@ -83,9 +83,9 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">20</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">21</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">23</span></a></li>
   </ul>
 </nav>
 
@@ -130,7 +130,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -141,7 +141,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -175,6 +175,10 @@
           <!-- 文章排序规格,-updated 按照文章更新时间倒排 -->
               
           <!-- 显示postnumb设置数目的文章 -->
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/" title="用容器来运行streamlit" target="_blank">用容器来运行streamlit</a>
+                </li>
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
                   <a href="/240619_%E8%BD%AF%E4%BB%B6%E6%94%B6%E9%9B%86/" title="软件收集" target="_blank">软件收集</a>
@@ -250,10 +254,6 @@
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
                   <a href="/Linux%E6%9D%83%E9%99%90/" title="linux文件和目录权限" target="_blank">linux文件和目录权限</a>
-                </li>
-              
-                <li class="postsSidebarNumb" style="text-indent: -1em;">
-                  <a href="/%E6%A0%91%E8%8E%93%E6%B4%BETimeMachine/" title="树莓派上架设TimeMachine服务" target="_blank">树莓派上架设TimeMachine服务</a>
                 </li>
               
             </ul>
@@ -347,6 +347,85 @@
 <p>关于图片插入：本地目录<code>T:\博客\md_for_hexo\Images</code>将会与FTP上的<code>./hexo/Winblog/source/images</code>自动单向同步</p>
 <hr>
 <p>2024.06.17再更新<br>因为买了阿里99服务器，改用了容器的形式运行<br>启动组<br><code>docker compose -f hexo_debian_DockerCompose.yml up -d </code><br>关闭组<br><code>docker compose -f hexo_debian_DockerCompose.yml down -v</code><br>同时配置了本地文章目录<code>T:\博客\md_for_hexo_workspace</code>和FTP上的<code>./hexo/Winblog/source/_posts</code>自动同步，终于不会存在本地和服务器上两份文章了<br>在<code>md_for_hexo_workspace</code>写好后直接<code>docker exec hexo hexo g -d</code>即可发布</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="winotmk">
+      <meta itemprop="description" content="零碎MD文档收集 | 生命在于折腾">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WinNote">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/" class="post-title-link" itemprop="url">用容器来运行streamlit</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-07-24 00:00:00 / 修改时间：15:31:06" itemprop="dateCreated datePublished" datetime="2024-07-24T00:00:00+08:00">2024-07-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><img src="/images/20240724152543.png"><br>一开始玩这个的时候就在想用docker跑，因为实在不想在本机里搭各种乱七八糟的环境，也懒得用Anaconda那样的中间环境，总感觉本地跑个模型才用得上那种大玩意儿，于是在dockerhub上找了找<br>一些已有的可用镜像：<br><a target="_blank" rel="noopener" href="https://hub.docker.com/r/aminehy/docker-streamlit-app">https://hub.docker.com/r/aminehy/docker-streamlit-app</a><br><a target="_blank" rel="noopener" href="https://hub.docker.com/r/samdobson/streamlit">https://hub.docker.com/r/samdobson/streamlit</a><br>就是镜像build都好几年前了，实测目前有些新的例程都跑不了，还是自己做个镜像吧</p>
+<h2 id="制作dockerfile"><a href="#制作dockerfile" class="headerlink" title="制作dockerfile"></a>制作dockerfile</h2><p><a target="_blank" rel="noopener" href="https://docs.streamlit.io/deploy/tutorials/docker">https://docs.streamlit.io/deploy/tutorials/docker</a><br>好在官网已给出方案<br>这是我微改后的：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app/Dockerfile</span></span><br><span class="line"></span><br><span class="line">FROM python:<span class="number">3.9</span>-slim</span><br><span class="line"></span><br><span class="line">WORKDIR /app</span><br><span class="line"></span><br><span class="line">RUN apt-get update &amp;&amp; apt-get install -y \</span><br><span class="line">    build-essential \</span><br><span class="line">    curl \</span><br><span class="line">    software-properties-common \</span><br><span class="line">    git \</span><br><span class="line">    &amp;&amp; rm -rf <span class="regexp">/var/</span>lib<span class="regexp">/apt/</span>lists/*</span><br><span class="line"></span><br><span class="line">RUN git clone https:<span class="regexp">//gi</span>thub.com<span class="regexp">/streamlit/</span>streamlit-example.git .</span><br><span class="line"></span><br><span class="line">RUN pip3 install -r requirements.txt</span><br><span class="line"></span><br><span class="line">EXPOSE <span class="number">8501</span></span><br><span class="line"></span><br><span class="line">HEALTHCHECK CMD curl --fail http:<span class="regexp">//</span>localhost:<span class="number">8501</span><span class="regexp">/_stcore/</span>health</span><br><span class="line"></span><br><span class="line">CMD [<span class="string">&quot;streamlit&quot;</span>, <span class="string">&quot;run&quot;</span>, <span class="string">&quot;main.py&quot;</span>, <span class="string">&quot;--server.port=8501&quot;</span>, <span class="string">&quot;--server.address=0.0.0.0&quot;</span>]</span><br></pre></td></tr></table></figure>
+<p>主要就最后一行并没有用<code>ENTRYPOINT</code>，因为记得这个不是必须，用<code>CMD</code>的好处是非常方便的就能修改<code>docker run</code>时要运行的内容</p>
+<h2 id="构建和使用镜像"><a href="#构建和使用镜像" class="headerlink" title="构建和使用镜像"></a>构建和使用镜像</h2><p>打开CMD，CD到这个Dockerfile保存的目录下<br><code>docker build -t streamlit_winotmk:latest . </code>点不要落下</p>
+<p>然后就可用来运行任意py的app文件了<br><code>docker run -ti --rm -p 8501:8501 -v $(pwd):/app streamlit_winotmk:latest streamlit run name_main_file.py</code><br><code>$(pwd)</code>换成宿主机的目录，记得暴露8501的默认端口<br>我这里目录是<code>C:\Cloud\docker\streamlit\demo3\examples</code><br>所以直接:<br><code>docker run -ti --rm -p 8501:8501 -v C:\Cloud\docker\streamlit\demo3\examples:/app streamlit_winotmk:latest streamlit run intro.py</code><br>保持运行并想下次继续用可以<br><code>docker run -ti -d -p 8501:8501 -v $(pwd):/app --name MystreamlitAPP streamlit_winotmk:latest</code><br>*用容器跑起来的一些例程APP：<br><img src="/images/20240724152253.png"><br><img src="/images/20240724152303.png"></p>
 
       
     </div>
@@ -1196,108 +1275,6 @@
 </tbody></table>
 <p>一秒0.0047元很便宜吗？一月要1.2w！可以说被安排得明明白白了</p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/Docker01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="winotmk">
-      <meta itemprop="description" content="零碎MD文档收集 | 生命在于折腾">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WinNote">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Docker01/" class="post-title-link" itemprop="url">Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-08-05 00:00:00" itemprop="dateCreated datePublished" datetime="2023-08-05T00:00:00+08:00">2023-08-05</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2023-09-08 19:11:50" itemprop="dateModified" datetime="2023-09-08T19:11:50+08:00">2023-09-08</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <style type="text/css" rel="stylesheet">
-.nav-number { 
-    display:none !important;
-}
-.post-toc .nav-item {
-    white-space: normal !important;
-}
-</style>
-
-<p>一口气步子迈得有大，慢慢记录一下,如果你碰巧看到这个文章，希望这个文章的某些部分对你有帮助，来源我已尽量在文章中标出，还有很多部分是自己敲的</p>
-<p>了解ECI弹性容器：<a target="_blank" rel="noopener" href="https://www.aliyun.com/product/eci">https://www.aliyun.com/product/eci</a><br>了解阿里云NAS文件存储：<a target="_blank" rel="noopener" href="https://www.aliyun.com/product/nas">https://www.aliyun.com/product/nas</a></p>
-<p><strong>为什么要用eci来运行hexo？</strong><br>因为好玩，同时来学习从pull到发布到运行整个docker镜像的流程，也想给自己的hexo博客找个新家，酷酷的那种<br>本博客之前是由树莓派上的hexo生成，部署到github上的<br>最近在捣鼓docker，一时想不起来有什么灵活小巧的服务拿来用docker玩，那么想着干脆把树莓派上hexo这部分服务做成镜像，需要用的时候拿出来用用想必是极好的（这么一来好像树莓派又要吃灰了）<br>恰巧最近又在琢磨阿里云ECI容器服务，所以理论上是可以用我自己打包好的镜像的<br>最后成品的结构大致如下图：</p>
-<p><img src="/images/20230829140549.png"></p>
-<p>这里挂了3个镜像：<br><strong>1.node.js+git+ssh+hexo</strong><br>主要是此镜像——由node.js+hexo组成的运行hexo环境，用过的都了解hexo是基于node.js的，每次我们生成文章的时候都会<code>hexo g -d</code>，而运行这套需要一个环境容器<br>git和ssh主要是部署在github上用的，同时我习惯用VSCode的SSH FS来管理远程文件和写博客，主要是ssh连接，也方便我拿PuTTY和WinSCP远程登录管理<br><strong>2.vsftpd</strong><br>一个常用的ftp服务，我是在本地些完再上传的，用这个是因为我发现如果要给文章插入图片，我还需要手动用ssh上传到hexo对应目录里。而用VSCode的SSH FS可以帮我自动同步本地工作目录和云上即将生成静态网页的hexo目录，非常方便！<br><strong>3.ddns</strong><br>因为容器是即用即开，用完就释放的，每次开会新分配一个弹性IP做为外网接口，但是不想每次都去复制这个新的ip地址，那么就要用到动态域名解析，刚好我在阿里云上购买过一个我自己的域名，所以ddns这部分服务就拉出来做个镜像</p>
-<p>还挂了一个NAS盘：<br><img src="/images/20230829142400.png"><br>挂载以后：<br><img src="/images/20230829142501.png"><br>可见我的hexo，主题，文章，图片等等都存放在里面，服务容器可以随便释放拉取，数据不会受到影响，几百M的NAS容量价格抹零后可以忽略不计</p>
-<p>文章后面（第三部分）会说如何按我的需求构建定制这几个镜像，并上传到阿里云容器镜像ARK仓库以方便调用</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Docker01/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
