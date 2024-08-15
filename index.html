@@ -398,7 +398,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-08-15 00:00:00 / 修改时间：14:03:13" itemprop="dateCreated datePublished" datetime="2024-08-15T00:00:00+08:00">2024-08-15</time>
+      <time title="创建时间：2024-08-15 00:00:00 / 修改时间：14:13:54" itemprop="dateCreated datePublished" datetime="2024-08-15T00:00:00+08:00">2024-08-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -420,7 +420,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>最近找了个整合包（因为懒得一个个翻bbs<br><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click">https://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click</a><br>这包里的mod和之前自己开的服务器高度相似，太棒啦，从1.7.10直升1.12.2，基本还都是熟悉的味道<br>才知道mcbbd已经无了，然后才可发现mc百科已经这么好用了，连接直连发布curseforge和github，省去搬运步骤，也蛮好的！<br>服务端有了，想通过docker容器部署到我的群晖NAS上，DS720+扩容了根16G内存条放着也是放着</p>
+          <p>最近找到个整合包（因为懒得一个个翻bbs<br><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click">https://www.bilibili.com/read/cv7403697/?spm_id_from=333.999.collection.opus.click</a><br><img src="/images/20240815141238.png"><br>这包里的mod和之前自己开的服务器高度相似，太棒啦，从1.7.10直升1.12.2，基本还都是熟悉的味道<br>才知道mcbbs已经无了，然后才可发现mc百科已经这么好用了，连接直连发布curseforge和github，省去搬运步骤，也蛮好的！<br>服务端有了，想通过docker容器部署到我的群晖NAS上，DS720+扩容了根16G内存条放着也是放着</p>
 <h2 id="选取docker镜像"><a href="#选取docker镜像" class="headerlink" title="选取docker镜像"></a>选取docker镜像</h2><p>docker hub里有官方镜像，用的是这个，体积精简，只运行环境jre就够了<br><a target="_blank" rel="noopener" href="https://hub.docker.com/_/openjdk/tags?page=1&amp;page_size=&amp;name=8u342&amp;ordering=">https://hub.docker.com/_/openjdk/tags?page=1&amp;page_size=&amp;name=8u342&amp;ordering=</a><br><img src="/images/20240815121544.png"><br>所以直接</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker</span> pull openjdk:<span class="number">8</span>u<span class="number">342</span>-jre-slim</span><br></pre></td></tr></table></figure>
 <p>然后直接这样运行就好了</p>
