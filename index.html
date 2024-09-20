@@ -1002,7 +1002,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2024-09-20 17:05:19" itemprop="dateModified" datetime="2024-09-20T17:05:19+08:00">2024-09-20</time>
+        <time title="修改时间：2024-09-20 17:33:09" itemprop="dateModified" datetime="2024-09-20T17:33:09+08:00">2024-09-20</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1052,9 +1052,9 @@
 <p>save:<br>把本地镜像打包成tar方便带走</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker</span> save -o jre<span class="number">8</span>u<span class="number">342</span>_ch.tar jre<span class="number">8</span>u<span class="number">342</span>_ch:latest</span><br></pre></td></tr></table></figure>
 <p>自用的docker run:</p>
-<blockquote>
-<p><code>docker run -d --name=calibre-web -e PUID=1000 -e PGID=1000 -e TZ=Etc/UTC -e DOCKER_MODS=linuxserver/mods:universal-calibre -p 8083:8083 -v D:\calibre_test\config:/config -v D:\calibre_test\library:/books --restart unless-stopped lscr.io/linuxserver/calibre-web:latest</code><br><code>docker run -d --name=calibre -e PUID=1000 -e PGID=1000 -e TZ=Asia/Shanghai -e LC_ALL=zh_CN.UTF-8 -p 8080:8080 -p 8181:8181 -p 8081:8081 -v D:\calibre_test\library:/library -v D:\calibre_test\config:/config --restart unless-stopped lscr.io/linuxserver/calibre:latest</code></p>
-</blockquote>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="builtin-name">run</span> -d <span class="attribute">--name</span>=calibre-web -e <span class="attribute">PUID</span>=1000 -e <span class="attribute">PGID</span>=1000 -e <span class="attribute">TZ</span>=Etc/UTC -e <span class="attribute">DOCKER_MODS</span>=linuxserver/mods:universal-calibre -p 8083:8083 -v D:\calibre_test\config:<span class="built_in">/config </span>-v D:\calibre_test\library:/books --restart unless-stopped lscr.io/linuxserver/calibre-web:latest</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="builtin-name">run</span> -d <span class="attribute">--name</span>=calibre -e <span class="attribute">PUID</span>=1000 -e <span class="attribute">PGID</span>=1000 -e <span class="attribute">TZ</span>=Asia/Shanghai -e <span class="attribute">LC_ALL</span>=zh_CN.UTF-8 -p 8080:8080 -p 8181:8181 -p 8081:8081 -v D:\calibre_test\library:/library -v D:\calibre_test\config:<span class="built_in">/config </span>--restart unless-stopped lscr.io/linuxserver/calibre:latest</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/240619_Linux%E5%91%BD%E4%BB%A4/#more" rel="contents">
