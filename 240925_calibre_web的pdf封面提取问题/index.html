@@ -20,12 +20,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"winotmk.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"right","width":360,"display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="在用johngong&#x2F;calibre-web:latest这个镜像 https:&#x2F;&#x2F;hub.docker.com&#x2F;r&#x2F;johngong&#x2F;calibre-web作为自己nas上的图书馆时发现pdf文件无法生成封面， 断断续续排查了两周，百思不得解，尝试过：  使用lscr.io&#x2F;linuxserver&#x2F;calibre-web:latest的镜像 自己重新构建镜像 重新安装calibre-web包和重">
+<meta name="description" content="在用johngong&#x2F;calibre-web:latest这个镜像 https:&#x2F;&#x2F;hub.docker.com&#x2F;r&#x2F;johngong&#x2F;calibre-web作为自己nas上的图书馆时发现pdf文件无法生成封面， 断断续续排查了两周，百思不得解，尝试过：  设置imagemagick的policy.xml文件(&#x2F;etc&#x2F;Imagemagick&#x2F;policy.xml) 使用lscr.io&#x2F;linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="calibre_web的pdf封面提取问题">
 <meta property="og:url" content="https://winotmk.github.io/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="WinNote">
-<meta property="og:description" content="在用johngong&#x2F;calibre-web:latest这个镜像 https:&#x2F;&#x2F;hub.docker.com&#x2F;r&#x2F;johngong&#x2F;calibre-web作为自己nas上的图书馆时发现pdf文件无法生成封面， 断断续续排查了两周，百思不得解，尝试过：  使用lscr.io&#x2F;linuxserver&#x2F;calibre-web:latest的镜像 自己重新构建镜像 重新安装calibre-web包和重">
+<meta property="og:description" content="在用johngong&#x2F;calibre-web:latest这个镜像 https:&#x2F;&#x2F;hub.docker.com&#x2F;r&#x2F;johngong&#x2F;calibre-web作为自己nas上的图书馆时发现pdf文件无法生成封面， 断断续续排查了两周，百思不得解，尝试过：  设置imagemagick的policy.xml文件(&#x2F;etc&#x2F;Imagemagick&#x2F;policy.xml) 使用lscr.io&#x2F;linux">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://winotmk.github.io/images/20240925124359.png">
 <meta property="og:image" content="https://winotmk.github.io/images/20240925123504.png">
@@ -34,9 +34,10 @@
 <meta property="og:image" content="https://winotmk.github.io/images/20240925123414.png">
 <meta property="og:image" content="https://winotmk.github.io/images/20240925134344.png">
 <meta property="og:image" content="https://winotmk.github.io/images/20240925134613.png">
+<meta property="og:image" content="https://winotmk.github.io/images/20240925140205.png">
 <meta property="og:image" content="https://winotmk.github.io/images/20240925132535.png">
 <meta property="article:published_time" content="2024-09-24T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-09-25T05:55:06.974Z">
+<meta property="article:modified_time" content="2024-09-25T06:06:41.760Z">
 <meta property="article:author" content="winotmk">
 <meta property="article:tag" content="linux">
 <meta property="article:tag" content="docker">
@@ -130,7 +131,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E6%9C%89%E6%95%88%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E7%9A%84%E6%8A%98%E8%85%BE%E6%B5%81%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">最终有效的解决方法的折腾流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#johngong-calibre-web%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">johngong&#x2F;calibre-web的一些设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%9D%E8%AF%95%E5%87%BA%E6%9D%A5%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8DPDF%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E5%8F%AF%E8%A1%8C%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">尝试出来的另一种PDF封面提取可行方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A3%85calibre-web"><span class="nav-number">3.1.</span> <span class="nav-text">装calibre-web</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A3%85imagemagick"><span class="nav-number">3.2.</span> <span class="nav-text">装imagemagick</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E8%A3%85imagemagick"><span class="nav-number">3.3.</span> <span class="nav-text">手动装imagemagick</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">3.4.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E6%9C%89%E6%95%88%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E7%9A%84%E6%8A%98%E8%85%BE%E6%B5%81%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">最终有效的解决方法的折腾流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#johngong-calibre-web%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">johngong&#x2F;calibre-web的一些设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%AF%E8%B7%AF"><span class="nav-number">3.</span> <span class="nav-text">弯路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%9D%E8%AF%95%E5%87%BA%E6%9D%A5%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8DPDF%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E5%8F%AF%E8%A1%8C%E6%96%B9%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">尝试出来的另一种PDF封面提取可行方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A3%85calibre-web"><span class="nav-number">4.1.</span> <span class="nav-text">装calibre-web</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A3%85imagemagick"><span class="nav-number">4.2.</span> <span class="nav-text">装imagemagick</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E8%A3%85imagemagick"><span class="nav-number">4.3.</span> <span class="nav-text">手动装imagemagick</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">4.4.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -329,7 +330,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-09-25 00:00:00 / 修改时间：13:55:06" itemprop="dateCreated datePublished" datetime="2024-09-25T00:00:00+08:00">2024-09-25</time>
+      <time title="创建时间：2024-09-25 00:00:00 / 修改时间：14:06:41" itemprop="dateCreated datePublished" datetime="2024-09-25T00:00:00+08:00">2024-09-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -361,9 +362,10 @@
         <p>在用<code>johngong/calibre-web:latest</code>这个镜像 <a target="_blank" rel="noopener" href="https://hub.docker.com/r/johngong/calibre-web">https://hub.docker.com/r/johngong/calibre-web</a><br>作为自己nas上的图书馆时发现pdf文件无法生成封面，<br><img src="/images/20240925124359.png"></p>
 <p>断断续续排查了两周，百思不得解，尝试过：</p>
 <ul>
+<li>设置imagemagick的<code>policy.xml</code>文件(<code>/etc/Imagemagick/policy.xml</code>)</li>
 <li>使用lscr.io/linuxserver/calibre-web:latest的镜像</li>
 <li>自己重新构建镜像</li>
-<li>重新安装calibre-web包和重装imagemagick包<br>总之是十分折腾，最后认为可能是<code>johngong/calibre-web:latest</code>可能是里少了一个<code>imagemagick-pdf</code>包</li>
+<li>重新安装calibre-web包和重装imagemagick包<br>都解决不了，总之是十分折腾，最后认为可能是<code>johngong/calibre-web:latest</code>可能是里少了一个<code>imagemagick-pdf</code>包</li>
 </ul>
 <h2 id="最终有效的解决方法的折腾流程"><a href="#最终有效的解决方法的折腾流程" class="headerlink" title="最终有效的解决方法的折腾流程"></a>最终有效的解决方法的折腾流程</h2><p>我尝试上传pdf文件，然后打开日志（日志级别设置为DEBUG）<br><img src="/images/20240925123504.png"><br>查看文件：/config/calbre-web/calbre-web.log<br>有这么一行：<br><img src="/images/20240925123738.png"></p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[2024-09-25 12:10:22,144]  WARN &#123;cps.uploader:237&#125; Cannot extract cover image, using default: <span class="keyword">no</span> <span class="keyword">decode</span> delegate <span class="keyword">for</span> this image <span class="keyword">format</span> <span class="symbol">`PDF&#x27;</span> @ <span class="keyword">error</span>/constitute.c/ReadImage/746</span><br><span class="line">[2024-09-25 12:10:22,145]  WARN &#123;cps.uploader:238&#125; <span class="keyword">On</span> Windows this <span class="keyword">error</span> could be caused <span class="keyword">by</span> missing ghostscript</span><br></pre></td></tr></table></figure>
@@ -373,6 +375,9 @@
 <span id="more"></span>
 
 <h2 id="johngong-calibre-web的一些设置"><a href="#johngong-calibre-web的一些设置" class="headerlink" title="johngong/calibre-web的一些设置"></a>johngong/calibre-web的一些设置</h2><p><a target="_blank" rel="noopener" href="https://github.com/gshang2017/docker/issues/133">https://github.com/gshang2017/docker/issues/133</a><br>如果一编辑图书的元数据就卡死，可用尝试：<br><img src="/images/20240925134344.png"><br>这两条设置为true,则<br><img src="/images/20240925134613.png"><br>这里不会出现google等选项，家里的nas没有梯子环境，反而会导致卡死，所以禁用google吧。。也没啥用</p>
+<h2 id="弯路"><a href="#弯路" class="headerlink" title="弯路"></a>弯路</h2><p>这里想记一下这个弯路，在calibre-web的FAQ里赫然记着有关pdf文件转不出封面的解决办法，说要改<br><img src="/images/20240925140205.png"><br><a target="_blank" rel="noopener" href="https://github.com/janeczku/calibre-web/wiki/FAQ#what-to-do-if-cover-pictures-are-not-extracted-from-pdf-files">https://github.com/janeczku/calibre-web/wiki/FAQ#what-to-do-if-cover-pictures-are-not-extracted-from-pdf-files</a><br>所以可以有<code>/etc/Imagemagick/policy.xml</code>:</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">policymap</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">policy</span> <span class="attr">domain</span>=<span class="string">&quot;coder&quot;</span> <span class="attr">rights</span>=<span class="string">&quot;read | write&quot;</span> <span class="attr">pattern</span>=<span class="string">&quot;</span></span></span><span class="template-variable">&#123;MSVG,MVG,PS,PDF,RSVG,SVG,XPS&#125;</span><span class="xml"><span class="tag"><span class="string">&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">policymap</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>这是最容易找到的一种解法，但我自己试了无用，没有上面的装<code>apk add imagemagick-pdf</code>好使</p>
 <h2 id="尝试出来的另一种PDF封面提取可行方法"><a href="#尝试出来的另一种PDF封面提取可行方法" class="headerlink" title="尝试出来的另一种PDF封面提取可行方法"></a>尝试出来的另一种PDF封面提取可行方法</h2><p>这样做出来的calibre-web镜像可以实现PDF转换，但是没有电子书格式转换，没有禁用google元数据搜索，没有中文环境，懒得自己做了，还是修修用<code>johngong/calibre-web</code>包吧<br>为了试验，我用<code>FROM ubuntu:latest</code>作为镜像基底，然后：</p>
 <h3 id="装calibre-web"><a href="#装calibre-web" class="headerlink" title="装calibre-web"></a>装calibre-web</h3><p>安装calibre-web：<br><img src="/images/20240925132535.png"><br><a target="_blank" rel="noopener" href="https://github.com/janeczku/calibre-web?tab=readme-ov-file#installation">https://github.com/janeczku/calibre-web?tab=readme-ov-file#installation</a><br><a target="_blank" rel="noopener" href="https://github.com/janeczku/calibre-web/wiki/Dependencies-in-Calibre-Web-Linux-and-Windows">https://github.com/janeczku/calibre-web/wiki/Dependencies-in-Calibre-Web-Linux-and-Windows</a><br>这里也有提到<br><a target="_blank" rel="noopener" href="https://chenjiehua.me/others/calibre-web-personal-book-store.html">https://chenjiehua.me/others/calibre-web-personal-book-store.html</a></p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> calibreweb</span><br><span class="line">pip <span class="keyword">install</span> calibreweb[metadata]</span><br></pre></td></tr></table></figure>

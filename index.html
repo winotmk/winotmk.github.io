@@ -398,7 +398,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-09-25 00:00:00 / 修改时间：13:55:06" itemprop="dateCreated datePublished" datetime="2024-09-25T00:00:00+08:00">2024-09-25</time>
+      <time title="创建时间：2024-09-25 00:00:00 / 修改时间：14:06:41" itemprop="dateCreated datePublished" datetime="2024-09-25T00:00:00+08:00">2024-09-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -423,9 +423,10 @@
           <p>在用<code>johngong/calibre-web:latest</code>这个镜像 <a target="_blank" rel="noopener" href="https://hub.docker.com/r/johngong/calibre-web">https://hub.docker.com/r/johngong/calibre-web</a><br>作为自己nas上的图书馆时发现pdf文件无法生成封面，<br><img src="/images/20240925124359.png"></p>
 <p>断断续续排查了两周，百思不得解，尝试过：</p>
 <ul>
+<li>设置imagemagick的<code>policy.xml</code>文件(<code>/etc/Imagemagick/policy.xml</code>)</li>
 <li>使用lscr.io/linuxserver/calibre-web:latest的镜像</li>
 <li>自己重新构建镜像</li>
-<li>重新安装calibre-web包和重装imagemagick包<br>总之是十分折腾，最后认为可能是<code>johngong/calibre-web:latest</code>可能是里少了一个<code>imagemagick-pdf</code>包</li>
+<li>重新安装calibre-web包和重装imagemagick包<br>都解决不了，总之是十分折腾，最后认为可能是<code>johngong/calibre-web:latest</code>可能是里少了一个<code>imagemagick-pdf</code>包</li>
 </ul>
 <h2 id="最终有效的解决方法的折腾流程"><a href="#最终有效的解决方法的折腾流程" class="headerlink" title="最终有效的解决方法的折腾流程"></a>最终有效的解决方法的折腾流程</h2><p>我尝试上传pdf文件，然后打开日志（日志级别设置为DEBUG）<br><img src="/images/20240925123504.png"><br>查看文件：/config/calbre-web/calbre-web.log<br>有这么一行：<br><img src="/images/20240925123738.png"></p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[2024-09-25 12:10:22,144]  WARN &#123;cps.uploader:237&#125; Cannot extract cover image, using default: <span class="keyword">no</span> <span class="keyword">decode</span> delegate <span class="keyword">for</span> this image <span class="keyword">format</span> <span class="symbol">`PDF&#x27;</span> @ <span class="keyword">error</span>/constitute.c/ReadImage/746</span><br><span class="line">[2024-09-25 12:10:22,145]  WARN &#123;cps.uploader:238&#125; <span class="keyword">On</span> Windows this <span class="keyword">error</span> could be caused <span class="keyword">by</span> missing ghostscript</span><br></pre></td></tr></table></figure>
