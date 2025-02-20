@@ -177,6 +177,10 @@
           <!-- 显示postnumb设置数目的文章 -->
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/WinNote/" title="WinNote" target="_blank">WinNote</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
                   <a href="/240619_Linux%E5%91%BD%E4%BB%A4/" title="Linux和docker常用命令" target="_blank">Linux和docker常用命令</a>
                 </li>
               
@@ -230,10 +234,6 @@
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
                   <a href="/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/" title="段码屏开发—GPT4o带来的一点点震撼" target="_blank">段码屏开发—GPT4o带来的一点点震撼</a>
-                </li>
-              
-                <li class="postsSidebarNumb" style="text-indent: -1em;">
-                  <a href="/WinNote/" title="WinNote" target="_blank">WinNote</a>
                 </li>
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
@@ -319,7 +319,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2024-06-17 17:37:50" itemprop="dateModified" datetime="2024-06-17T17:37:50+08:00">2024-06-17</time>
+        <time title="修改时间：2025-02-20 18:49:53" itemprop="dateModified" datetime="2025-02-20T18:49:53+08:00">2025-02-20</time>
       </span>
 
   
@@ -333,7 +333,8 @@
     
     <div class="post-body" itemprop="articleBody">
           <p><img src="/images/catcat.png"></p>
-<img src="/WinNote/20211101_005742_IMB_3iZZzg.gif" class="" width="800">
+<p><img src="https://hexopictures.oss-cn-shanghai.aliyuncs.com/20211101_005742_IMB_3iZZzg_ac4eb74c.gif" alt="20211101_005742_IMB_3iZZzg"></p>
+<!--<img src="/WinNote/20211101_005742_IMB_3iZZzg.gif" class="" width="800">-->
 
 <p>一个轻量级MD文档收集博客，不保证阅读性<br>使用树莓派+hexo构建，定制化next主题，github部署<br>2023.9.8更新<br>使用eci容器构建，自制镜像，cdn加速</p>
 <p>一些编辑的Tips:<br>首页文章预览至：</p>
@@ -342,12 +343,15 @@
 <p>markdown paste粘图：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctrl+art+<span class="selector-tag">a</span></span><br></pre></td></tr></table></figure>
 <p>本站加速域名：<a target="_blank" rel="noopener" href="https://md.winotmk.com/">https://md.winotmk.com/</a><br>正式站：<a target="_blank" rel="noopener" href="https://www.winotmk.com/">winotmk.com</a></p>
-<hr>
-<p>2023.12.13更新<br>为了防止忘记如何写这个博客，特留备忘<br>NAS上工作台的盘符请设置为T<br>启动ecistarter容器<br>然后<code>CD ecistart</code> 进入目录<br>使用<code>. ./hexo_s</code> 来脚本启动阿里云eci上的容器，此脚本包含如果一段时间内没有连接将会自动释放掉eci容器的功能，判断依据是是否有SSH接入<br><img src="/images/20231213183015.png"><br>之后通过VSCode的插件SSH FS来接入<br>md文档的目录是<code>./hexo/Winblog/source/_posts</code></p>
-<p>关于图片插入：本地目录<code>T:\博客\md_for_hexo\Images</code>将会与FTP上的<code>./hexo/Winblog/source/images</code>自动单向同步</p>
-<hr>
-<p>2024.06.17再更新<br>因为买了阿里99服务器，改用了容器的形式运行<br>启动组<br><code>docker compose -f hexo_debian_DockerCompose.yml up -d </code><br>关闭组<br><code>docker compose -f hexo_debian_DockerCompose.yml down -v</code><br>同时配置了本地文章目录<code>T:\博客\md_for_hexo_workspace</code>和FTP上的<code>./hexo/Winblog/source/_posts</code>自动同步，终于不会存在本地和服务器上两份文章了<br>在<code>md_for_hexo_workspace</code>写好后直接<code>docker exec hexo hexo g -d</code>即可发布</p>
-
+<p>点击查看更多该网站更新日志</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/WinNote/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
