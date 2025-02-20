@@ -20,28 +20,35 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"winotmk.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"right","width":360,"display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="投影仪侧解码的软件https:&#x2F;&#x2F;www.zhihu.com&#x2F;tardis&#x2F;zm&#x2F;art&#x2F;408177850KODI软件，可以直接这里https:&#x2F;&#x2F;kodi.tv&#x2F;download&#x2F;android&#x2F;下载到能直接安装的软件，试了极米的投影可直接装，然后要设置nas的文件目录，从而通过局域网读取视频文件，显然这是通过投影里解码的，卡得飞起，很快就出现了音话不同步的问题 nas解码的软件群晖自己有vi">
+<meta name="description" content="我要先吐槽一下是真麻烦，以前一年续签一次的免费证书多好，和服务器续费周期一致，一年维护一次就好了，现在搞得像交房租，每季度都要维护，听说Let’s Encrypt上可以发免费证书，然后通过类似Certbot或者httpsok来自动获取和部署，回头再研究了，似乎我用的这种老式虚拟云主机不能整这个，回头想换成容器服务，这官网价格一年500是逼着你转型网站服务器的节奏 获取新的证书阿里云SSL证书管理这">
 <meta property="og:type" content="article">
-<meta property="og:title" content="投影仪推nas">
-<meta property="og:url" content="https://winotmk.github.io/250128_%E6%8A%95%E5%BD%B1%E6%94%BEnas%E8%B5%84%E6%BA%90/index.html">
+<meta property="og:title" content="SSL证书手动更新">
+<meta property="og:url" content="https://winotmk.github.io/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/index.html">
 <meta property="og:site_name" content="WinNote">
-<meta property="og:description" content="投影仪侧解码的软件https:&#x2F;&#x2F;www.zhihu.com&#x2F;tardis&#x2F;zm&#x2F;art&#x2F;408177850KODI软件，可以直接这里https:&#x2F;&#x2F;kodi.tv&#x2F;download&#x2F;android&#x2F;下载到能直接安装的软件，试了极米的投影可直接装，然后要设置nas的文件目录，从而通过局域网读取视频文件，显然这是通过投影里解码的，卡得飞起，很快就出现了音话不同步的问题 nas解码的软件群晖自己有vi">
+<meta property="og:description" content="我要先吐槽一下是真麻烦，以前一年续签一次的免费证书多好，和服务器续费周期一致，一年维护一次就好了，现在搞得像交房租，每季度都要维护，听说Let’s Encrypt上可以发免费证书，然后通过类似Certbot或者httpsok来自动获取和部署，回头再研究了，似乎我用的这种老式虚拟云主机不能整这个，回头想换成容器服务，这官网价格一年500是逼着你转型网站服务器的节奏 获取新的证书阿里云SSL证书管理这">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-01-27T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-02-14T06:26:29.876Z">
+<meta property="og:image" content="https://hexopictures.oss-cn-shanghai.aliyuncs.com/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/2025-02-20-21-32-48_ae56f6ac.png">
+<meta property="og:image" content="https://hexopictures.oss-cn-shanghai.aliyuncs.com/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/2025-02-20-21-41-10_324634aa.png">
+<meta property="og:image" content="https://hexopictures.oss-cn-shanghai.aliyuncs.com/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/2025-02-20-21-43-04_7196ba9d.png">
+<meta property="og:image" content="https://hexopictures.oss-cn-shanghai.aliyuncs.com/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/2025-02-20-21-36-55_f6ef3881.png">
+<meta property="og:image" content="https://hexopictures.oss-cn-shanghai.aliyuncs.com/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/2025-02-20-21-38-38_2334f30f.png">
+<meta property="article:published_time" content="2025-02-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-02-20T13:52:34.025Z">
 <meta property="article:author" content="winotmk">
-<meta property="article:tag" content="nas">
+<meta property="article:tag" content="web">
+<meta property="article:tag" content="SSL">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hexopictures.oss-cn-shanghai.aliyuncs.com/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/2025-02-20-21-32-48_ae56f6ac.png">
 
 
-<link rel="canonical" href="https://winotmk.github.io/250128_%E6%8A%95%E5%BD%B1%E6%94%BEnas%E8%B5%84%E6%BA%90/">
+<link rel="canonical" href="https://winotmk.github.io/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://winotmk.github.io/250128_%E6%8A%95%E5%BD%B1%E6%94%BEnas%E8%B5%84%E6%BA%90/","path":"250128_投影放nas资源/","title":"投影仪推nas"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://winotmk.github.io/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/","path":"250220_SSL证书手动更新/","title":"SSL证书手动更新"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>投影仪推nas | WinNote</title>
+<title>SSL证书手动更新 | WinNote</title>
   
 
 
@@ -119,7 +126,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E4%BB%AA%E4%BE%A7%E8%A7%A3%E7%A0%81%E7%9A%84%E8%BD%AF%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">投影仪侧解码的软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nas%E8%A7%A3%E7%A0%81%E7%9A%84%E8%BD%AF%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">nas解码的软件</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E6%96%B0%E7%9A%84%E8%AF%81%E4%B9%A6"><span class="nav-number">1.</span> <span class="nav-text">获取新的证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E8%AF%81%E4%B9%A6"><span class="nav-number">2.</span> <span class="nav-text">部署证书</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E5%85%A8%E7%AB%99%E5%8A%A0%E9%80%9F%E7%9A%84%E8%AF%81%E4%B9%A6"><span class="nav-number">2.1.</span> <span class="nav-text">部署全站加速的证书</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E5%88%B0%E5%88%AB%E7%9A%84%E5%B9%B3%E5%8F%B0"><span class="nav-number">2.2.</span> <span class="nav-text">部署到别的平台</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -293,7 +300,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/250128_%E6%8A%95%E5%BD%B1%E6%94%BEnas%E8%B5%84%E6%BA%90/">
+    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -306,7 +313,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          投影仪推nas
+          SSL证书手动更新
         </h1>
 
         <div class="post-meta-container">
@@ -316,23 +323,17 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2025-01-28 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-28T00:00:00+08:00">2025-01-28</time>
+      <time title="创建时间：2025-02-20 00:00:00 / 修改时间：21:52:34" itemprop="dateCreated datePublished" datetime="2025-02-20T00:00:00+08:00">2025-02-20</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2025-02-14 14:26:29" itemprop="dateModified" datetime="2025-02-14T14:26:29+08:00">2025-02-14</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/nas/" itemprop="url" rel="index"><span itemprop="name">nas</span></a>
+          <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
         </span>
     </span>
 
@@ -353,10 +354,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="投影仪侧解码的软件"><a href="#投影仪侧解码的软件" class="headerlink" title="投影仪侧解码的软件"></a>投影仪侧解码的软件</h2><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/tardis/zm/art/408177850">https://www.zhihu.com/tardis/zm/art/408177850</a><br>KODI软件，可以直接这里<br><a target="_blank" rel="noopener" href="https://kodi.tv/download/android/">https://kodi.tv/download/android/</a><br>下载到能直接安装的软件，试了极米的投影可直接装，然后要设置nas的文件目录，从而通过局域网读取视频文件，显然这是通过投影里解码的，卡得飞起，很快就出现了音话不同步的问题</p>
-<h2 id="nas解码的软件"><a href="#nas解码的软件" class="headerlink" title="nas解码的软件"></a>nas解码的软件</h2><p>群晖自己有video station，有nas内的软件，也提供客户端，还有专为tv提供的软件：<br><a target="_blank" rel="noopener" href="https://www.synology.cn/zh-cn/support/download/DS720+?version=7.2#androids">https://www.synology.cn/zh-cn/support/download/DS720+?version=7.2#androids</a></p>
-<p>但是这里的tv版装会出现装完了但是会有看不到图标的问题，多半是因为极影用的安卓并不是安卓tv而是魔改的安卓，所以要使用群晖的这个客户端，要么自己重新编一下<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/hx7013/article/details/103764083">https://blog.csdn.net/hx7013/article/details/103764083</a></p>
-<p>要么下这个改过入口app的软件——DSVideo GO!，配合群晖官方的客户端即可使用!<br><a target="_blank" rel="noopener" href="http://nasyun.com/thread-63924-1-1.html">http://nasyun.com/thread-63924-1-1.html</a></p>
+        <p>我要先吐槽一下是真麻烦，以前一年续签一次的免费证书多好，和服务器续费周期一致，一年维护一次就好了，现在搞得像交房租，每季度都要维护，听说Let’s Encrypt上可以发免费证书，然后通过类似Certbot或者httpsok来自动获取和部署，回头再研究了，似乎我用的这种老式虚拟云主机不能整这个，回头想换成容器服务，这官网价格一年500是逼着你转型网站服务器的节奏</p>
+<h2 id="获取新的证书"><a href="#获取新的证书" class="headerlink" title="获取新的证书"></a>获取新的证书</h2><p><a target="_blank" rel="noopener" href="https://yundun.console.aliyun.com/?spm=5176.12818093_47.console-base_product-drawer-left.dcas.3be916d0TsU2HG&p=cas#/certExtend/free/cn-hangzhou?currentPage=1&pageSize=10&keyword=&statusCode=">阿里云SSL证书管理</a><br>这里点个人测试证书，然后申请域名<code>winotmk.com</code>与<code>md.winotmk.com</code></p>
+<h2 id="部署证书"><a href="#部署证书" class="headerlink" title="部署证书"></a>部署证书</h2><h3 id="部署全站加速的证书"><a href="#部署全站加速的证书" class="headerlink" title="部署全站加速的证书"></a>部署全站加速的证书</h3><p>由于都是一个号里买的阿里云的产品，所以可以一键部署<br><img src="https://hexopictures.oss-cn-shanghai.aliyuncs.com/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/2025-02-20-21-32-48_ae56f6ac.png" alt="2025-02-20-21-32-48"></p>
+<h3 id="部署到别的平台"><a href="#部署到别的平台" class="headerlink" title="部署到别的平台"></a>部署到别的平台</h3><p>先下载证书，点更多<br><img src="https://hexopictures.oss-cn-shanghai.aliyuncs.com/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/2025-02-20-21-41-10_324634aa.png" alt="2025-02-20-21-41-10"></p>
+<p>这里选下载tab，下载第一个pem/key格式的证书即可，解压下来会是两个文件<br><img src="https://hexopictures.oss-cn-shanghai.aliyuncs.com/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/2025-02-20-21-43-04_7196ba9d.png" alt="2025-02-20-21-43-04"></p>
+<p>winotmk.com 是我在新万网买的，所以这里登录后台<br><a target="_blank" rel="noopener" href="http://www.xinwanwang.com/login.asp">www.xinwanwang.com/login.asp</a><br><img src="https://hexopictures.oss-cn-shanghai.aliyuncs.com/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/2025-02-20-21-36-55_f6ef3881.png" alt="2025-02-20-21-36-55"></p>
+<p>用他给的管理员账号密码在控制面板里登录<br><img src="https://hexopictures.oss-cn-shanghai.aliyuncs.com/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/2025-02-20-21-38-38_2334f30f.png" alt="2025-02-20-21-38-38"></p>
+<p>登录上以后在域名绑定这里选关闭强制http访问再打开，把刚才下载下来的证书密钥文件两个分别复制到对话框里即可完成部署</p>
 
     </div>
 
@@ -374,7 +379,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://winotmk.github.io/250128_%E6%8A%95%E5%BD%B1%E6%94%BEnas%E8%B5%84%E6%BA%90/" title="投影仪推nas">https://winotmk.github.io/250128_投影放nas资源/</a>
+      <a href="https://winotmk.github.io/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/" title="SSL证书手动更新">https://winotmk.github.io/250220_SSL证书手动更新/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -386,21 +391,19 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/nas/" rel="tag"># nas</a>
+              <a href="/tags/web/" rel="tag"># web</a>
+              <a href="/tags/SSL/" rel="tag"># SSL</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/241031_%E6%96%B0mac/" rel="prev" title="新的macbook air">
-                  <i class="fa fa-chevron-left"></i> 新的macbook air
+                <a href="/250128_%E6%8A%95%E5%BD%B1%E6%94%BEnas%E8%B5%84%E6%BA%90/" rel="prev" title="投影仪推nas">
+                  <i class="fa fa-chevron-left"></i> 投影仪推nas
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/" rel="next" title="SSL证书手动更新">
-                  SSL证书手动更新 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
