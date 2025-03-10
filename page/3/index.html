@@ -177,19 +177,19 @@
           <!-- 显示postnumb设置数目的文章 -->
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
-                  <a href="/250310-linux%E5%88%A0%E9%99%A4%E7%9B%AE%E5%BD%95%E6%8A%A5%E9%94%99%E6%97%B6%E5%A6%82%E4%BD%95%E5%AE%9A%E4%BD%8D%E5%B7%B2%E5%8D%A0%E7%94%A8%E7%9A%84%E8%BF%9B%E7%A8%8B/" title="linux删除目录报错时如何定位已占用的进程" target="_blank">linux删除目录报错时如何定位已占用的进程</a>
-                </li>
-              
-                <li class="postsSidebarNumb" style="text-indent: -1em;">
-                  <a href="/frontmatter/" title="" target="_blank"></a>
-                </li>
-              
-                <li class="postsSidebarNumb" style="text-indent: -1em;">
-                  <a href="/250221_Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="Git常用命令" target="_blank">Git常用命令</a>
+                  <a href="/250310-%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0disqusjs%E8%AF%84%E8%AE%BA/" title="静态博客添加disqusjs评论" target="_blank">静态博客添加disqusjs评论</a>
                 </li>
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
                   <a href="/WinNote/" title="WinNote" target="_blank">WinNote</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/250310-linux%E5%88%A0%E9%99%A4%E7%9B%AE%E5%BD%95%E6%8A%A5%E9%94%99%E6%97%B6%E5%A6%82%E4%BD%95%E5%AE%9A%E4%BD%8D%E5%B7%B2%E5%8D%A0%E7%94%A8%E7%9A%84%E8%BF%9B%E7%A8%8B/" title="linux删除目录报错时如何定位已占用的进程" target="_blank">linux删除目录报错时如何定位已占用的进程</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/250221_Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="Git常用命令" target="_blank">Git常用命令</a>
                 </li>
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
@@ -279,6 +279,132 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/240619_Linux%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="winotmk">
+      <meta itemprop="description" content="零碎MD文档收集 | 生命在于折腾">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WinNote">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/240619_Linux%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">Linux和docker常用命令</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-06-19 00:00:00" itemprop="dateCreated datePublished" datetime="2024-06-19T00:00:00+08:00">2024-06-19</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2025-03-06 14:09:24" itemprop="dateModified" datetime="2025-03-06T14:09:24+08:00">2025-03-06</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>还是会有很多不常用的命令要来回查，仅记录，绝非完整命令参考</p>
+<h2 id="文件操作相关"><a href="#文件操作相关" class="headerlink" title="文件操作相关"></a>文件操作相关</h2><h3 id="复制目录"><a href="#复制目录" class="headerlink" title="复制目录"></a>复制目录</h3><p>复制目录dir1和dir1目录下的文件到dir2目录里</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">cp</span> -r dir<span class="number">1</span> dir<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>安装lrzsz实现zmodem串口文件传输</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">rz</span> 下载Zmodem</span><br><span class="line">xz 上传Zmodem</span><br></pre></td></tr></table></figure>
+<p>windterm下支持直接拖拽文件，但是也要安装lrzsz以支持命令<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lidabo/p/4780866.html">https://www.cnblogs.com/lidabo/p/4780866.html</a></p>
+<h3 id="挂载U盘"><a href="#挂载U盘" class="headerlink" title="挂载U盘"></a>挂载U盘</h3><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">fdisk -l</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://pictures.winotmk.com/240619_Linux%E5%91%BD%E4%BB%A4/2025-03-06-14-08-33_b3b2afa7.png" alt="2025-03-06-14-08-33"><br>可以看到一块14.84GB的SD卡，位置在<code>/dev/sda1</code><br>使用</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount -t vfat <span class="regexp">/dev/</span>sda1 /mnt</span><br></pre></td></tr></table></figure>
+<p>来挂载U盘<br><img src="http://pictures.winotmk.com/240619_Linux%E5%91%BD%E4%BB%A4/2025-03-06-14-08-41_4c306013.png" alt="2025-03-06-14-08-41"><br><code>cd</code>到<code>/mnt</code>即可看到U盘里的文件了，另外可以在<code>/mnt</code>里新建文件夹<code>mkdir xxxxx</code>，再挂载到文件夹里</p>
+<p>卸载：</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">umount <span class="string">/mnt</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="打包压缩和解压"><a href="#打包压缩和解压" class="headerlink" title="打包压缩和解压"></a>打包压缩和解压</h3><p>压缩</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">tar</span> -czvf **<span class="regexp">*.tar.gz</span></span><br></pre></td></tr></table></figure>
+<p>解压</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">tar</span> -xzvf **<span class="regexp">*.tar.gz</span></span><br></pre></td></tr></table></figure>
+<h3 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h3><p><a target="_blank" rel="noopener" href="https://yeasy.gitbook.io/docker_practice/container/run">https://yeasy.gitbook.io/docker_practice/container/run</a></p>
+<p>启动docker:</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="literal">start</span> docker</span><br></pre></td></tr></table></figure>
+<p>查看已有镜像：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -<span class="selector-tag">a</span></span><br></pre></td></tr></table></figure>
+
+<p>启动已终止容器:</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">container</span> start</span><br></pre></td></tr></table></figure>
+
+<p>运行新的镜像run：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker</span> run -it -d --name hexo_debian -p <span class="number">22</span>:<span class="number">22</span> -p <span class="number">4000</span>:<span class="number">4000</span> -v XXX:/hexo/ hexo_debian:V<span class="number">02</span></span><br></pre></td></tr></table></figure>
+
+<p>save:<br>把本地镜像打包成tar方便带走</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker</span> save -o jre<span class="number">8</span>u<span class="number">342</span>_ch.tar jre<span class="number">8</span>u<span class="number">342</span>_ch:latest</span><br></pre></td></tr></table></figure>
+<p>打包好的tar用的时候可以：</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker load -i &#123;image_name&#125;<span class="string">.tar</span></span><br><span class="line">docker load <span class="params">--input</span> &#123;image_name&#125;<span class="string">.tar</span></span><br></pre></td></tr></table></figure>
+<p>如果没有tag可以手动打tag~</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">tag</span> <span class="title">&#123;image_id</span>&#125; &#123;image_name&#125;:&#123;image_tag&#125;</span><br></pre></td></tr></table></figure>
+
+<p>自用的docker run:</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="builtin-name">run</span> -d <span class="attribute">--name</span>=calibre-web -e <span class="attribute">PUID</span>=1000 -e <span class="attribute">PGID</span>=1000 -e <span class="attribute">TZ</span>=Etc/UTC -e <span class="attribute">DOCKER_MODS</span>=linuxserver/mods:universal-calibre -p 8083:8083 -v D:\calibre_test\config:<span class="built_in">/config </span>-v D:\calibre_test\library:/books --restart unless-stopped lscr.io/linuxserver/calibre-web:latest</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="builtin-name">run</span> -d <span class="attribute">--name</span>=calibre -e <span class="attribute">PUID</span>=1000 -e <span class="attribute">PGID</span>=1000 -e <span class="attribute">TZ</span>=Asia/Shanghai -e <span class="attribute">LC_ALL</span>=zh_CN.UTF-8 -p 8080:8080 -p 8181:8181 -p 8081:8081 -v D:\calibre_test\library:/library -v D:\calibre_test\config:<span class="built_in">/config </span>--restart unless-stopped lscr.io/linuxserver/calibre:latest</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/240619_Linux%E5%91%BD%E4%BB%A4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1213,77 +1339,6 @@
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/%E6%B5%81%E9%87%8F%E5%BC%82%E5%B8%B8%E6%8E%92%E6%9F%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="winotmk">
-      <meta itemprop="description" content="零碎MD文档收集 | 生命在于折腾">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WinNote">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E6%B5%81%E9%87%8F%E5%BC%82%E5%B8%B8%E6%8E%92%E6%9F%A5/" class="post-title-link" itemprop="url">流量异常排查</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-06-18 00:00:00" itemprop="dateCreated datePublished" datetime="2023-06-18T00:00:00+08:00">2023-06-18</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2025-02-27 23:34:02" itemprop="dateModified" datetime="2025-02-27T23:34:02+08:00">2025-02-27</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><img src="http://pictures.winotmk.com/%E6%B5%81%E9%87%8F%E5%BC%82%E5%B8%B8%E6%8E%92%E6%9F%A5/2025-02-27-23-32-48_4ea790f6.png" alt="2025-02-27-23-32-48"><br>挖个坑。。。</p>
-
       
     </div>
 
