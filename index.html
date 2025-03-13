@@ -85,7 +85,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">41</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">41</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">43</span></a></li>
   </ul>
 </nav>
 
@@ -130,7 +130,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -177,7 +177,19 @@
           <!-- 显示postnumb设置数目的文章 -->
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
-                  <a href="/250312-%E5%A2%9E%E5%8A%A0%E9%98%85%E8%AF%BB%E6%95%B0%E7%BB%9F%E8%AE%A1/" title="增加阅读数统计" target="_blank">增加阅读数统计</a>
+                  <a href="/250313-%E6%B7%BB%E5%8A%A0waline%E8%AF%84%E8%AE%BA/" title="hugo添加waline评论系统" target="_blank">hugo添加waline评论系统</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/frontmatter/" title="" target="_blank"></a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/250226_Hugo%E6%A8%A1%E6%9D%BF%E4%BF%AE%E6%94%B9TODO/" title="Hugo模板修改TODO" target="_blank">Hugo模板修改TODO</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/250312-%E5%A2%9E%E5%8A%A0%E9%98%85%E8%AF%BB%E6%95%B0%E7%BB%9F%E8%AE%A1/" title="hugo增加阅读数统计" target="_blank">hugo增加阅读数统计</a>
                 </li>
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
@@ -198,10 +210,6 @@
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
                   <a href="/250226_Hugo%E6%A8%A1%E6%9D%BF%E7%AE%80%E8%BF%B0/" title="Hugo模板简述" target="_blank">Hugo模板简述</a>
-                </li>
-              
-                <li class="postsSidebarNumb" style="text-indent: -1em;">
-                  <a href="/250226_Hugo%E6%A8%A1%E6%9D%BF%E4%BF%AE%E6%94%B9TODO/" title="Hugo模板修改TODO" target="_blank">Hugo模板修改TODO</a>
                 </li>
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
@@ -246,14 +254,6 @@
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
                   <a href="/240806_%E7%BD%91%E7%AB%99%E6%A1%86%E6%9E%B6%E6%94%B6%E9%9B%86/" title="网站框架收集" target="_blank">网站框架收集</a>
-                </li>
-              
-                <li class="postsSidebarNumb" style="text-indent: -1em;">
-                  <a href="/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/" title="用容器来运行streamlit" target="_blank">用容器来运行streamlit</a>
-                </li>
-              
-                <li class="postsSidebarNumb" style="text-indent: -1em;">
-                  <a href="/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/" title="段码屏开发—GPT4o带来的一点点震撼" target="_blank">段码屏开发—GPT4o带来的一点点震撼</a>
                 </li>
               
             </ul>
@@ -377,6 +377,99 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/250313-%E6%B7%BB%E5%8A%A0waline%E8%AF%84%E8%AE%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="winotmk">
+      <meta itemprop="description" content="零碎MD文档收集 | 生命在于折腾">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WinNote">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/250313-%E6%B7%BB%E5%8A%A0waline%E8%AF%84%E8%AE%BA/" class="post-title-link" itemprop="url">hugo添加waline评论系统</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-13 10:05:35 / 修改时间：19:02:18" itemprop="dateCreated datePublished" datetime="2025-03-13T10:05:35+08:00">2025-03-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>之前已经配置好了disqusjs评论<br><a target="_blank" rel="noopener" href="https://md.winotmk.com/posts/250310-%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0disqusjs%E8%AF%84%E8%AE%BA/">https://md.winotmk.com/posts/250310-%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0disqusjs%E8%AF%84%E8%AE%BA/</a><br>但是梯内环境还是不够稳定，所有换成了waline，稍微麻烦一些，其服务需要部署，所配套的数据库也需要部署，好在这俩都有完全免费的方案，自己博客用一用足够了</p>
+<h2 id="创建TiDB数据库"><a href="#创建TiDB数据库" class="headerlink" title="创建TiDB数据库"></a>创建TiDB数据库</h2><h3 id="创建TiDB数据表"><a href="#创建TiDB数据表" class="headerlink" title="创建TiDB数据表"></a>创建TiDB数据表</h3><p>据说快速上手部分推荐用的LeanCloud已经不太好用的了，所以数据库部分我选择了TiDB<br><a target="_blank" rel="noopener" href="https://waline.js.org/guide/deploy/tidb.html">https://waline.js.org/guide/deploy/tidb.html</a><br>实际搭建的时候发现比教程图示的TiDB稍微改版了一点<br>点右上角的<code>Create Cluster</code>来创建一个实例，免费版已有每月50M请求和5GB永久空间，足够用了<br><img src="http://pictures.winotmk.com/250313-%E6%B7%BB%E5%8A%A0waline%E8%AF%84%E8%AE%BA/2025-03-13-18-35-12_65b6e1ca.png" alt="2025-03-13-18-35-12"></p>
+<p>创建好后默认的实例名会叫<code>Cluster0</code>，点进去在左边找到<code>SQLEditor</code>的TAB，打开<code>GettingStarted</code><br>然后将这里所有的内容粘贴进来<br><a target="_blank" rel="noopener" href="https://github.com/walinejs/waline/blob/main/assets/waline.tidb">https://github.com/walinejs/waline/blob/main/assets/waline.tidb</a><br>粘好后会是下图这样的，这告诉了TiDB如何建立数据表<br><img src="http://pictures.winotmk.com/250313-%E6%B7%BB%E5%8A%A0waline%E8%AF%84%E8%AE%BA/2025-03-13-18-28-30_de96cea5.png" alt="2025-03-13-18-28-30"><br>之后每行字段都要分别点一些右上角的<code>RUN</code>按钮运行，要注意的是实际上有5行字段，所以要选中然后再点击一共5次</p>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> <span class="symbol">`waline`</span>;</span><br><span class="line">USE waline;</span><br><span class="line"><span class="keyword">CREATE</span> TABLE <span class="symbol">`wl_Comment`</span> (...)</span><br><span class="line"><span class="keyword">CREATE</span> TABLE <span class="symbol">`wl_Counter`</span> (...)</span><br><span class="line"><span class="keyword">CREATE</span> TABLE <span class="symbol">`wl_Users`</span> (...)</span><br></pre></td></tr></table></figure>
+<p>之后你将应该得到类似这样的数据库<code>Schemas</code>表<br><img src="http://pictures.winotmk.com/250313-%E6%B7%BB%E5%8A%A0waline%E8%AF%84%E8%AE%BA/2025-03-13-18-33-24_32e48ed4.png" alt="2025-03-13-18-33-24"><br>恭喜到就已经创建好了</p>
+<h3 id="获取数据库连接信息"><a href="#获取数据库连接信息" class="headerlink" title="获取数据库连接信息"></a>获取数据库连接信息</h3><p>直接点击左侧的<code>OverviewTAB</code>，右上角会有个<code>Connect</code>按钮<br><img src="http://pictures.winotmk.com/250313-%E6%B7%BB%E5%8A%A0waline%E8%AF%84%E8%AE%BA/2025-03-13-18-38-26_e7136f26.png" alt="2025-03-13-18-38-26"></p>
+<p>这里选一下<code>Database</code>为<code>waline</code>（就是刚才创建的那张表），第一次需要创建一下密码，自己记录好,<code>ConnectWith</code>选项倒是无所谓，因为我们要自己记录下数据给Vercel部署部署时环境变量用,从这里我们就获得了：<br><code>TIDB_DB</code>，<code>TIDB_USER</code>，<code>TIDB_PASSWORD</code>，<code>TIDB_HOST</code>的所有信息</p>
+<h2 id="Vercel部署"><a href="#Vercel部署" class="headerlink" title="Vercel部署"></a>Vercel部署</h2><p><a target="_blank" rel="noopener" href="https://waline.js.org/guide/deploy/vercel.html">https://waline.js.org/guide/deploy/vercel.html</a><br>选GitHub然后照着一步步新建就行<br><img src="http://pictures.winotmk.com/250313-%E6%B7%BB%E5%8A%A0waline%E8%AF%84%E8%AE%BA/2025-03-13-18-17-06_83e39629.png" alt="2025-03-13-18-17-06"><br>稍微踩了坑的地方在于环境变量配置<br>点击顶部的 <code>Settings</code> - <code>Environment Variables</code> 进入环境变量配置页<br><img src="http://pictures.winotmk.com/250313-%E6%B7%BB%E5%8A%A0waline%E8%AF%84%E8%AE%BA/2025-03-13-18-21-22_7e5b6c93.png" alt="2025-03-13-18-21-22"><br>这么多环境变量其实就实现两件事，一件是连同TiDB数据库，一件是连SMTP邮件服务，让有新评论时给我发邮件</p>
+<h3 id="连通TiDB数据库"><a href="#连通TiDB数据库" class="headerlink" title="连通TiDB数据库"></a>连通TiDB数据库</h3><p><a target="_blank" rel="noopener" href="https://waline.js.org/reference/server/env.html#%E6%95%B0%E6%8D%AE%E5%BA%93">https://waline.js.org/reference/server/env.html#%E6%95%B0%E6%8D%AE%E5%BA%93</a><br>官方文档的数据库变量部分写到了TiDB相关的变量<br><img src="http://pictures.winotmk.com/250313-%E6%B7%BB%E5%8A%A0waline%E8%AF%84%E8%AE%BA/2025-03-13-18-24-23_a45f4266.png" alt="2025-03-13-18-24-23"><br>这里实际上需要的就是<code>TIDB_DB</code>，<code>TIDB_USER</code>，<code>TIDB_PASSWORD</code>，<code>TIDB_HOST</code>，我们上面已经获得到了</p>
+<h3 id="SMTP服务"><a href="#SMTP服务" class="headerlink" title="SMTP服务"></a>SMTP服务</h3><p><a target="_blank" rel="noopener" href="https://waline.js.org/guide/features/notification.html#%E9%82%AE%E4%BB%B6%E9%80%9A%E7%9F%A5">https://waline.js.org/guide/features/notification.html#%E9%82%AE%E4%BB%B6%E9%80%9A%E7%9F%A5</a><br>邮件相关文档在这里</p>
+<p>我使用阿里云的邮件服务（其实QQ邮箱新浪什么的都可以）<br><a target="_blank" rel="noopener" href="https://dm.console.aliyun.com/">https://dm.console.aliyun.com/</a><br>开通阿里云的STMP服务得有自己的域名，按照指示设置好自己域名的各种TXT解析就好，这里主要需要得到<code>SMTP_PORT</code>，<code>SMTP_HOST</code>，<code>SMTP_PASS</code>，<code>SMTP_USER</code>，对于阿里云的邮件服务：<br><code>SMTP_HOST</code>是<code>smtpdm.aliyun.com</code><br><code>SMTP_PORT</code>是<code>465</code><br><code>SMTP_PASS</code>是自己设置的密码<br><code>SMTP_USER</code>是自己绑定好的发信域名<br>还有个<code>AUTHOR_EMAIL</code>是自己常用的email地址，用来接受博客发给自己的消息</p>
+<p>改完环境变量以后点击保存会问你要不要redeploy重新部署，环境变量重部署后才会生效</p>
+<h3 id="添加自己的域名"><a href="#添加自己的域名" class="headerlink" title="添加自己的域名"></a>添加自己的域名</h3><p><img src="http://pictures.winotmk.com/250313-%E6%B7%BB%E5%8A%A0waline%E8%AF%84%E8%AE%BA/2025-03-13-18-52-16_d6b682db.png" alt="2025-03-13-18-52-16"><br><code>Domains</code>TAB里点Add添加，<br><img src="http://pictures.winotmk.com/250313-%E6%B7%BB%E5%8A%A0waline%E8%AF%84%E8%AE%BA/2025-03-13-18-53-35_118435ef.png" alt="2025-03-13-18-53-35"><br>这里的<code>Redirect to</code>就选<code>No Redirect</code>就好了，不然还会跳转域名<br>然后要在自己的域名提供商那里加TXT解析，验证通过就能用了<br>waline.winotmk.com<br>这就是我在Vercel上部署完成后的自有waline链接啦~~<br>服务上线后立即域名+/ui,比如我的是<br><a target="_blank" rel="noopener" href="https://waline.winotmk.com/ui">https://waline.winotmk.com/ui</a><br>来注册第一个账号，会自动成为管理员账号</p>
+<h2 id="将waline加入进博客"><a href="#将waline加入进博客" class="headerlink" title="将waline加入进博客"></a>将waline加入进博客</h2><p>hugo的stack主题设置waline很简单，在根目录的设置文件<code>hugo.yaml</code>的<code>params.comments.waline</code>里填入：</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">waline:</span></span><br><span class="line"><span class="symbol">    serverURL:</span> https:<span class="comment">//waline.winotmk.com/</span></span><br><span class="line"><span class="symbol">    lang:</span> zh-CN</span><br><span class="line"><span class="symbol">    emoji:</span></span><br><span class="line">        - https:<span class="comment">//unpkg.com/@waline/emojis@1.1.0/weibo</span></span><br><span class="line">        - https:<span class="comment">//unpkg.com/@waline/emojis@1.1.0/bilibili</span></span><br><span class="line"><span class="symbol">    requiredMeta:</span></span><br><span class="line">        - name</span><br><span class="line">        - email</span><br><span class="line">        - url</span><br><span class="line"><span class="symbol">    locale:</span></span><br><span class="line"><span class="symbol">        admin:</span> Admin</span><br><span class="line"><span class="symbol">        placeholder:</span></span><br><span class="line"><span class="symbol">    reaction:</span> true</span><br><span class="line">    <span class="meta">#搜索标签不好用，关闭</span></span><br><span class="line"><span class="symbol">    search:</span> false</span><br><span class="line">    <span class="meta">#浏览量统计</span></span><br><span class="line"><span class="symbol">    pageview:</span> true</span><br></pre></td></tr></table></figure>
+<p><code>pageview</code>是配合文章点击数统计的，可以看这篇<br><a target="_blank" rel="noopener" href="https://md.winotmk.com/posts/250312-%E5%A2%9E%E5%8A%A0%E9%98%85%E8%AF%BB%E6%95%B0%E7%BB%9F%E8%AE%A1/">https://md.winotmk.com/posts/250312-%E5%A2%9E%E5%8A%A0%E9%98%85%E8%AF%BB%E6%95%B0%E7%BB%9F%E8%AE%A1/</a></p>
+<p><code>serverURL</code>就是上面部署好的Vercel服务地址<br>然后重新部署hugo就能看到评论啦</p>
+<p><img src="http://pictures.winotmk.com/250313-%E6%B7%BB%E5%8A%A0waline%E8%AF%84%E8%AE%BA/2025-03-13-18-58-52_7f8ee38d.png" alt="2025-03-13-18-58-52"></p>
+<p>如果一切都照做但是却没有反应也别慌，博主去吃了饭回来刷新就好了…可能是服务上线后各路dns解析有个延迟</p>
+<h2 id="可以改进的地方"><a href="#可以改进的地方" class="headerlink" title="可以改进的地方"></a>可以改进的地方</h2><p>默认waline的评论上传图片大小限制只有128kb，这基本不可用了，可以参照这篇来为其自定义一个图床<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40673755/article/details/140539730">https://blog.csdn.net/qq_40673755/article/details/140539730</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/250312-%E5%A2%9E%E5%8A%A0%E9%98%85%E8%AF%BB%E6%95%B0%E7%BB%9F%E8%AE%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -390,7 +483,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/250312-%E5%A2%9E%E5%8A%A0%E9%98%85%E8%AF%BB%E6%95%B0%E7%BB%9F%E8%AE%A1/" class="post-title-link" itemprop="url">增加阅读数统计</a>
+          <a href="/250312-%E5%A2%9E%E5%8A%A0%E9%98%85%E8%AF%BB%E6%95%B0%E7%BB%9F%E8%AE%A1/" class="post-title-link" itemprop="url">hugo增加阅读数统计</a>
         </h2>
 
         <div class="post-meta-container">
@@ -402,7 +495,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2025-03-12 07:27:11 / 修改时间：16:27:51" itemprop="dateCreated datePublished" datetime="2025-03-12T07:27:11+08:00">2025-03-12</time>
+      <time title="创建时间：2025-03-12 07:27:11 / 修改时间：16:38:09" itemprop="dateCreated datePublished" datetime="2025-03-12T07:27:11+08:00">2025-03-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -435,14 +528,14 @@
 <p>经过一些测试发现其文章开头部分的标题，标签，时间和阅读时长之类的信息都在<code>layouts\partials\article\components\details.html</code>文件中，但是这个<code>details.html</code>模板在主页文章列表也会加载：<br><img src="http://pictures.winotmk.com/250312-%E5%A2%9E%E5%8A%A0%E9%98%85%E8%AF%BB%E6%95%B0%E7%BB%9F%E8%AE%A1/2025-03-12-15-40-23_8a472ee5.png" alt="2025-03-12-15-40-23"></p>
 <p>如果将依靠链接来获取阅读数据的相关代码直接放进<code>details.html</code>来会出问题，所以将其添加进紧随其后的<code>content.html</code>模板中，作为实质上所有正文部分的开头会稍微好一点</p>
 <h2 id="方案一：busuanzi阅读计数统计"><a href="#方案一：busuanzi阅读计数统计" class="headerlink" title="方案一：busuanzi阅读计数统计"></a>方案一：busuanzi阅读计数统计</h2><p><strong>写在前面：发现了ios设备下的缺陷，遂改用第二种方案</strong></p>
-<p><a target="_blank" rel="noopener" href="https://busuanzi.ibruce.info/">https://busuanzi.ibruce.info/</a><br>按照安装指南，只需要引入js脚本，以及再加入一行即可</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">&quot;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;busuanzi_container_site_pv&quot;</span>&gt;</span>本站总访问量<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;busuanzi_value_site_pv&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>次<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>busuanzi文档：<br><a target="_blank" rel="noopener" href="https://busuanzi.ibruce.info/">https://busuanzi.ibruce.info/</a><br>按照安装指南，只需要引入js脚本，以及再加入一行<code>&lt;span&gt;</code>即可</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">&quot;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;busuanzi_container_site_pv&quot;</span>&gt;</span>本站总访问量<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;busuanzi_value_site_pv&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>次<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h3 id="引入-lt-script-gt"><a href="#引入-lt-script-gt" class="headerlink" title="引入&lt;script&gt;"></a>引入<code>&lt;script&gt;</code></h3><p><code>layouts\_default\baseof.html</code>的<code>&lt;head&gt;</code>内加入</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">&quot;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="在合适的位置添加-lt-span-gt"><a href="#在合适的位置添加-lt-span-gt" class="headerlink" title="在合适的位置添加&lt;span&gt;"></a>在合适的位置添加<code>&lt;span&gt;</code></h3><h4 id="文章计数"><a href="#文章计数" class="headerlink" title="文章计数"></a>文章计数</h4><p>所以我们在<code>content.html</code>里添加<code>&lt;span&gt;</code>部分，原因如开头所说，放这里比较保险一点</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--250227页面访问数统计--&gt;</span></span><br><span class="line">&#123;&#123; if ne .Section &quot;page&quot; &#125;&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;article-details&quot;</span> <span class="attr">style</span>=<span class="string">&quot;padding-top: 15px;padding-bottom: 0px;&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">footer</span> <span class="attr">class</span>=<span class="string">&quot;article-time&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">                &#123;&#123; partial &quot;helper/icon&quot; &quot;eye&quot; &#125;&#125;</span><br><span class="line">                <span class="tag">&lt;<span class="name">span</span> <span class="attr">title</span>=<span class="string">&quot;阅读次数&quot;</span> <span class="attr">id</span>=<span class="string">&quot;busuanzi_container_page_pv&quot;</span> <span class="attr">style</span>=<span class="string">&quot;display: inline;font-size: 1.4rem;&quot;</span>&gt;</span>阅读次数: <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;article-time--reading&quot;</span> <span class="attr">id</span>=<span class="string">&quot;busuanzi_value_page_pv&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>次</span><br><span class="line">                <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&#123;&#123; end &#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--以下为content.html原内容未有修改--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&quot;article-content&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Refer to https://discourse.gohugo.io/t/responsive-tables-in-markdown/10639/5 --&gt;</span></span><br><span class="line">    &#123;&#123; $wrappedTable := printf &quot;<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">\</span>&quot;<span class="attr">table-wrapper</span>\&quot;&gt;</span>$&#123;1&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span>&quot; &#125;&#125;</span><br><span class="line">    &#123;&#123; .Content | replaceRE &quot;(<span class="tag">&lt;<span class="name">table</span>&gt;</span>(?:.|\n)+?<span class="tag">&lt;/<span class="name">table</span>&gt;</span>)&quot; $wrappedTable | safeHTML &#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>外面套的<code>&lt;footer&gt;</code>和<code>&lt;div&gt;</code>都只是css样式需要<br><code>&#123;&#123; if ne .Section "page" &#125;&#125;</code>是我不希望他在文章页面以外的地方显示（主要是针对<code>page</code>目录下的links页面)<br><code>.Section</code>释义可见：<a target="_blank" rel="noopener" href="https://gohugo.io/methods/page/section/">https://gohugo.io/methods/page/section/</a></p>
+<p>外面套的<code>&lt;footer&gt;</code>和<code>&lt;div&gt;</code>都只是css样式需要<br><code>&#123;&#123; if ne .Section "page" &#125;&#125;</code>是我不希望他在文章页面以外的地方显示（主要是针对<code>page</code>目录下的links页面)<br><code>.Section</code>释义可见：<br><a target="_blank" rel="noopener" href="https://gohugo.io/methods/page/section/">https://gohugo.io/methods/page/section/</a></p>
 <h4 id="整站点击数"><a href="#整站点击数" class="headerlink" title="整站点击数"></a>整站点击数</h4><p><code>layouts\partials\footer\footer.html</code>在其内的<code>&lt;footer&gt;</code>添加</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;article-time&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;post-meta-item&quot;</span> <span class="attr">id</span>=<span class="string">&quot;busuanzi_container_site_uv&quot;</span> <span class="attr">style</span>=<span class="string">&quot;display: inline;&quot;</span>&gt;</span></span><br><span class="line">        &#123;&#123; partial &quot;helper/icon&quot; &quot;users&quot; &#125;&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;site-uv&quot;</span> <span class="attr">title</span>=<span class="string">&quot;总访客量&quot;</span>&gt;</span></span><br><span class="line">        <span class="symbol">&amp;nbsp;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;busuanzi_value_site_uv&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>|<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;post-meta-item&quot;</span> <span class="attr">id</span>=<span class="string">&quot;busuanzi_container_site_pv&quot;</span> <span class="attr">style</span>=<span class="string">&quot;display: inline;&quot;</span>&gt;</span></span><br><span class="line">        &#123;&#123; partial &quot;helper/icon&quot; &quot;eye&quot; &#125;&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;site-pv&quot;</span> <span class="attr">title</span>=<span class="string">&quot;总访问量&quot;</span>&gt;</span></span><br><span class="line">        <span class="symbol">&amp;nbsp;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;busuanzi_value_site_pv&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>即可在博客页面底部实现：<br><img src="http://pictures.winotmk.com/250312-%E5%A2%9E%E5%8A%A0%E9%98%85%E8%AF%BB%E6%95%B0%E7%BB%9F%E8%AE%A1/2025-03-12-16-01-50_89402a85.png" alt="2025-03-12-16-01-50"></p>
@@ -687,7 +780,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2025-03-06 14:54:14" itemprop="dateModified" datetime="2025-03-06T14:54:14+08:00">2025-03-06</time>
+        <time title="修改时间：2025-03-13 18:02:05" itemprop="dateModified" datetime="2025-03-13T18:02:05+08:00">2025-03-13</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -712,11 +805,16 @@
           <h2 id="这只是个TODO-LIST"><a href="#这只是个TODO-LIST" class="headerlink" title="这只是个TODO LIST"></a>这只是个TODO LIST</h2><ol>
 <li><strike>加统计字数</strike><br><a target="_blank" rel="noopener" href="https://mogeko.me/zh-cn/posts/zh-cn/033/">https://mogeko.me/zh-cn/posts/zh-cn/033/</a></li>
 <li><strike>加页面访问数</strike><br><a target="_blank" rel="noopener" href="https://minbaby.github.io/post/2018-06/bu-suan-zi/">https://minbaby.github.io/post/2018-06/bu-suan-zi/</a><br><a target="_blank" rel="noopener" href="https://busuanzi.ibruce.info/">https://busuanzi.ibruce.info/</a><br>   hexo博客用的也是这个，也可以很好的嵌入到hugo模板结构里</li>
-<li>加评论</li>
-<li>加页面底部点赞</li>
+<li> <strike>加评论</strike></li>
+<li><strike>加页面底部点赞</strike></li>
 <li><strike>MD渲染器会忽略一次换行</strike></li>
 <li><strike>访问ip归属统计</strike><br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1585686">https://cloud.tencent.com/developer/article/1585686</a></li>
 <li><strike>wormhole十年之约设置</strike></li>
+</ol>
+<p><strong>250312庆贺所有计划都已完成</strong><br>还可以完善的有：（也可也不管了）</p>
+<ol>
+<li><strike>waline评论后邮件提醒</strike><br>发现之前不发邮件的原因是默认<code>SMTP_SERVICE</code>阿里云的STMP服务器地址从smtp.aliyun.com变为smtpdm.aliyun.com<br><a target="_blank" rel="noopener" href="https://waline.js.org/guide/features/notification.html#%E9%82%AE%E4%BB%B6%E9%80%9A%E7%9F%A5">https://waline.js.org/guide/features/notification.html#%E9%82%AE%E4%BB%B6%E9%80%9A%E7%9F%A5</a><br>这里的地址表url需要更新了</li>
+<li>waline加图床</li>
 </ol>
 
       
@@ -1189,93 +1287,6 @@
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="winotmk">
-      <meta itemprop="description" content="零碎MD文档收集 | 生命在于折腾">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WinNote">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/" class="post-title-link" itemprop="url">SSL证书手动更新</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-02-20 00:00:00" itemprop="dateCreated datePublished" datetime="2025-02-20T00:00:00+08:00">2025-02-20</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2025-03-06 14:47:10" itemprop="dateModified" datetime="2025-03-06T14:47:10+08:00">2025-03-06</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>我要先吐槽一下是真麻烦，以前一年续签一次的免费证书多好，和服务器续费周期一致，一年维护一次就好了，现在搞得像交房租，每季度都要维护，听说Let’s Encrypt上可以发免费证书，然后通过类似Certbot或者httpsok来自动获取和部署，回头再研究了，似乎我用的这种老式虚拟云主机不能整这个，回头想换成容器服务，这官网价格一年500是逼着你转型网站服务器的节奏</p>
-<h2 id="获取新的证书"><a href="#获取新的证书" class="headerlink" title="获取新的证书"></a>获取新的证书</h2><p><a target="_blank" rel="noopener" href="https://yundun.console.aliyun.com/?spm=5176.12818093_47.console-base_product-drawer-left.dcas.3be916d0TsU2HG&p=cas#/certExtend/free/cn-hangzhou?currentPage=1&pageSize=10&keyword=&statusCode=">阿里云SSL证书管理</a><br>这里点个人测试证书，然后申请域名<code>winotmk.com</code>与<code>md.winotmk.com</code></p>
-<h2 id="部署证书"><a href="#部署证书" class="headerlink" title="部署证书"></a>部署证书</h2><h3 id="部署全站加速的证书"><a href="#部署全站加速的证书" class="headerlink" title="部署全站加速的证书"></a>部署全站加速的证书</h3><p>由于都是一个号里买的阿里云的产品，所以可以一键部署<br><img src="http://pictures.winotmk.com/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/2025-02-20-21-32-48_ae56f6ac.png" alt="2025-02-20-21-32-48"></p>
-<h3 id="部署到别的平台"><a href="#部署到别的平台" class="headerlink" title="部署到别的平台"></a>部署到别的平台</h3><p>先下载证书，点更多<br><img src="http://pictures.winotmk.com/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/2025-02-20-21-41-10_324634aa.png" alt="2025-02-20-21-41-10"></p>
-<p>这里选下载tab，下载第一个pem/key格式的证书即可，解压下来会是两个文件<br><img src="http://pictures.winotmk.com/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/2025-02-20-21-43-04_7196ba9d.png" alt="2025-02-20-21-43-04"></p>
-<p>winotmk.com 是我在新万网买的，所以这里登录后台<br><a target="_blank" rel="noopener" href="http://www.xinwanwang.com/login.asp">www.xinwanwang.com/login.asp</a><br><img src="http://pictures.winotmk.com/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/2025-02-20-21-36-55_f6ef3881.png" alt="2025-02-20-21-36-55"></p>
-<p>用他给的管理员账号密码在控制面板里登录<br><img src="http://pictures.winotmk.com/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/2025-02-20-21-38-38_2334f30f.png" alt="2025-02-20-21-38-38"></p>
-<p>登录上以后在域名绑定这里选关闭强制http访问再打开，把刚才下载下来的证书密钥文件两个分别复制到对话框里即可完成部署啦！</p>
-
       
     </div>
 

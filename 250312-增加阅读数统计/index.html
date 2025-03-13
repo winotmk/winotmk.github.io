@@ -22,7 +22,7 @@
 <script class="next-config" data-name="main" type="application/json">{"hostname":"winotmk.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"right","width":360,"display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 <meta name="description" content="新站用了hugo框架的stack主题，还是比较养眼的，但是居然没有文章点击数字的统计，好在自己加一个倒是很简单，相对来说研究加在什么位置是让我比较花时间地方 stack主题加阅读数的位置 stack主题的模板大致如上图，其位于themes\hugo-theme-stack\layouts内，我是用github子模块的方式直接挂载的hugo-theme-stack所以可以复制一份layouts目录到">
 <meta property="og:type" content="article">
-<meta property="og:title" content="增加阅读数统计">
+<meta property="og:title" content="hugo增加阅读数统计">
 <meta property="og:url" content="https://winotmk.github.io/250312-%E5%A2%9E%E5%8A%A0%E9%98%85%E8%AF%BB%E6%95%B0%E7%BB%9F%E8%AE%A1/index.html">
 <meta property="og:site_name" content="WinNote">
 <meta property="og:description" content="新站用了hugo框架的stack主题，还是比较养眼的，但是居然没有文章点击数字的统计，好在自己加一个倒是很简单，相对来说研究加在什么位置是让我比较花时间地方 stack主题加阅读数的位置 stack主题的模板大致如上图，其位于themes\hugo-theme-stack\layouts内，我是用github子模块的方式直接挂载的hugo-theme-stack所以可以复制一份layouts目录到">
@@ -34,7 +34,7 @@
 <meta property="og:image" content="http://pictures.winotmk.com/250312-%E5%A2%9E%E5%8A%A0%E9%98%85%E8%AF%BB%E6%95%B0%E7%BB%9F%E8%AE%A1/2025-03-12-16-16-30_893fbb6c.png">
 <meta property="og:image" content="http://pictures.winotmk.com/250312-%E5%A2%9E%E5%8A%A0%E9%98%85%E8%AF%BB%E6%95%B0%E7%BB%9F%E8%AE%A1/2025-03-12-16-23-30_43e0e06e.png">
 <meta property="article:published_time" content="2025-03-11T23:27:11.912Z">
-<meta property="article:modified_time" content="2025-03-12T08:27:51.997Z">
+<meta property="article:modified_time" content="2025-03-12T08:38:09.974Z">
 <meta property="article:author" content="winotmk">
 <meta property="article:tag" content="web">
 <meta property="article:tag" content="博客">
@@ -47,10 +47,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://winotmk.github.io/250312-%E5%A2%9E%E5%8A%A0%E9%98%85%E8%AF%BB%E6%95%B0%E7%BB%9F%E8%AE%A1/","path":"250312-增加阅读数统计/","title":"增加阅读数统计"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://winotmk.github.io/250312-%E5%A2%9E%E5%8A%A0%E9%98%85%E8%AF%BB%E6%95%B0%E7%BB%9F%E8%AE%A1/","path":"250312-增加阅读数统计/","title":"hugo增加阅读数统计"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>增加阅读数统计 | WinNote</title>
+<title>hugo增加阅读数统计 | WinNote</title>
   
 
 
@@ -97,7 +97,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">41</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">41</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">43</span></a></li>
   </ul>
 </nav>
 
@@ -143,7 +143,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -190,7 +190,19 @@
           <!-- 显示postnumb设置数目的文章 -->
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
-                  <a href="/250312-%E5%A2%9E%E5%8A%A0%E9%98%85%E8%AF%BB%E6%95%B0%E7%BB%9F%E8%AE%A1/" title="增加阅读数统计" target="_blank">增加阅读数统计</a>
+                  <a href="/250313-%E6%B7%BB%E5%8A%A0waline%E8%AF%84%E8%AE%BA/" title="hugo添加waline评论系统" target="_blank">hugo添加waline评论系统</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/frontmatter/" title="" target="_blank"></a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/250226_Hugo%E6%A8%A1%E6%9D%BF%E4%BF%AE%E6%94%B9TODO/" title="Hugo模板修改TODO" target="_blank">Hugo模板修改TODO</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/250312-%E5%A2%9E%E5%8A%A0%E9%98%85%E8%AF%BB%E6%95%B0%E7%BB%9F%E8%AE%A1/" title="hugo增加阅读数统计" target="_blank">hugo增加阅读数统计</a>
                 </li>
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
@@ -211,10 +223,6 @@
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
                   <a href="/250226_Hugo%E6%A8%A1%E6%9D%BF%E7%AE%80%E8%BF%B0/" title="Hugo模板简述" target="_blank">Hugo模板简述</a>
-                </li>
-              
-                <li class="postsSidebarNumb" style="text-indent: -1em;">
-                  <a href="/250226_Hugo%E6%A8%A1%E6%9D%BF%E4%BF%AE%E6%94%B9TODO/" title="Hugo模板修改TODO" target="_blank">Hugo模板修改TODO</a>
                 </li>
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
@@ -259,14 +267,6 @@
               
                 <li class="postsSidebarNumb" style="text-indent: -1em;">
                   <a href="/240806_%E7%BD%91%E7%AB%99%E6%A1%86%E6%9E%B6%E6%94%B6%E9%9B%86/" title="网站框架收集" target="_blank">网站框架收集</a>
-                </li>
-              
-                <li class="postsSidebarNumb" style="text-indent: -1em;">
-                  <a href="/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/" title="用容器来运行streamlit" target="_blank">用容器来运行streamlit</a>
-                </li>
-              
-                <li class="postsSidebarNumb" style="text-indent: -1em;">
-                  <a href="/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/" title="段码屏开发—GPT4o带来的一点点震撼" target="_blank">段码屏开发—GPT4o带来的一点点震撼</a>
                 </li>
               
             </ul>
@@ -315,7 +315,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          增加阅读数统计
+          hugo增加阅读数统计
         </h1>
 
         <div class="post-meta-container">
@@ -327,7 +327,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2025-03-12 07:27:11 / 修改时间：16:27:51" itemprop="dateCreated datePublished" datetime="2025-03-12T07:27:11+08:00">2025-03-12</time>
+      <time title="创建时间：2025-03-12 07:27:11 / 修改时间：16:38:09" itemprop="dateCreated datePublished" datetime="2025-03-12T07:27:11+08:00">2025-03-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -367,14 +367,14 @@
 <p>经过一些测试发现其文章开头部分的标题，标签，时间和阅读时长之类的信息都在<code>layouts\partials\article\components\details.html</code>文件中，但是这个<code>details.html</code>模板在主页文章列表也会加载：<br><img src="http://pictures.winotmk.com/250312-%E5%A2%9E%E5%8A%A0%E9%98%85%E8%AF%BB%E6%95%B0%E7%BB%9F%E8%AE%A1/2025-03-12-15-40-23_8a472ee5.png" alt="2025-03-12-15-40-23"></p>
 <p>如果将依靠链接来获取阅读数据的相关代码直接放进<code>details.html</code>来会出问题，所以将其添加进紧随其后的<code>content.html</code>模板中，作为实质上所有正文部分的开头会稍微好一点</p>
 <h2 id="方案一：busuanzi阅读计数统计"><a href="#方案一：busuanzi阅读计数统计" class="headerlink" title="方案一：busuanzi阅读计数统计"></a>方案一：busuanzi阅读计数统计</h2><p><strong>写在前面：发现了ios设备下的缺陷，遂改用第二种方案</strong></p>
-<p><a target="_blank" rel="noopener" href="https://busuanzi.ibruce.info/">https://busuanzi.ibruce.info/</a><br>按照安装指南，只需要引入js脚本，以及再加入一行即可</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">&quot;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;busuanzi_container_site_pv&quot;</span>&gt;</span>本站总访问量<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;busuanzi_value_site_pv&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>次<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>busuanzi文档：<br><a target="_blank" rel="noopener" href="https://busuanzi.ibruce.info/">https://busuanzi.ibruce.info/</a><br>按照安装指南，只需要引入js脚本，以及再加入一行<code>&lt;span&gt;</code>即可</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">&quot;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;busuanzi_container_site_pv&quot;</span>&gt;</span>本站总访问量<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;busuanzi_value_site_pv&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>次<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h3 id="引入-lt-script-gt"><a href="#引入-lt-script-gt" class="headerlink" title="引入&lt;script&gt;"></a>引入<code>&lt;script&gt;</code></h3><p><code>layouts\_default\baseof.html</code>的<code>&lt;head&gt;</code>内加入</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">&quot;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="在合适的位置添加-lt-span-gt"><a href="#在合适的位置添加-lt-span-gt" class="headerlink" title="在合适的位置添加&lt;span&gt;"></a>在合适的位置添加<code>&lt;span&gt;</code></h3><h4 id="文章计数"><a href="#文章计数" class="headerlink" title="文章计数"></a>文章计数</h4><p>所以我们在<code>content.html</code>里添加<code>&lt;span&gt;</code>部分，原因如开头所说，放这里比较保险一点</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--250227页面访问数统计--&gt;</span></span><br><span class="line">&#123;&#123; if ne .Section &quot;page&quot; &#125;&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;article-details&quot;</span> <span class="attr">style</span>=<span class="string">&quot;padding-top: 15px;padding-bottom: 0px;&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">footer</span> <span class="attr">class</span>=<span class="string">&quot;article-time&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">                &#123;&#123; partial &quot;helper/icon&quot; &quot;eye&quot; &#125;&#125;</span><br><span class="line">                <span class="tag">&lt;<span class="name">span</span> <span class="attr">title</span>=<span class="string">&quot;阅读次数&quot;</span> <span class="attr">id</span>=<span class="string">&quot;busuanzi_container_page_pv&quot;</span> <span class="attr">style</span>=<span class="string">&quot;display: inline;font-size: 1.4rem;&quot;</span>&gt;</span>阅读次数: <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;article-time--reading&quot;</span> <span class="attr">id</span>=<span class="string">&quot;busuanzi_value_page_pv&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>次</span><br><span class="line">                <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&#123;&#123; end &#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--以下为content.html原内容未有修改--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&quot;article-content&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Refer to https://discourse.gohugo.io/t/responsive-tables-in-markdown/10639/5 --&gt;</span></span><br><span class="line">    &#123;&#123; $wrappedTable := printf &quot;<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">\</span>&quot;<span class="attr">table-wrapper</span>\&quot;&gt;</span>$&#123;1&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span>&quot; &#125;&#125;</span><br><span class="line">    &#123;&#123; .Content | replaceRE &quot;(<span class="tag">&lt;<span class="name">table</span>&gt;</span>(?:.|\n)+?<span class="tag">&lt;/<span class="name">table</span>&gt;</span>)&quot; $wrappedTable | safeHTML &#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>外面套的<code>&lt;footer&gt;</code>和<code>&lt;div&gt;</code>都只是css样式需要<br><code>&#123;&#123; if ne .Section "page" &#125;&#125;</code>是我不希望他在文章页面以外的地方显示（主要是针对<code>page</code>目录下的links页面)<br><code>.Section</code>释义可见：<a target="_blank" rel="noopener" href="https://gohugo.io/methods/page/section/">https://gohugo.io/methods/page/section/</a></p>
+<p>外面套的<code>&lt;footer&gt;</code>和<code>&lt;div&gt;</code>都只是css样式需要<br><code>&#123;&#123; if ne .Section "page" &#125;&#125;</code>是我不希望他在文章页面以外的地方显示（主要是针对<code>page</code>目录下的links页面)<br><code>.Section</code>释义可见：<br><a target="_blank" rel="noopener" href="https://gohugo.io/methods/page/section/">https://gohugo.io/methods/page/section/</a></p>
 <h4 id="整站点击数"><a href="#整站点击数" class="headerlink" title="整站点击数"></a>整站点击数</h4><p><code>layouts\partials\footer\footer.html</code>在其内的<code>&lt;footer&gt;</code>添加</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;article-time&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;post-meta-item&quot;</span> <span class="attr">id</span>=<span class="string">&quot;busuanzi_container_site_uv&quot;</span> <span class="attr">style</span>=<span class="string">&quot;display: inline;&quot;</span>&gt;</span></span><br><span class="line">        &#123;&#123; partial &quot;helper/icon&quot; &quot;users&quot; &#125;&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;site-uv&quot;</span> <span class="attr">title</span>=<span class="string">&quot;总访客量&quot;</span>&gt;</span></span><br><span class="line">        <span class="symbol">&amp;nbsp;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;busuanzi_value_site_uv&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>|<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;post-meta-item&quot;</span> <span class="attr">id</span>=<span class="string">&quot;busuanzi_container_site_pv&quot;</span> <span class="attr">style</span>=<span class="string">&quot;display: inline;&quot;</span>&gt;</span></span><br><span class="line">        &#123;&#123; partial &quot;helper/icon&quot; &quot;eye&quot; &#125;&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;site-pv&quot;</span> <span class="attr">title</span>=<span class="string">&quot;总访问量&quot;</span>&gt;</span></span><br><span class="line">        <span class="symbol">&amp;nbsp;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;busuanzi_value_site_pv&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>即可在博客页面底部实现：<br><img src="http://pictures.winotmk.com/250312-%E5%A2%9E%E5%8A%A0%E9%98%85%E8%AF%BB%E6%95%B0%E7%BB%9F%E8%AE%A1/2025-03-12-16-01-50_89402a85.png" alt="2025-03-12-16-01-50"></p>
@@ -407,7 +407,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://winotmk.github.io/250312-%E5%A2%9E%E5%8A%A0%E9%98%85%E8%AF%BB%E6%95%B0%E7%BB%9F%E8%AE%A1/" title="增加阅读数统计">https://winotmk.github.io/250312-增加阅读数统计/</a>
+      <a href="https://winotmk.github.io/250312-%E5%A2%9E%E5%8A%A0%E9%98%85%E8%AF%BB%E6%95%B0%E7%BB%9F%E8%AE%A1/" title="hugo增加阅读数统计">https://winotmk.github.io/250312-增加阅读数统计/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -433,6 +433,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/250313-%E6%B7%BB%E5%8A%A0waline%E8%AF%84%E8%AE%BA/" rel="next" title="hugo添加waline评论系统">
+                  hugo添加waline评论系统 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
