@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"winotmk.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"right","width":360,"display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="原有本地目录简介这个本地目录几经辗转，更新目录可见https:&#x2F;&#x2F;md.winotmk.com&#x2F;posts&#x2F;winnote&#x2F;最早是在一块树莓派3B的TF卡上，然后试图使用阿里云eci容器+自制docker镜像构建，到现在基本稳定在文件存在阿里云NAS上，然后挂载给ECS服务器打包，今天或许是它最终的归宿了，直接塞进github仓库，使用action触发部署 准备工作 源码仓库：存放Hexo源文件（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo迁移到用githubAction部署">
+<meta property="og:url" content="https://winotmk.github.io/250318-hexo%E8%BF%81%E7%A7%BB%E5%88%B0%E7%94%A8githubaction%E9%83%A8%E7%BD%B2/index.html">
+<meta property="og:site_name" content="WinNote">
+<meta property="og:description" content="原有本地目录简介这个本地目录几经辗转，更新目录可见https:&#x2F;&#x2F;md.winotmk.com&#x2F;posts&#x2F;winnote&#x2F;最早是在一块树莓派3B的TF卡上，然后试图使用阿里云eci容器+自制docker镜像构建，到现在基本稳定在文件存在阿里云NAS上，然后挂载给ECS服务器打包，今天或许是它最终的归宿了，直接塞进github仓库，使用action触发部署 准备工作 源码仓库：存放Hexo源文件（">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://pictures.winotmk.com/250318-hexo%E8%BF%81%E7%A7%BB%E5%88%B0%E7%94%A8githubaction%E9%83%A8%E7%BD%B2/2025-03-18-11-00-10_c57182a9.png">
+<meta property="og:image" content="http://pictures.winotmk.com/250318-hexo%E8%BF%81%E7%A7%BB%E5%88%B0%E7%94%A8githubaction%E9%83%A8%E7%BD%B2/2025-03-18-11-08-59_0da17349.png">
+<meta property="og:image" content="http://pictures.winotmk.com/250318-hexo%E8%BF%81%E7%A7%BB%E5%88%B0%E7%94%A8githubaction%E9%83%A8%E7%BD%B2/2025-03-18-11-09-54_797a80dc.png">
+<meta property="og:image" content="http://pictures.winotmk.com/250318-hexo%E8%BF%81%E7%A7%BB%E5%88%B0%E7%94%A8githubaction%E9%83%A8%E7%BD%B2/2025-03-18-11-18-24_81cc23b4.png">
+<meta property="og:image" content="http://pictures.winotmk.com/250318-hexo%E8%BF%81%E7%A7%BB%E5%88%B0%E7%94%A8githubaction%E9%83%A8%E7%BD%B2/2025-03-18-12-48-22_04e27348.png">
+<meta property="article:published_time" content="2025-03-17T18:58:09.254Z">
+<meta property="article:modified_time" content="2025-03-18T08:45:07.625Z">
+<meta property="article:author" content="winotmk">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://pictures.winotmk.com/250318-hexo%E8%BF%81%E7%A7%BB%E5%88%B0%E7%94%A8githubaction%E9%83%A8%E7%BD%B2/2025-03-18-11-00-10_c57182a9.png">
+
+
+<link rel="canonical" href="https://winotmk.github.io/250318-hexo%E8%BF%81%E7%A7%BB%E5%88%B0%E7%94%A8githubaction%E9%83%A8%E7%BD%B2/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://winotmk.github.io/250318-hexo%E8%BF%81%E7%A7%BB%E5%88%B0%E7%94%A8githubaction%E9%83%A8%E7%BD%B2/","path":"250318-hexo迁移到用githubaction部署/","title":"hexo迁移到用githubAction部署"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>hexo迁移到用githubAction部署 | WinNote</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">WinNote</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">41</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">44</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E6%9C%89%E6%9C%AC%E5%9C%B0%E7%9B%AE%E5%BD%95%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">原有本地目录简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAGitHub-Actions%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="nav-number">3.</span> <span class="nav-text">创建GitHub Actions工作流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91"><span class="nav-number">4.</span> <span class="nav-text">踩过的坑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#node-modules%E7%9B%AE%E5%BD%95%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-number">4.1.</span> <span class="nav-text">node_modules目录问题：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F%E5%87%BA%E9%94%99"><span class="nav-number">4.2.</span> <span class="nav-text">排序出错</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="winotmk"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">winotmk</p>
+  <div class="site-description" itemprop="description">零碎MD文档收集 | 生命在于折腾</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://winotmk.com/" title="https:&#x2F;&#x2F;winotmk.com" rel="noopener" target="_blank">正式站winotmk.com</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+
+      
+          <div class="links-of-blogroll" style="margin-top:20px; border-style:dotted none none none; padding-top:5px; text-align:left;padding-left: 20px; padding-right: 10px; padding-bottom: 5px;">
+            <div class="links-of-blogroll-title" style="padding-bottom: 5px; padding-top: 5px; padding-left: 0px; padding-right: 20px; font-size: 1.6em; argin-right: 5px;">
+          <!-- 选择合适的icon --><i class="fab fa-markdown" aria-hidden="true"></i>
+              <b style="font-size: 0.65em; padding-left: 8px; position: relative; top: -2px;">全站文章列表</b>
+            </div>
+            <ul class="links-of-blogroll-list">
+          <!-- 文章排序规格,-updated 按照文章更新时间倒排 -->
+              
+          <!-- 显示postnumb设置数目的文章 -->
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="群晖上用容器搭建SVN服务器" target="_blank">群晖上用容器搭建SVN服务器</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/250318-hexo%E8%BF%81%E7%A7%BB%E5%88%B0%E7%94%A8githubaction%E9%83%A8%E7%BD%B2/" title="hexo迁移到用githubAction部署" target="_blank">hexo迁移到用githubAction部署</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/ArchLinux%E5%91%BD%E4%BB%A4/" title="ArchLinux命令集" target="_blank">ArchLinux命令集</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/Docker01.1_%E4%BB%B7%E6%A0%BC%E8%AE%A1%E7%AE%97%E8%A1%A8/" title="Docker01.1_eci价格计算表" target="_blank">Docker01.1_eci价格计算表</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/Docker01/" title="Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行" target="_blank">Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/Linux%E6%9D%83%E9%99%90/" title="linux文件和目录权限" target="_blank">linux文件和目录权限</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/MC/" title="SourceCraft服务器" target="_blank">SourceCraft服务器</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/Maya_MASH/" title="MayaMASH动力学做链子" target="_blank">MayaMASH动力学做链子</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/WinNote/" title="WinNote" target="_blank">WinNote</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/bat/" title="批处理实现批量改名以及SVN批量改名" target="_blank">批处理实现批量改名以及SVN批量改名</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/hexo+github/" title="hexo+github" target="_blank">hexo+github</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/next%E4%B8%BB%E9%A2%98%E5%A2%9E%E5%8A%A0%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0%E4%BE%A7%E8%BE%B9%E6%A0%8F/" title="next主题增加近期文章侧边栏" target="_blank">next主题增加近期文章侧边栏</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E5%AE%89%E8%A3%85Arch/" title="安装ArchLinux系统（详细过程）" target="_blank">安装ArchLinux系统（详细过程）</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E6%A0%91%E8%8E%93%E6%B4%BETimeMachine/" title="树莓派上架设TimeMachine服务" target="_blank">树莓派上架设TimeMachine服务</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/" title="树莓派路由器" target="_blank">树莓派路由器</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E6%B5%81%E9%87%8F%E5%BC%82%E5%B8%B8%E6%8E%92%E6%9F%A5/" title="流量异常排查" target="_blank">流量异常排查</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/" title="生成秘钥连接至github————用来推hexo" target="_blank">生成秘钥连接至github————用来推hexo</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/240619_%E8%BD%AF%E4%BB%B6%E6%94%B6%E9%9B%86/" title="软件和网站收集" target="_blank">软件和网站收集</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/240724_%E6%AE%B5%E7%A0%81%E5%B1%8F%E5%BC%80%E5%8F%91%E2%80%94GPT4o%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E7%82%B9%E7%82%B9%E9%9C%87%E6%92%BC/" title="段码屏开发—GPT4o带来的一点点震撼" target="_blank">段码屏开发—GPT4o带来的一点点震撼</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/" title="用容器来运行streamlit" target="_blank">用容器来运行streamlit</a>
+                </li>
+              
+            </ul>
+          </div>
+      
+
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/250318-hexo%E8%BF%81%E7%A7%BB%E5%88%B0%E7%94%A8githubaction%E9%83%A8%E7%BD%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="winotmk">
+      <meta itemprop="description" content="零碎MD文档收集 | 生命在于折腾">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WinNote">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          hexo迁移到用githubAction部署
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-18 02:58:09 / 修改时间：16:45:07" itemprop="dateCreated datePublished" datetime="2025-03-18T02:58:09+08:00">2025-03-18</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="原有本地目录简介"><a href="#原有本地目录简介" class="headerlink" title="原有本地目录简介"></a>原有本地目录简介</h2><p><img src="http://pictures.winotmk.com/250318-hexo%E8%BF%81%E7%A7%BB%E5%88%B0%E7%94%A8githubaction%E9%83%A8%E7%BD%B2/2025-03-18-11-00-10_c57182a9.png" alt="2025-03-18-11-00-10"><br>这个本地目录几经辗转，更新目录可见<br><a target="_blank" rel="noopener" href="https://md.winotmk.com/posts/winnote/">https://md.winotmk.com/posts/winnote/</a><br>最早是在一块树莓派3B的TF卡上，然后试图使用阿里云eci容器+自制docker镜像构建，到现在基本稳定在文件存在阿里云NAS上，然后挂载给ECS服务器打包，今天或许是它最终的归宿了，直接塞进github仓库，使用action触发部署</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul>
+<li><strong>源码仓库</strong>：存放Hexo源文件（如文章、主题、配置等）。</li>
+<li><strong>目标仓库</strong>：GitHub Pages仓库（格式为 <code>&lt;username&gt;.github.io</code>），用于存放生成的静态文件。<br><img src="http://pictures.winotmk.com/250318-hexo%E8%BF%81%E7%A7%BB%E5%88%B0%E7%94%A8githubaction%E9%83%A8%E7%BD%B2/2025-03-18-11-08-59_0da17349.png" alt="2025-03-18-11-08-59"></li>
+<li><strong>生成SSH密钥对</strong>：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t ed25519 -C <span class="string">&quot;github-actions@example.com&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>将公钥（如 <code>id_ed25519.pub</code>）添加到目标仓库的 <strong>Deploy Keys</strong>（需勾选允许写入权限）。</li>
+<li>将私钥（<code>id_ed25519</code>）保存到源码仓库的 <strong>Secrets</strong> 中，命名为 <code>ACTIONS_DEPLOY_KEY</code>。<br><code>ACTIONS_DEPLOY_KEY</code>存在这里：<br><img src="http://pictures.winotmk.com/250318-hexo%E8%BF%81%E7%A7%BB%E5%88%B0%E7%94%A8githubaction%E9%83%A8%E7%BD%B2/2025-03-18-11-09-54_797a80dc.png" alt="2025-03-18-11-09-54"></li>
+</ul>
+</li>
+</ul>
+<p>将我本地目录的所有内容，push到<strong>源码仓库</strong>里保存，因为我换了图床，所有图片均不必在博客目录里保存，删了所有的图片的目录体积小了很多</p>
+<h2 id="创建GitHub-Actions工作流"><a href="#创建GitHub-Actions工作流" class="headerlink" title="创建GitHub Actions工作流"></a>创建GitHub Actions工作流</h2><p>在源码仓库的 <code>.github/workflows/deploy.yml</code> 文件中添加以下内容：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Deploy</span> <span class="string">Hexo</span> <span class="string">Site</span></span><br><span class="line"></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">main</span>  <span class="comment"># 触发分支，根据实际情况修改</span></span><br><span class="line"></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">build-and-deploy:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="comment"># 步骤1：检出源码仓库</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Checkout</span> <span class="string">Source</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/checkout@v4</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">pwd</span> <span class="string">&amp;</span> <span class="string">ls</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">pwd</span> <span class="string">&amp;</span> <span class="string">ls</span></span><br><span class="line"></span><br><span class="line">      <span class="comment"># 步骤2：设置Node.js环境</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Set</span> <span class="string">up</span> <span class="string">Node.js</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/setup-node@v4</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">node-version:</span> <span class="string">&#x27;20.5&#x27;</span>  <span class="comment"># 根据你的需求调整版本</span></span><br><span class="line"></span><br><span class="line">      <span class="comment"># 步骤3：缓存Node.js依赖，加速构建</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Cache</span> <span class="string">Node</span> <span class="string">Modules</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/cache@v3</span></span><br><span class="line">        <span class="attr">env:</span></span><br><span class="line">          <span class="attr">cache-name:</span> <span class="string">node-modules</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">path:</span> <span class="string">node_modules</span></span><br><span class="line">          <span class="attr">key:</span> <span class="string">$&#123;&#123;</span> <span class="string">runner.os</span> <span class="string">&#125;&#125;-$&#123;&#123;</span> <span class="string">env.cache-name</span> <span class="string">&#125;&#125;-$&#123;&#123;</span> <span class="string">hashFiles(&#x27;**/package-lock.json&#x27;)</span> <span class="string">&#125;&#125;</span></span><br><span class="line"></span><br><span class="line">      <span class="comment"># 步骤4：安装Hexo及依赖</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Install</span> <span class="string">dependencies</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">npm</span> <span class="string">install</span></span><br><span class="line">      </span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Install</span> <span class="string">Dependencies</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">npm</span> <span class="string">install</span> <span class="string">-g</span> <span class="string">hexo-cli</span>  <span class="comment"># 全局安装Hexo命令行工具</span></span><br><span class="line"></span><br><span class="line">      <span class="comment"># 步骤5：生成静态文件</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Generate</span> <span class="string">Site</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">hexo</span> <span class="string">generate</span>  <span class="comment"># 生成静态文件到public目录</span></span><br><span class="line"></span><br><span class="line">      <span class="comment"># 步骤6：部署到目标仓库</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Deploy</span> <span class="string">to</span> <span class="string">GitHub</span> <span class="string">Pages</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">peaceiris/actions-gh-pages@v3</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">deploy_key:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.ACTIONS_DEPLOY_KEY</span> <span class="string">&#125;&#125;</span>  <span class="comment"># 使用私钥认证</span></span><br><span class="line">          <span class="attr">external_repository:</span> <span class="string">winotmk/winotmk.github.io</span>  <span class="comment"># 目标仓库名称</span></span><br><span class="line">          <span class="attr">publish_dir:</span> <span class="string">./public</span>  <span class="comment"># Hexo生成的静态文件目录</span></span><br><span class="line">          <span class="attr">publish_branch:</span> <span class="string">hexo-new-deploy</span>  <span class="comment"># 目标仓库的分支</span></span><br><span class="line">          <span class="attr">user_name:</span> <span class="string">winotmk</span>  <span class="comment"># 提交者信息（可选）</span></span><br><span class="line">          <span class="attr">user_email:</span> <span class="number">5500330147</span><span class="string">@qq.com</span>  <span class="comment"># 提交者邮箱（可选）</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="踩过的坑"><a href="#踩过的坑" class="headerlink" title="踩过的坑"></a>踩过的坑</h2><h3 id="node-modules目录问题："><a href="#node-modules目录问题：" class="headerlink" title="node_modules目录问题："></a><code>node_modules</code>目录问题：</h3><p>本地目录push到源码仓库里的时候，发现自动排除了<code>node_modules</code>目录和<code>public</code>目录，和deepseek确认加排查了<code>.gitignore</code>文件确认它们确实被排除了，这<code>node_modules</code>目录里的东西讲道理会在<code>package.json</code>里有所定义，并在上面的action里重新下载设置，所以是没必要传的（而且较大文件居多又碎），但无奈我的hexo-theme-next主题也在其中，并且我自己后来还修改过，还是试着上传一下<code>node_modules</code>目录到github库里吧，然而上传后启用action，到了步骤5总是报错：<br><img src="http://pictures.winotmk.com/250318-hexo%E8%BF%81%E7%A7%BB%E5%88%B0%E7%94%A8githubaction%E9%83%A8%E7%BD%B2/2025-03-18-11-18-24_81cc23b4.png" alt="2025-03-18-11-18-24"><br>估么着是因为在action里装了一遍<code>npm install -g hexo-cli</code>然后仓库里还有一份<code>node_modules</code>，出了些冲突？<br>总之最后还是删除了库里的<code>node_modules</code>目录，就能正常action了</p>
+<h3 id="排序出错"><a href="#排序出错" class="headerlink" title="排序出错"></a>排序出错</h3><p>我可能是修改过<code>node_modules</code>包里的<code>hexo-generator-index</code>，现在每次构建重新拉肯定就不对了，所以在<code>package.json</code>里的这里<br><img src="http://pictures.winotmk.com/250318-hexo%E8%BF%81%E7%A7%BB%E5%88%B0%E7%94%A8githubaction%E9%83%A8%E7%BD%B2/2025-03-18-12-48-22_04e27348.png" alt="2025-03-18-12-48-22"><br>改为</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;hexo-generator-index&quot;</span>: <span class="string">&quot;^4.0.0&quot;</span>,</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/hexo-generator-index">https://www.npmjs.com/package/hexo-generator-index</a><br>然后再需要置顶的文章头FM里加入<code>sticky: 100</code>即可实现置顶</p>
+<p>参考出处：<br><a target="_blank" rel="noopener" href="https://blog.51cto.com/u_15477117/4919708">https://blog.51cto.com/u_15477117/4919708</a><br>但没采用，因为发现更新版本的<code>hexo-generator-index</code>已经支持置顶</p>
+<hr>
+<p>发现和本文思路类似的action，也是两个仓库+使用<code>peaceiris/actions-gh-pages</code>这个action部署生成好的静态页面<br><a target="_blank" rel="noopener" href="https://hackergavin.com/2024/01/11/hexo-automate-deploy/">https://hackergavin.com/2024/01/11/hexo-automate-deploy/</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>winotmk
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://winotmk.github.io/250318-hexo%E8%BF%81%E7%A7%BB%E5%88%B0%E7%94%A8githubaction%E9%83%A8%E7%BD%B2/" title="hexo迁移到用githubAction部署">https://winotmk.github.io/250318-hexo迁移到用githubaction部署/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+  <li class="post-copyright-wintomk">
+    <strong>本站为MD文档托管，如果你想评论或者联系我，欢迎来主站发表：</strong><a target="_blank" rel="noopener" href="https://winotmk.com">winotmk.com</a>
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/250317-%E6%8C%87%E5%AE%9Assh-key/" rel="prev" title="指定ssh-key">
+                  <i class="fa fa-chevron-left"></i> 指定ssh-key
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">winotmk</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
