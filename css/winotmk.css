@@ -1,0 +1,28 @@
+body {
+  counter-reset: postsSidebarNumbsection;
+}
+.postsSidebarNumb::before {
+  counter-increment: postsSidebarNumbsection;
+  content: counter(postsSidebarNumbsection) ": ";
+}
+blockquote {
+  background: #f3f5f7 !important;
+  border-left: 8px solid #1fc167 !important;
+}
+.post-body a {
+  border-bottom: 1px solid #137f8b !important;
+  color: #2497b3 !important;
+}
+.post-body a:hover {
+  border-bottom: 1px solid #ffb933 !important;
+  color: #ffb933 !important;
+}
+code,
+kbd,
+figure.highlight,
+pre {
+  border-radius: 6px !important;
+}
+.fa-file {
+  padding-right: 8px;
+}

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"winotmk.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"right","width":360,"display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="在用johngong&#x2F;calibre-web:latest这个镜像 https:&#x2F;&#x2F;hub.docker.com&#x2F;r&#x2F;johngong&#x2F;calibre-web作为自己nas上的图书馆时发现pdf文件无法生成封面， 断断续续排查了两周，百思不得解，尝试过：  设置imagemagick的policy.xml文件(&#x2F;etc&#x2F;Imagemagick&#x2F;policy.xml) 使用lscr.io&#x2F;linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="calibre_web的pdf封面提取问题">
+<meta property="og:url" content="https://winotmk.github.io/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="WinNote">
+<meta property="og:description" content="在用johngong&#x2F;calibre-web:latest这个镜像 https:&#x2F;&#x2F;hub.docker.com&#x2F;r&#x2F;johngong&#x2F;calibre-web作为自己nas上的图书馆时发现pdf文件无法生成封面， 断断续续排查了两周，百思不得解，尝试过：  设置imagemagick的policy.xml文件(&#x2F;etc&#x2F;Imagemagick&#x2F;policy.xml) 使用lscr.io&#x2F;linux">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-40-56_199d9b99.png">
+<meta property="og:image" content="http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-41-10_803172c2.png">
+<meta property="og:image" content="http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-41-18_9e3752b4.png">
+<meta property="og:image" content="http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-41-27_d93c03ad.png">
+<meta property="og:image" content="http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-41-37_10ffb4fc.png">
+<meta property="og:image" content="http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-41-57_941353e5.png">
+<meta property="og:image" content="http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-42-04_5c2fe52c.png">
+<meta property="og:image" content="http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-42-17_22504034.png">
+<meta property="og:image" content="http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-42-29_e301016f.png">
+<meta property="article:published_time" content="2024-09-24T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-18T03:36:09.523Z">
+<meta property="article:author" content="winotmk">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="calibre_web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-40-56_199d9b99.png">
+
+
+<link rel="canonical" href="https://winotmk.github.io/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://winotmk.github.io/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/","path":"240925_calibre_web的pdf封面提取问题/","title":"calibre_web的pdf封面提取问题"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>calibre_web的pdf封面提取问题 | WinNote</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">WinNote</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">41</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">43</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E6%9C%89%E6%95%88%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E7%9A%84%E6%8A%98%E8%85%BE%E6%B5%81%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">最终有效的解决方法的折腾流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#johngong-calibre-web%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">johngong&#x2F;calibre-web的一些设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%AF%E8%B7%AF"><span class="nav-number">3.</span> <span class="nav-text">弯路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%9D%E8%AF%95%E5%87%BA%E6%9D%A5%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8DPDF%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E5%8F%AF%E8%A1%8C%E6%96%B9%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">尝试出来的另一种PDF封面提取可行方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A3%85calibre-web"><span class="nav-number">4.1.</span> <span class="nav-text">装calibre-web</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A3%85imagemagick"><span class="nav-number">4.2.</span> <span class="nav-text">装imagemagick</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E8%A3%85imagemagick"><span class="nav-number">4.3.</span> <span class="nav-text">手动装imagemagick</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">4.4.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="winotmk"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">winotmk</p>
+  <div class="site-description" itemprop="description">零碎MD文档收集 | 生命在于折腾</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://winotmk.com/" title="https:&#x2F;&#x2F;winotmk.com" rel="noopener" target="_blank">正式站winotmk.com</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+
+      
+          <div class="links-of-blogroll" style="margin-top:20px; border-style:dotted none none none; padding-top:5px; text-align:left;padding-left: 20px; padding-right: 10px; padding-bottom: 5px;">
+            <div class="links-of-blogroll-title" style="padding-bottom: 5px; padding-top: 5px; padding-left: 0px; padding-right: 20px; font-size: 1.6em; argin-right: 5px;">
+          <!-- 选择合适的icon --><i class="fab fa-markdown" aria-hidden="true"></i>
+              <b style="font-size: 0.65em; padding-left: 8px; position: relative; top: -2px;">全站文章列表</b>
+            </div>
+            <ul class="links-of-blogroll-list">
+          <!-- 文章排序规格,-updated 按照文章更新时间倒排 -->
+              
+          <!-- 显示postnumb设置数目的文章 -->
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/MC/" title="SourceCraft服务器" target="_blank">SourceCraft服务器</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/Maya_MASH/" title="MayaMASH动力学做链子" target="_blank">MayaMASH动力学做链子</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/WinNote/" title="WinNote" target="_blank">WinNote</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/bat/" title="批处理实现批量改名以及SVN批量改名" target="_blank">批处理实现批量改名以及SVN批量改名</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/hexo+github/" title="hexo+github" target="_blank">hexo+github</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/next%E4%B8%BB%E9%A2%98%E5%A2%9E%E5%8A%A0%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0%E4%BE%A7%E8%BE%B9%E6%A0%8F/" title="next主题增加近期文章侧边栏" target="_blank">next主题增加近期文章侧边栏</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E5%AE%89%E8%A3%85Arch/" title="安装ArchLinux系统（详细过程）" target="_blank">安装ArchLinux系统（详细过程）</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/frontmatter/" title="" target="_blank"></a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E6%A0%91%E8%8E%93%E6%B4%BETimeMachine/" title="树莓派上架设TimeMachine服务" target="_blank">树莓派上架设TimeMachine服务</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/" title="树莓派路由器" target="_blank">树莓派路由器</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E6%B5%81%E9%87%8F%E5%BC%82%E5%B8%B8%E6%8E%92%E6%9F%A5/" title="流量异常排查" target="_blank">流量异常排查</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/" title="生成秘钥连接至github————用来推hexo" target="_blank">生成秘钥连接至github————用来推hexo</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="群晖上用容器搭建SVN服务器" target="_blank">群晖上用容器搭建SVN服务器</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/" title="calibre_web的pdf封面提取问题" target="_blank">calibre_web的pdf封面提取问题</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/241008_%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AE%E7%BE%A4%E6%99%96NAS%E7%9A%84%E6%96%87%E4%BB%B6/" title="外网访问群晖NAS的文件" target="_blank">外网访问群晖NAS的文件</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/241031_%E6%96%B0mac/" title="新的macbook air" target="_blank">新的macbook air</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/250128_%E6%8A%95%E5%BD%B1%E6%94%BEnas%E8%B5%84%E6%BA%90/" title="投影仪推nas" target="_blank">投影仪推nas</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/" title="SSL证书手动更新" target="_blank">SSL证书手动更新</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/250221_Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="Git常用命令" target="_blank">Git常用命令</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/250221_Hugo_GithubAction%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91OSS/" title="Hugo_GithubAction自动部署到阿里云OSS" target="_blank">Hugo_GithubAction自动部署到阿里云OSS</a>
+                </li>
+              
+            </ul>
+          </div>
+      
+
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="winotmk">
+      <meta itemprop="description" content="零碎MD文档收集 | 生命在于折腾">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WinNote">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          calibre_web的pdf封面提取问题
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-09-25 00:00:00" itemprop="dateCreated datePublished" datetime="2024-09-25T00:00:00+08:00">2024-09-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2025-03-18 11:36:09" itemprop="dateModified" datetime="2025-03-18T11:36:09+08:00">2025-03-18</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>在用<code>johngong/calibre-web:latest</code>这个镜像 <a target="_blank" rel="noopener" href="https://hub.docker.com/r/johngong/calibre-web">https://hub.docker.com/r/johngong/calibre-web</a><br>作为自己nas上的图书馆时发现pdf文件无法生成封面，<br><img src="http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-40-56_199d9b99.png" alt="2025-03-06-14-40-56 [hugo-no-render]"></p>
+<p>断断续续排查了两周，百思不得解，尝试过：</p>
+<ul>
+<li>设置imagemagick的<code>policy.xml</code>文件(<code>/etc/Imagemagick/policy.xml</code>)</li>
+<li>使用lscr.io/linuxserver/calibre-web:latest的镜像</li>
+<li>自己重新构建镜像</li>
+<li>重新安装calibre-web包和重装imagemagick包<br>都解决不了，总之是十分折腾，最后认为可能是<code>johngong/calibre-web:latest</code>可能是里少了一个<code>imagemagick-pdf</code>包</li>
+</ul>
+<h2 id="最终有效的解决方法的折腾流程"><a href="#最终有效的解决方法的折腾流程" class="headerlink" title="最终有效的解决方法的折腾流程"></a>最终有效的解决方法的折腾流程</h2><p>我尝试上传pdf文件，然后打开日志（日志级别设置为DEBUG）<br><img src="http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-41-10_803172c2.png" alt="2025-03-06-14-41-10"><br>查看文件：/config/calbre-web/calbre-web.log<br>有这么一行：<br><img src="http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-41-18_9e3752b4.png" alt="2025-03-06-14-41-18"></p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[2024-09-25 12:10:22,144]  WARN &#123;cps.uploader:237&#125; Cannot extract cover image, using default: <span class="keyword">no</span> <span class="keyword">decode</span> delegate <span class="keyword">for</span> this image <span class="keyword">format</span> <span class="symbol">`PDF&#x27;</span> @ <span class="keyword">error</span>/constitute.c/ReadImage/746</span><br><span class="line">[2024-09-25 12:10:22,145]  WARN &#123;cps.uploader:238&#125; <span class="keyword">On</span> Windows this <span class="keyword">error</span> could be caused <span class="keyword">by</span> missing ghostscript</span><br></pre></td></tr></table></figure>
+<p>PDF转就转不出来<br>所以找到了：<br><img src="http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-41-27_d93c03ad.png" alt="2025-03-06-14-41-27"><br><a target="_blank" rel="noopener" href="https://github.com/ImageMagick/ImageMagick/issues/6148">https://github.com/ImageMagick/ImageMagick/issues/6148</a></p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apk <span class="built_in">add</span> <span class="comment">--no-cache imagemagick imagemagick-pdf</span></span><br></pre></td></tr></table></figure>
+<p>安装完以后，再次尝试上传pdf格式的书，就看见封面辣！！<br><img src="http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-41-37_10ffb4fc.png" alt="2025-03-06-14-41-37"></p>
+<span id="more"></span>
+
+<h2 id="johngong-calibre-web的一些设置"><a href="#johngong-calibre-web的一些设置" class="headerlink" title="johngong/calibre-web的一些设置"></a>johngong/calibre-web的一些设置</h2><p><a target="_blank" rel="noopener" href="https://github.com/gshang2017/docker/issues/133">https://github.com/gshang2017/docker/issues/133</a><br>如果一编辑图书的元数据就卡死，可用尝试：<br><img src="http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-41-57_941353e5.png" alt="2025-03-06-14-41-57"><br>这两条设置为true,则<br><img src="http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-42-04_5c2fe52c.png" alt="2025-03-06-14-42-04"><br>这里不会出现google等选项，家里的nas没有梯子环境，反而会导致卡死，所以禁用google吧。。也没啥用</p>
+<h2 id="弯路"><a href="#弯路" class="headerlink" title="弯路"></a>弯路</h2><p>这里想记一下这个弯路，在calibre-web的FAQ里赫然记着有关pdf文件转不出封面的解决办法，说要改<br><img src="http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-42-17_22504034.png" alt="2025-03-06-14-42-17"><br><a target="_blank" rel="noopener" href="https://github.com/janeczku/calibre-web/wiki/FAQ#what-to-do-if-cover-pictures-are-not-extracted-from-pdf-files">https://github.com/janeczku/calibre-web/wiki/FAQ#what-to-do-if-cover-pictures-are-not-extracted-from-pdf-files</a><br>所以可以有<code>/etc/Imagemagick/policy.xml</code>:</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">policymap</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">policy</span> <span class="attr">domain</span>=<span class="string">&quot;coder&quot;</span> <span class="attr">rights</span>=<span class="string">&quot;read | write&quot;</span> <span class="attr">pattern</span>=<span class="string">&quot;</span></span></span><span class="template-variable">&#123;MSVG,MVG,PS,PDF,RSVG,SVG,XPS&#125;</span><span class="xml"><span class="tag"><span class="string">&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">policymap</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>这是最容易找到的一种解法，但我自己试了无用，没有上面的装<code>apk add imagemagick-pdf</code>好使</p>
+<h2 id="尝试出来的另一种PDF封面提取可行方法"><a href="#尝试出来的另一种PDF封面提取可行方法" class="headerlink" title="尝试出来的另一种PDF封面提取可行方法"></a>尝试出来的另一种PDF封面提取可行方法</h2><p>这样做出来的calibre-web镜像可以实现PDF转换，但是没有电子书格式转换，没有禁用google元数据搜索，没有中文环境，懒得自己做了，还是修修用<code>johngong/calibre-web</code>包吧<br>为了试验，我用<code>FROM ubuntu:latest</code>作为镜像基底，然后：</p>
+<h3 id="装calibre-web"><a href="#装calibre-web" class="headerlink" title="装calibre-web"></a>装calibre-web</h3><p>安装calibre-web：<br><img src="http://pictures.winotmk.com/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/2025-03-06-14-42-29_e301016f.png" alt="2025-03-06-14-42-29"><br><a target="_blank" rel="noopener" href="https://github.com/janeczku/calibre-web?tab=readme-ov-file#installation">https://github.com/janeczku/calibre-web?tab=readme-ov-file#installation</a><br><a target="_blank" rel="noopener" href="https://github.com/janeczku/calibre-web/wiki/Dependencies-in-Calibre-Web-Linux-and-Windows">https://github.com/janeczku/calibre-web/wiki/Dependencies-in-Calibre-Web-Linux-and-Windows</a><br>这里也有提到<br><a target="_blank" rel="noopener" href="https://chenjiehua.me/others/calibre-web-personal-book-store.html">https://chenjiehua.me/others/calibre-web-personal-book-store.html</a></p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> calibreweb</span><br><span class="line">pip <span class="keyword">install</span> calibreweb[metadata]</span><br></pre></td></tr></table></figure>
+
+<h3 id="装imagemagick"><a href="#装imagemagick" class="headerlink" title="装imagemagick"></a>装imagemagick</h3><p>然后安装imagemagick<br>官方：<br><a target="_blank" rel="noopener" href="https://imagemagick.org/script/download.php">https://imagemagick.org/script/download.php</a><br>也有提到：<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/echohye/p/17727865.html">https://www.cnblogs.com/echohye/p/17727865.html</a></p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt <span class="keyword">install</span> imagemagick</span><br></pre></td></tr></table></figure>
+<p>装完后<code>convert</code>和<code>magick</code>命令应当是可用的</p>
+<h3 id="手动装imagemagick"><a href="#手动装imagemagick" class="headerlink" title="手动装imagemagick"></a>手动装imagemagick</h3><p>或者我用上面官方的magick文件手动配貌似也行：<br>先把magick文件放入根目录</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">./magick</span> <span class="params">--appimage-extract</span></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://docs.appimage.org/user-guide/troubleshooting/fuse.html">https://docs.appimage.org/user-guide/troubleshooting/fuse.html</a><br>提到了可以用<code>--appimage-extract</code>直接释放出软件包来<br>会发现释放出来文件在<code>/squashfs-root</code>目录里<br>设置环境变量：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">MAGICK_HOME</span>=<span class="string">&quot;/squashfs-root/usr&quot;</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PATH</span>=<span class="string">&quot;<span class="variable">$MAGICK_HOME</span>/bin:<span class="variable">$PATH</span>&quot;</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">LD_LIBRARY_PATH</span>=<span class="string">&quot;<span class="variable">$&#123;LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:&#125;</span><span class="variable">$MAGICK_HOME</span>/lib&quot;</span></span><br></pre></td></tr></table></figure>
+<p>然后imagemagick应该就能用了。。</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p><code>lscr.io/linuxserver/calibre-web:latest</code><br>这个镜像也不小，但功能还算完整，上传pdf可直接显示封面，但不是中文环境，而且部署到我的nas上后死活传不了新书说什么无法写入，懒得深究了，弃之</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>winotmk
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://winotmk.github.io/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/" title="calibre_web的pdf封面提取问题">https://winotmk.github.io/240925_calibre_web的pdf封面提取问题/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+  <li class="post-copyright-wintomk">
+    <strong>本站为MD文档托管，如果你想评论或者联系我，欢迎来主站发表：</strong><a target="_blank" rel="noopener" href="https://winotmk.com">winotmk.com</a>
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+              <a href="/tags/docker/" rel="tag"># docker</a>
+              <a href="/tags/calibre-web/" rel="tag"># calibre_web</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/240815_%E7%BB%99docker%E5%AE%B9%E5%99%A8%E5%86%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83/" rel="prev" title="给docker容器内配置中文环境(minecraft开服相关)">
+                  <i class="fa fa-chevron-left"></i> 给docker容器内配置中文环境(minecraft开服相关)
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/241008_%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AE%E7%BE%A4%E6%99%96NAS%E7%9A%84%E6%96%87%E4%BB%B6/" rel="next" title="外网访问群晖NAS的文件">
+                  外网访问群晖NAS的文件 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">winotmk</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

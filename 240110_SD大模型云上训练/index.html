@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"winotmk.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"right","width":360,"display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="创建阿里云PAI DSW实例跑kohya镜像我这里选： dsw-registry-vpc.cn-shanghai.cr.aliyuncs.com&#x2F;pai&#x2F;modelscope:1.10.0-pytorch2.1.0tensorflow2.14.0-gpu-py310-cu118-ubuntu22.04我这里用默认的镜像，实测截至2024.01.10时，直接拉kohya的github可以直接用，不需">
+<meta property="og:type" content="article">
+<meta property="og:title" content="StableDiffusion大模型(Dreambooth)云上训练以及安装CODA指定版本">
+<meta property="og:url" content="https://winotmk.github.io/240110_SD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/index.html">
+<meta property="og:site_name" content="WinNote">
+<meta property="og:description" content="创建阿里云PAI DSW实例跑kohya镜像我这里选： dsw-registry-vpc.cn-shanghai.cr.aliyuncs.com&#x2F;pai&#x2F;modelscope:1.10.0-pytorch2.1.0tensorflow2.14.0-gpu-py310-cu118-ubuntu22.04我这里用默认的镜像，实测截至2024.01.10时，直接拉kohya的github可以直接用，不需">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://pictures.winotmk.com/240110_SD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/2025-03-06-13-51-58_8f9626a7.png">
+<meta property="og:image" content="http://pictures.winotmk.com/240110_SD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/2025-03-06-13-52-26_80d72adf.png">
+<meta property="og:image" content="http://pictures.winotmk.com/240110_SD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/2025-03-06-13-52-39_f340f12f.png">
+<meta property="og:image" content="http://pictures.winotmk.com/240110_SD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/2025-03-06-13-52-50_52c9eacf.png">
+<meta property="og:image" content="http://pictures.winotmk.com/240110_SD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/2025-03-06-13-52-58_7e99f522.png">
+<meta property="og:image" content="http://pictures.winotmk.com/240110_SD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/2025-03-06-13-53-08_89bb4a99.png">
+<meta property="og:image" content="http://pictures.winotmk.com/240110_SD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/2025-03-06-13-53-30_b3aec178.png">
+<meta property="og:image" content="http://pictures.winotmk.com/240110_SD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/2025-03-06-13-53-49_486c576a.png">
+<meta property="og:image" content="http://pictures.winotmk.com/240110_SD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/2025-03-06-13-54-00_849b1025.png">
+<meta property="og:image" content="http://pictures.winotmk.com/240110_SD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/2025-03-06-13-54-16_46aa12f0.png">
+<meta property="article:published_time" content="2024-01-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-18T03:36:09.522Z">
+<meta property="article:author" content="winotmk">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="阿里云">
+<meta property="article:tag" content="stable diffusion">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://pictures.winotmk.com/240110_SD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/2025-03-06-13-51-58_8f9626a7.png">
+
+
+<link rel="canonical" href="https://winotmk.github.io/240110_SD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://winotmk.github.io/240110_SD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/","path":"240110_SD大模型云上训练/","title":"StableDiffusion大模型(Dreambooth)云上训练以及安装CODA指定版本"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>StableDiffusion大模型(Dreambooth)云上训练以及安装CODA指定版本 | WinNote</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">WinNote</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">41</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">43</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91PAI-DSW%E5%AE%9E%E4%BE%8B%E8%B7%91kohya"><span class="nav-number">1.</span> <span class="nav-text">创建阿里云PAI DSW实例跑kohya</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85kohya-ss"><span class="nav-number">1.1.</span> <span class="nav-text">安装kohya_ss</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kohya-ss%E7%9A%84Dreambooth%E8%AE%AD%E7%BB%83%E5%8F%82%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">kohya_ss的Dreambooth训练参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#source-model"><span class="nav-number">2.1.</span> <span class="nav-text">source model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#floders"><span class="nav-number">2.2.</span> <span class="nav-text">floders</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#parameters"><span class="nav-number">2.3.</span> <span class="nav-text">parameters</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#basic"><span class="nav-number">2.3.1.</span> <span class="nav-text">basic</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#samples"><span class="nav-number">2.3.2.</span> <span class="nav-text">samples</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CUDA%E7%9B%B8%E5%85%B3"><span class="nav-number">3.</span> <span class="nav-text">CUDA相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85CUDA%E6%8C%87%E5%AE%9A%E7%89%88%E6%9C%AC"><span class="nav-number">3.1.</span> <span class="nav-text">安装CUDA指定版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%87%E6%8D%A2cuda%E7%89%88%E6%9C%AC"><span class="nav-number">3.2.</span> <span class="nav-text">切换cuda版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8Bcuda%E7%89%88%E6%9C%AC"><span class="nav-number">3.3.</span> <span class="nav-text">查看cuda版本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5"><span class="nav-number">4.</span> <span class="nav-text">链接</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="winotmk"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">winotmk</p>
+  <div class="site-description" itemprop="description">零碎MD文档收集 | 生命在于折腾</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://winotmk.com/" title="https:&#x2F;&#x2F;winotmk.com" rel="noopener" target="_blank">正式站winotmk.com</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+
+      
+          <div class="links-of-blogroll" style="margin-top:20px; border-style:dotted none none none; padding-top:5px; text-align:left;padding-left: 20px; padding-right: 10px; padding-bottom: 5px;">
+            <div class="links-of-blogroll-title" style="padding-bottom: 5px; padding-top: 5px; padding-left: 0px; padding-right: 20px; font-size: 1.6em; argin-right: 5px;">
+          <!-- 选择合适的icon --><i class="fab fa-markdown" aria-hidden="true"></i>
+              <b style="font-size: 0.65em; padding-left: 8px; position: relative; top: -2px;">全站文章列表</b>
+            </div>
+            <ul class="links-of-blogroll-list">
+          <!-- 文章排序规格,-updated 按照文章更新时间倒排 -->
+              
+          <!-- 显示postnumb设置数目的文章 -->
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/MC/" title="SourceCraft服务器" target="_blank">SourceCraft服务器</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/Maya_MASH/" title="MayaMASH动力学做链子" target="_blank">MayaMASH动力学做链子</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/WinNote/" title="WinNote" target="_blank">WinNote</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/bat/" title="批处理实现批量改名以及SVN批量改名" target="_blank">批处理实现批量改名以及SVN批量改名</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/hexo+github/" title="hexo+github" target="_blank">hexo+github</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/next%E4%B8%BB%E9%A2%98%E5%A2%9E%E5%8A%A0%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0%E4%BE%A7%E8%BE%B9%E6%A0%8F/" title="next主题增加近期文章侧边栏" target="_blank">next主题增加近期文章侧边栏</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E5%AE%89%E8%A3%85Arch/" title="安装ArchLinux系统（详细过程）" target="_blank">安装ArchLinux系统（详细过程）</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/frontmatter/" title="" target="_blank"></a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E6%A0%91%E8%8E%93%E6%B4%BETimeMachine/" title="树莓派上架设TimeMachine服务" target="_blank">树莓派上架设TimeMachine服务</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/" title="树莓派路由器" target="_blank">树莓派路由器</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E6%B5%81%E9%87%8F%E5%BC%82%E5%B8%B8%E6%8E%92%E6%9F%A5/" title="流量异常排查" target="_blank">流量异常排查</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/" title="生成秘钥连接至github————用来推hexo" target="_blank">生成秘钥连接至github————用来推hexo</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="群晖上用容器搭建SVN服务器" target="_blank">群晖上用容器搭建SVN服务器</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/" title="calibre_web的pdf封面提取问题" target="_blank">calibre_web的pdf封面提取问题</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/241008_%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AE%E7%BE%A4%E6%99%96NAS%E7%9A%84%E6%96%87%E4%BB%B6/" title="外网访问群晖NAS的文件" target="_blank">外网访问群晖NAS的文件</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/241031_%E6%96%B0mac/" title="新的macbook air" target="_blank">新的macbook air</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/250128_%E6%8A%95%E5%BD%B1%E6%94%BEnas%E8%B5%84%E6%BA%90/" title="投影仪推nas" target="_blank">投影仪推nas</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/" title="SSL证书手动更新" target="_blank">SSL证书手动更新</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/250221_Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="Git常用命令" target="_blank">Git常用命令</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/250221_Hugo_GithubAction%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91OSS/" title="Hugo_GithubAction自动部署到阿里云OSS" target="_blank">Hugo_GithubAction自动部署到阿里云OSS</a>
+                </li>
+              
+            </ul>
+          </div>
+      
+
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/240110_SD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="winotmk">
+      <meta itemprop="description" content="零碎MD文档收集 | 生命在于折腾">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WinNote">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          StableDiffusion大模型(Dreambooth)云上训练以及安装CODA指定版本
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-01-11 00:00:00" itemprop="dateCreated datePublished" datetime="2024-01-11T00:00:00+08:00">2024-01-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2025-03-18 11:36:09" itemprop="dateModified" datetime="2025-03-18T11:36:09+08:00">2025-03-18</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/stable-diffusion/" itemprop="url" rel="index"><span itemprop="name">stable diffusion</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="创建阿里云PAI-DSW实例跑kohya"><a href="#创建阿里云PAI-DSW实例跑kohya" class="headerlink" title="创建阿里云PAI DSW实例跑kohya"></a>创建阿里云PAI DSW实例跑kohya</h2><p>镜像我这里选：<br><img src="http://pictures.winotmk.com/240110_SD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/2025-03-06-13-51-58_8f9626a7.png" alt="2025-03-06-13-51-58"></p>
+<p><code>dsw-registry-vpc.cn-shanghai.cr.aliyuncs.com/pai/modelscope:1.10.0-pytorch2.1.0tensorflow2.14.0-gpu-py310-cu118-ubuntu22.04</code><br>我这里用默认的镜像，实测截至2024.01.10时，直接拉kohya的github可以直接用，不需要改动cuda之类的操作</p>
+<h3 id="安装kohya-ss"><a href="#安装kohya-ss" class="headerlink" title="安装kohya_ss"></a>安装kohya_ss</h3><p>kohya_ss仓库地址：<br><a target="_blank" rel="noopener" href="https://github.com/bmaltais/kohya_ss">https://github.com/bmaltais/kohya_ss</a><br>kohya_ss是个webui训练器，SD web_ui里也有对应的Dreambooth训练插件移植，如果只拿来训练不需要跑完整的sd webui服务，只需要kohya就可以了,kohay也可以练lora<br>在workspace根目录直接：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:<span class="regexp">//gi</span>thub.com<span class="regexp">/bmaltais/</span>kohya_ss.git</span><br></pre></td></tr></table></figure>
+<p><img src="http://pictures.winotmk.com/240110_SD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/2025-03-06-13-52-26_80d72adf.png" alt="2025-03-06-13-52-26"></p>
+<span id="more"></span>
+<p>很快就能完成，接着依次执行</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> ./kohya_ss</span><br><span class="line">apt <span class="keyword">update</span> -<span class="keyword">y</span> &amp;&amp; apt install -<span class="keyword">y</span> <span class="keyword">python3</span>-tk</span><br><span class="line">chmod +<span class="keyword">x</span> ./setup.<span class="keyword">sh</span></span><br><span class="line">./setup.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
+<p>虽然镜像里带py310，但是似乎还是要装一下python3-tk<br>之后安装脚本会自动完成，我大概花了5分钟<br><img src="http://pictures.winotmk.com/240110_SD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/2025-03-06-13-52-39_f340f12f.png" alt="2025-03-06-13-52-39"></p>
+<p>然后运行启动webui</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HF_ENDPOINT=http<span class="variable">s:</span>//hf-mirror.<span class="keyword">com</span> ./<span class="keyword">gui</span>.<span class="keyword">sh</span> --headless</span><br></pre></td></tr></table></figure>
+<p><img src="http://pictures.winotmk.com/240110_SD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/2025-03-06-13-52-50_52c9eacf.png" alt="2025-03-06-13-52-50"></p>
+<p>点击这个本地的IP即能点开webui了<br><code>HF_ENDPOINT=https://hf-mirror.com</code>是为了防止抱脸会更新卡住而用的镜像网站（我确实因为这个卡过）或者见本站另一篇专门说代理的文章：<br><a href="https://winotmk.github.io/240109_Linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/">https://winotmk.github.io/240109_Linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/</a></p>
+<h2 id="kohya-ss的Dreambooth训练参数"><a href="#kohya-ss的Dreambooth训练参数" class="headerlink" title="kohya_ss的Dreambooth训练参数"></a>kohya_ss的Dreambooth训练参数</h2><h3 id="source-model"><a href="#source-model" class="headerlink" title="source model"></a>source model</h3><p><img src="http://pictures.winotmk.com/240110_SD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/2025-03-06-13-52-58_7e99f522.png" alt="2025-03-06-13-52-58"></p>
+<p>我这里用自己上传的模型，可以先上传至阿里云oss再挂载进来，所以这里这样选，然后填模型路径就好了</p>
+<h3 id="floders"><a href="#floders" class="headerlink" title="floders"></a>floders</h3><p>这个tag里比较简单，没什么好说的<br>Image folder里写上训练集目录，注意写上的目录底下应该是例如10_ABC目录，然后再放图和txt文件，这个10就step的10，和lora训练时候一样</p>
+<h3 id="parameters"><a href="#parameters" class="headerlink" title="parameters"></a>parameters</h3><p><img src="http://pictures.winotmk.com/240110_SD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/2025-03-06-13-53-08_89bb4a99.png" alt="2025-03-06-13-53-08"></p>
+<h4 id="basic"><a href="#basic" class="headerlink" title="basic"></a>basic</h4><p>和lora训练设置大同小异，但是参数要比lora小得多，因为Dreambooth比lora性能消耗要大得多而且非常容易过拟合，图出来一滩浆糊，比如我尝试epoch可能10以内就足够，由于文件比较大Save every N epochs我一般也就3-4，其他参数看个人需求吧</p>
+<h4 id="samples"><a href="#samples" class="headerlink" title="samples"></a>samples</h4><p>这里能填关键词和每多少轮出个预览图，玩玩用<br>都准备好了就可以点 <code>start training</code>，但webui不会有任何提示..要看之前启webui的终端<br>这样就是开始训练了：<br><img src="http://pictures.winotmk.com/240110_SD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/2025-03-06-13-53-30_b3aec178.png" alt="2025-03-06-13-53-30"></p>
+<p>不过我第一次成功启动了webui但是点开始训练以后，报过类似这样的错：</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">The following directories listed <span class="keyword">in</span> your path were found <span class="keyword">to</span> be non-existent: &#123;<span class="constructor">PosixPath(&#x27;<span class="operator">/</span><span class="params">usr</span><span class="operator">/</span><span class="params">local</span><span class="operator">/</span><span class="params">nvidia</span><span class="operator">/</span><span class="params">lib64</span>&#x27;)</span>, <span class="constructor">PosixPath(&#x27;<span class="operator">/</span><span class="params">usr</span><span class="operator">/</span><span class="params">local</span><span class="operator">/</span><span class="params">nvidia</span><span class="operator">/</span><span class="params">lib</span>&#x27;)</span>&#125;</span><br><span class="line">/usr/local/lib/python3.<span class="number">10</span>/dist-packages/bitsandbytes/cuda_setup/main.py:<span class="number">166</span>: UserWarning: /usr/local/nvidia/lib:/usr/local/nvidia/lib64:/usr/local/cuda-<span class="number">11</span> did not contain <span class="literal">[&#x27;<span class="identifier">libcudart</span>.<span class="identifier">so</span>&#x27;, &#x27;<span class="identifier">libcudart</span>.<span class="identifier">so</span>.<span class="number">11.0</span>&#x27;, &#x27;<span class="identifier">libcudart</span>.<span class="identifier">so</span>.<span class="number">12.0</span>&#x27;]</span> <span class="keyword">as</span> expected! Searching further paths...</span><br><span class="line">  warn(msg)</span><br><span class="line">The following directories listed <span class="keyword">in</span> your path were found <span class="keyword">to</span> be non-existent: &#123;<span class="constructor">PosixPath(&#x27;<span class="operator">/</span><span class="operator">/</span><span class="params">license</span>-<span class="params">pai</span>.<span class="params">cn</span>-<span class="params">shanghai</span>.<span class="params">data</span>.<span class="params">aliyun</span>.<span class="params">com</span>&#x27;)</span>, <span class="constructor">PosixPath(&#x27;<span class="params">http</span>&#x27;)</span>&#125;</span><br><span class="line">The following directories listed <span class="keyword">in</span> your path were found <span class="keyword">to</span> be non-existent: &#123;<span class="constructor">PosixPath(&#x27;<span class="params">dsw</span>-<span class="params">registry</span>-<span class="params">vpc</span>.<span class="params">cn</span>-<span class="params">shanghai</span>.<span class="params">cr</span>.<span class="params">aliyuncs</span>.<span class="params">com</span><span class="operator">/</span><span class="params">cloud</span>-<span class="params">dsw</span><span class="operator">/</span><span class="params">eas</span>-<span class="params">service</span>&#x27;)</span>, <span class="constructor">PosixPath(&#x27;<span class="params">aigc</span>-<span class="params">torch113</span>-<span class="params">cu117</span>-<span class="params">ubuntu22</span>.04-<span class="params">v0</span>.2.1&#x27;)</span>&#125;</span><br><span class="line">The following directories listed <span class="keyword">in</span> your path were found <span class="keyword">to</span> be non-existent: &#123;<span class="constructor">PosixPath(&#x27;<span class="params">http</span>&#x27;)</span>, <span class="constructor">PosixPath(&#x27;8088<span class="operator">/</span><span class="params">dsw</span>-301739&#x27;)</span>, <span class="constructor">PosixPath(&#x27;<span class="operator">/</span><span class="operator">/</span>127.0.0.1&#x27;)</span>&#125;</span><br><span class="line">The following directories listed <span class="keyword">in</span> your path were found <span class="keyword">to</span> be non-existent: &#123;<span class="constructor">PosixPath(&#x27;Asia<span class="operator">/</span>Shanghai&#x27;)</span>&#125;</span><br><span class="line">The following directories listed <span class="keyword">in</span> your path were found <span class="keyword">to</span> be non-existent: &#123;<span class="constructor">PosixPath(&#x27;<span class="params">tcp</span>&#x27;)</span>, <span class="constructor">PosixPath(&#x27;443&#x27;)</span>, <span class="constructor">PosixPath(&#x27;<span class="operator">/</span><span class="operator">/</span>10.192.0.1&#x27;)</span>&#125;</span><br><span class="line">The following directories listed <span class="keyword">in</span> your path were found <span class="keyword">to</span> be non-existent: &#123;<span class="constructor">PosixPath(&#x27;<span class="params">https</span>&#x27;)</span>, <span class="constructor">PosixPath(&#x27;<span class="operator">/</span><span class="operator">/</span><span class="params">dsw</span>-<span class="params">cn</span>-<span class="params">shanghai</span>.<span class="params">data</span>.<span class="params">aliyun</span>.<span class="params">com</span>&#x27;)</span>&#125;</span><br><span class="line">The following directories listed <span class="keyword">in</span> your path were found <span class="keyword">to</span> be non-existent: &#123;<span class="constructor">PosixPath(&#x27;<span class="params">tcp</span>&#x27;)</span>, <span class="constructor">PosixPath(&#x27;443&#x27;)</span>, <span class="constructor">PosixPath(&#x27;<span class="operator">/</span><span class="operator">/</span>10.192.0.1&#x27;)</span>&#125;</span><br><span class="line">The following directories listed <span class="keyword">in</span> your path were found <span class="keyword">to</span> be non-existent: &#123;<span class="constructor">PosixPath(&#x27;<span class="operator">/</span><span class="params">home</span><span class="operator">/</span><span class="params">pai</span><span class="operator">/</span><span class="params">bin</span><span class="operator">/</span><span class="params">python</span>&#x27;)</span>&#125;</span><br><span class="line">CUDA_SETUP: WARNING! libcudart.so not found <span class="keyword">in</span> any environmental path. Searching <span class="keyword">in</span> backup paths...</span><br><span class="line">DEBUG: Possible options found <span class="keyword">for</span> libcudart.so: &#123;<span class="constructor">PosixPath(&#x27;<span class="operator">/</span><span class="params">usr</span><span class="operator">/</span><span class="params">local</span><span class="operator">/</span><span class="params">cuda</span><span class="operator">/</span><span class="params">lib64</span><span class="operator">/</span><span class="params">libcudart</span>.<span class="params">so</span>.11.0&#x27;)</span>&#125;</span><br><span class="line">CUDA SETUP: PyTorch settings found: CUDA_VERSION=<span class="number">118</span>, Highest Compute Capability: <span class="number">7.0</span>.</span><br><span class="line">CUDA SETUP: To manually override the PyTorch CUDA version please see:https:<span class="comment">//github.com/TimDettmers/bitsandbytes/blob/main/how_to_use_nonpytorch_cuda.md</span></span><br><span class="line">/usr/local/lib/python3.<span class="number">10</span>/dist-packages/bitsandbytes/cuda_setup/main.py:<span class="number">166</span>: UserWarning: WARNING: Compute capability &lt; <span class="number">7.5</span> detected! Only slow <span class="number">8</span>-bit matmul is supported <span class="keyword">for</span> your GPU!                     If you run into issues <span class="keyword">with</span> <span class="number">8</span>-bit matmul, you can <span class="keyword">try</span> <span class="number">4</span>-bit quantization: https:<span class="comment">//huggingface.co/blog/4bit-transformers-bitsandbytes</span></span><br><span class="line">  warn(msg)</span><br><span class="line">CUDA SETUP: Loading binary /usr/local/lib/python3.<span class="number">10</span>/dist-packages/bitsandbytes/libbitsandbytes_cuda118_nocublaslt.so...</span><br><span class="line">libcusparse.so.<span class="number">11</span>: cannot <span class="keyword">open</span> shared <span class="keyword">object</span> file: No such file <span class="keyword">or</span> directory</span><br><span class="line">CUDA SETUP: Something unexpected happened. Please compile from source:</span><br><span class="line">git clone https:<span class="comment">//github.com/TimDettmers/bitsandbytes.git</span></span><br><span class="line">cd bitsandbytes</span><br><span class="line">CUDA_VERSION=<span class="number">118</span> make cuda11x_nomatmul</span><br><span class="line">python setup.py install</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">&quot;/usr/lib/python3.10/runpy.py&quot;</span>, line <span class="number">187</span>, <span class="keyword">in</span> _run_module_as_main</span><br><span class="line">    mod_name, mod_spec, code = <span class="constructor">_get_module_details(<span class="params">mod_name</span>, <span class="params">_Error</span>)</span></span><br><span class="line">  File <span class="string">&quot;/usr/lib/python3.10/runpy.py&quot;</span>, line <span class="number">146</span>, <span class="keyword">in</span> _get_module_details</span><br><span class="line">    return <span class="constructor">_get_module_details(<span class="params">pkg_main_name</span>, <span class="params">error</span>)</span></span><br><span class="line">  File <span class="string">&quot;/usr/lib/python3.10/runpy.py&quot;</span>, line <span class="number">110</span>, <span class="keyword">in</span> _get_module_details</span><br><span class="line">    <span class="constructor">__import__(<span class="params">pkg_name</span>)</span></span><br><span class="line">  File <span class="string">&quot;/usr/local/lib/python3.10/dist-packages/bitsandbytes/__init__.py&quot;</span>, line <span class="number">6</span>, <span class="keyword">in</span> &lt;<span class="keyword">module</span>&gt;</span><br><span class="line">    from . import cuda_setup, utils, research</span><br><span class="line">  File <span class="string">&quot;/usr/local/lib/python3.10/dist-packages/bitsandbytes/research/__init__.py&quot;</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;<span class="keyword">module</span>&gt;</span><br><span class="line">    from . import nn</span><br><span class="line">  File <span class="string">&quot;/usr/local/lib/python3.10/dist-packages/bitsandbytes/research/nn/__init__.py&quot;</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;<span class="keyword">module</span>&gt;</span><br><span class="line">    from .modules import LinearFP8Mixed, LinearFP8Global</span><br><span class="line">  File <span class="string">&quot;/usr/local/lib/python3.10/dist-packages/bitsandbytes/research/nn/modules.py&quot;</span>, line <span class="number">8</span>, <span class="keyword">in</span> &lt;<span class="keyword">module</span>&gt;</span><br><span class="line">    from bitsandbytes.optim import GlobalOptimManager</span><br><span class="line">  File <span class="string">&quot;/usr/local/lib/python3.10/dist-packages/bitsandbytes/optim/__init__.py&quot;</span>, line <span class="number">6</span>, <span class="keyword">in</span> &lt;<span class="keyword">module</span>&gt;</span><br><span class="line">    from bitsandbytes.cextension import COMPILED_WITH_CUDA</span><br><span class="line">  File <span class="string">&quot;/usr/local/lib/python3.10/dist-packages/bitsandbytes/cextension.py&quot;</span>, line <span class="number">20</span>, <span class="keyword">in</span> &lt;<span class="keyword">module</span>&gt;</span><br><span class="line">    raise <span class="constructor">RuntimeError(&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>以及如果遇到类似：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Could not load <span class="built_in">dynamic</span> <span class="keyword">library</span> <span class="string">&#x27;libcudart.so.11.0&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>重新装适合的CUDA版本即可解决，如果要装CUDA：</p>
+<h2 id="CUDA相关"><a href="#CUDA相关" class="headerlink" title="CUDA相关"></a>CUDA相关</h2><h3 id="安装CUDA指定版本"><a href="#安装CUDA指定版本" class="headerlink" title="安装CUDA指定版本"></a>安装CUDA指定版本</h3><p>遇到过cuda版本不匹配的问题，记一下配置过程<br>cuda下载：<a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-downloads">https://developer.nvidia.com/cuda-downloads</a><br>但是有时候需要特定版本：<a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-toolkit-archive">https://developer.nvidia.com/cuda-toolkit-archive</a><br>以11.8为例，系统是ubuntu22.04，所以这样选：<br><img src="http://pictures.winotmk.com/240110_SD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/2025-03-06-13-53-49_486c576a.png" alt="2025-03-06-13-53-49"></p>
+<p>下载安装cuda：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">cd</span> /mnt/workspace</span><br><span class="line"><span class="attribute">wget</span> https://developer.download.nvidia.com/compute/cuda/<span class="number">11</span>.<span class="number">8</span>.<span class="number">0</span>/local_installers/cuda_<span class="number">11</span>.<span class="number">8</span>.<span class="number">0</span>_<span class="number">520</span>.<span class="number">61</span>.<span class="number">05</span>_linux.run</span><br><span class="line"><span class="attribute">sudo</span> sh cuda_<span class="number">11</span>.<span class="number">8</span>.<span class="number">0</span>_<span class="number">520</span>.<span class="number">61</span>.<span class="number">05</span>_linux.run</span><br></pre></td></tr></table></figure>
+<p>大约3-4GB左右，运行后需要等一会，会弹出交互界面<br><img src="http://pictures.winotmk.com/240110_SD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/2025-03-06-13-54-00_849b1025.png" alt="2025-03-06-13-54-00"></p>
+<p>这里去掉安装驱动，因为我们已经有驱动了只是想要不同版本的cuda，然后选安装</p>
+<p>ps如果遇到装了多份驱动需要卸一个的情况：<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/54928967e417">https://www.jianshu.com/p/54928967e417</a></p>
+<p>装好以后他会提示：<br><img src="http://pictures.winotmk.com/240110_SD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/2025-03-06-13-54-16_46aa12f0.png" alt="2025-03-06-13-54-16"></p>
+<p>需要往 <code>LD_LIBRARY_PATH</code> 和 <code>PATH</code> 里添加两条环境变量</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span><span class="symbol">:/usr/local/cuda-</span><span class="number">11.8</span>/lib64</span><br><span class="line">export PATH=<span class="variable">$PATH</span><span class="symbol">:/usr/local/cuda-</span><span class="number">11.8</span>/bin</span><br></pre></td></tr></table></figure>
+<p>之后我使用</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">python -m bitsandbytes</span></span><br></pre></td></tr></table></figure>
+<p>如果没有报错应该就是好用的</p>
+<p>ps如果是windows上的wsl：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export LD_LIBRARY_PATH=<span class="regexp">/usr/</span>lib<span class="regexp">/wsl/</span>lib/</span><br></pre></td></tr></table></figure>
+<h3 id="切换cuda版本"><a href="#切换cuda版本" class="headerlink" title="切换cuda版本"></a>切换cuda版本</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">LD_LIBRARY_PATH</span>=<span class="variable">$LD_LIBRARY_PATH</span>:/usr/local/cuda-11.7</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">BNB_CUDA_VERSION</span>=117</span><br></pre></td></tr></table></figure>
+<p>改环境变量可以手动切换版本（当然得已经装了)</p>
+<h3 id="查看cuda版本"><a href="#查看cuda版本" class="headerlink" title="查看cuda版本"></a>查看cuda版本</h3><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">nvidia-smi</span></span><br></pre></td></tr></table></figure>
+<p>或者可以：<br>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Kefenggewu_/article/details/117675079">https://blog.csdn.net/Kefenggewu_/article/details/117675079</a><br>默认cuda会装在<code>/usr/local</code>,所以查看安装版本可以这样：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l <span class="regexp">/usr/</span>local | <span class="keyword">grep</span> cuda</span><br></pre></td></tr></table></figure>
+<p>或者据说可以<code>nvcc -V # (V大写)</code></p>
+<p>本节另外的参考：<a target="_blank" rel="noopener" href="https://github.com/TimDettmers/bitsandbytes/blob/main/how_to_use_nonpytorch_cuda.md">https://github.com/TimDettmers/bitsandbytes/blob/main/how_to_use_nonpytorch_cuda.md</a></p>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p>kohya_ss:<br><a target="_blank" rel="noopener" href="https://github.com/bmaltais/kohya_ss">https://github.com/bmaltais/kohya_ss</a><br>一个封装好的kohya-docker的镜像<br><a target="_blank" rel="noopener" href="https://github.com/ashleykleynhans/kohya-docker">https://github.com/ashleykleynhans/kohya-docker</a></p>
+<p>dreambooth相关介绍：<br><a target="_blank" rel="noopener" href="https://huggingface.co/docs/diffusers/training/dreambooth">https://huggingface.co/docs/diffusers/training/dreambooth</a><br><a target="_blank" rel="noopener" href="https://github.com/google/dreambooth">https://github.com/google/dreambooth</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>winotmk
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://winotmk.github.io/240110_SD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E4%B8%8A%E8%AE%AD%E7%BB%83/" title="StableDiffusion大模型(Dreambooth)云上训练以及安装CODA指定版本">https://winotmk.github.io/240110_SD大模型云上训练/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+  <li class="post-copyright-wintomk">
+    <strong>本站为MD文档托管，如果你想评论或者联系我，欢迎来主站发表：</strong><a target="_blank" rel="noopener" href="https://winotmk.com">winotmk.com</a>
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+              <a href="/tags/AI/" rel="tag"># AI</a>
+              <a href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91/" rel="tag"># 阿里云</a>
+              <a href="/tags/stable-diffusion/" rel="tag"># stable diffusion</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/240109_Linux%E4%B8%8A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/" rel="prev" title="Linux上的命令行代理工具">
+                  <i class="fa fa-chevron-left"></i> Linux上的命令行代理工具
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/240617_%E5%9C%B0%E7%90%86%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%99%A8%E8%AE%A1%E5%88%92/" rel="next" title="地理数据采集器计划">
+                  地理数据采集器计划 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">winotmk</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

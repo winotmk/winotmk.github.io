@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"winotmk.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"right","width":360,"display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="还是会有很多不常用的命令要来回查，仅记录，绝非完整命令参考 文件操作相关复制目录复制目录dir1和dir1目录下的文件到dir2目录里 1cp -r dir1 dir2 安装lrzsz实现zmodem串口文件传输 12rz 下载Zmodemxz 上传Zmodem windterm下支持直接拖拽文件，但是也要安装lrzsz以支持命令https:&#x2F;&#x2F;www.cnblogs.com&#x2F;lidabo&#x2F;p&#x2F;4">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux和docker常用命令">
+<meta property="og:url" content="https://winotmk.github.io/240619_Linux%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="WinNote">
+<meta property="og:description" content="还是会有很多不常用的命令要来回查，仅记录，绝非完整命令参考 文件操作相关复制目录复制目录dir1和dir1目录下的文件到dir2目录里 1cp -r dir1 dir2 安装lrzsz实现zmodem串口文件传输 12rz 下载Zmodemxz 上传Zmodem windterm下支持直接拖拽文件，但是也要安装lrzsz以支持命令https:&#x2F;&#x2F;www.cnblogs.com&#x2F;lidabo&#x2F;p&#x2F;4">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://pictures.winotmk.com/240619_Linux%E5%91%BD%E4%BB%A4/2025-03-06-14-08-33_b3b2afa7.png">
+<meta property="og:image" content="http://pictures.winotmk.com/240619_Linux%E5%91%BD%E4%BB%A4/2025-03-06-14-08-41_4c306013.png">
+<meta property="article:published_time" content="2024-06-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-18T03:36:09.522Z">
+<meta property="article:author" content="winotmk">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="docker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://pictures.winotmk.com/240619_Linux%E5%91%BD%E4%BB%A4/2025-03-06-14-08-33_b3b2afa7.png">
+
+
+<link rel="canonical" href="https://winotmk.github.io/240619_Linux%E5%91%BD%E4%BB%A4/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://winotmk.github.io/240619_Linux%E5%91%BD%E4%BB%A4/","path":"240619_Linux命令/","title":"Linux和docker常用命令"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Linux和docker常用命令 | WinNote</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">WinNote</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">41</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">43</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%E7%9B%B8%E5%85%B3"><span class="nav-number">1.</span> <span class="nav-text">文件操作相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6%E7%9B%AE%E5%BD%95"><span class="nav-number">1.1.</span> <span class="nav-text">复制目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%82%E8%BD%BDU%E7%9B%98"><span class="nav-number">1.2.</span> <span class="nav-text">挂载U盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%E5%8C%85%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%A7%A3%E5%8E%8B"><span class="nav-number">1.3.</span> <span class="nav-text">打包压缩和解压</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker"><span class="nav-number">1.4.</span> <span class="nav-text">docker</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#docker-compose"><span class="nav-number">1.4.1.</span> <span class="nav-text">docker compose</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#screen"><span class="nav-number">1.5.</span> <span class="nav-text">screen</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="winotmk"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">winotmk</p>
+  <div class="site-description" itemprop="description">零碎MD文档收集 | 生命在于折腾</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://winotmk.com/" title="https:&#x2F;&#x2F;winotmk.com" rel="noopener" target="_blank">正式站winotmk.com</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+
+      
+          <div class="links-of-blogroll" style="margin-top:20px; border-style:dotted none none none; padding-top:5px; text-align:left;padding-left: 20px; padding-right: 10px; padding-bottom: 5px;">
+            <div class="links-of-blogroll-title" style="padding-bottom: 5px; padding-top: 5px; padding-left: 0px; padding-right: 20px; font-size: 1.6em; argin-right: 5px;">
+          <!-- 选择合适的icon --><i class="fab fa-markdown" aria-hidden="true"></i>
+              <b style="font-size: 0.65em; padding-left: 8px; position: relative; top: -2px;">全站文章列表</b>
+            </div>
+            <ul class="links-of-blogroll-list">
+          <!-- 文章排序规格,-updated 按照文章更新时间倒排 -->
+              
+          <!-- 显示postnumb设置数目的文章 -->
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/MC/" title="SourceCraft服务器" target="_blank">SourceCraft服务器</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/Maya_MASH/" title="MayaMASH动力学做链子" target="_blank">MayaMASH动力学做链子</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/WinNote/" title="WinNote" target="_blank">WinNote</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/bat/" title="批处理实现批量改名以及SVN批量改名" target="_blank">批处理实现批量改名以及SVN批量改名</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/hexo+github/" title="hexo+github" target="_blank">hexo+github</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/next%E4%B8%BB%E9%A2%98%E5%A2%9E%E5%8A%A0%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0%E4%BE%A7%E8%BE%B9%E6%A0%8F/" title="next主题增加近期文章侧边栏" target="_blank">next主题增加近期文章侧边栏</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E5%AE%89%E8%A3%85Arch/" title="安装ArchLinux系统（详细过程）" target="_blank">安装ArchLinux系统（详细过程）</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/frontmatter/" title="" target="_blank"></a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E6%A0%91%E8%8E%93%E6%B4%BETimeMachine/" title="树莓派上架设TimeMachine服务" target="_blank">树莓派上架设TimeMachine服务</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/" title="树莓派路由器" target="_blank">树莓派路由器</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E6%B5%81%E9%87%8F%E5%BC%82%E5%B8%B8%E6%8E%92%E6%9F%A5/" title="流量异常排查" target="_blank">流量异常排查</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E7%94%9F%E6%88%90%E7%A7%98%E9%92%A5%E8%BF%9E%E6%8E%A5%E8%87%B3github_%E7%94%A8%E6%9D%A5%E6%8E%A8hexo/" title="生成秘钥连接至github————用来推hexo" target="_blank">生成秘钥连接至github————用来推hexo</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="群晖上用容器搭建SVN服务器" target="_blank">群晖上用容器搭建SVN服务器</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/240925_calibre_web%E7%9A%84pdf%E5%B0%81%E9%9D%A2%E6%8F%90%E5%8F%96%E9%97%AE%E9%A2%98/" title="calibre_web的pdf封面提取问题" target="_blank">calibre_web的pdf封面提取问题</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/241008_%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AE%E7%BE%A4%E6%99%96NAS%E7%9A%84%E6%96%87%E4%BB%B6/" title="外网访问群晖NAS的文件" target="_blank">外网访问群晖NAS的文件</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/241031_%E6%96%B0mac/" title="新的macbook air" target="_blank">新的macbook air</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/250128_%E6%8A%95%E5%BD%B1%E6%94%BEnas%E8%B5%84%E6%BA%90/" title="投影仪推nas" target="_blank">投影仪推nas</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/250220_SSL%E8%AF%81%E4%B9%A6%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0/" title="SSL证书手动更新" target="_blank">SSL证书手动更新</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/250221_Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="Git常用命令" target="_blank">Git常用命令</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/250221_Hugo_GithubAction%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91OSS/" title="Hugo_GithubAction自动部署到阿里云OSS" target="_blank">Hugo_GithubAction自动部署到阿里云OSS</a>
+                </li>
+              
+            </ul>
+          </div>
+      
+
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/240619_Linux%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="winotmk">
+      <meta itemprop="description" content="零碎MD文档收集 | 生命在于折腾">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WinNote">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux和docker常用命令
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-06-19 00:00:00" itemprop="dateCreated datePublished" datetime="2024-06-19T00:00:00+08:00">2024-06-19</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2025-03-18 11:36:09" itemprop="dateModified" datetime="2025-03-18T11:36:09+08:00">2025-03-18</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>还是会有很多不常用的命令要来回查，仅记录，绝非完整命令参考</p>
+<h2 id="文件操作相关"><a href="#文件操作相关" class="headerlink" title="文件操作相关"></a>文件操作相关</h2><h3 id="复制目录"><a href="#复制目录" class="headerlink" title="复制目录"></a>复制目录</h3><p>复制目录dir1和dir1目录下的文件到dir2目录里</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">cp</span> -r dir<span class="number">1</span> dir<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>安装lrzsz实现zmodem串口文件传输</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">rz</span> 下载Zmodem</span><br><span class="line">xz 上传Zmodem</span><br></pre></td></tr></table></figure>
+<p>windterm下支持直接拖拽文件，但是也要安装lrzsz以支持命令<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lidabo/p/4780866.html">https://www.cnblogs.com/lidabo/p/4780866.html</a></p>
+<h3 id="挂载U盘"><a href="#挂载U盘" class="headerlink" title="挂载U盘"></a>挂载U盘</h3><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">fdisk -l</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://pictures.winotmk.com/240619_Linux%E5%91%BD%E4%BB%A4/2025-03-06-14-08-33_b3b2afa7.png" alt="2025-03-06-14-08-33"><br>可以看到一块14.84GB的SD卡，位置在<code>/dev/sda1</code><br>使用</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount -t vfat <span class="regexp">/dev/</span>sda1 /mnt</span><br></pre></td></tr></table></figure>
+<p>来挂载U盘<br><img src="http://pictures.winotmk.com/240619_Linux%E5%91%BD%E4%BB%A4/2025-03-06-14-08-41_4c306013.png" alt="2025-03-06-14-08-41"><br><code>cd</code>到<code>/mnt</code>即可看到U盘里的文件了，另外可以在<code>/mnt</code>里新建文件夹<code>mkdir xxxxx</code>，再挂载到文件夹里</p>
+<p>卸载：</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">umount <span class="string">/mnt</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="打包压缩和解压"><a href="#打包压缩和解压" class="headerlink" title="打包压缩和解压"></a>打包压缩和解压</h3><p>压缩</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">tar</span> -czvf **<span class="regexp">*.tar.gz</span></span><br></pre></td></tr></table></figure>
+<p>解压</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">tar</span> -xzvf **<span class="regexp">*.tar.gz</span></span><br></pre></td></tr></table></figure>
+<h3 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h3><p><a target="_blank" rel="noopener" href="https://yeasy.gitbook.io/docker_practice/container/run">https://yeasy.gitbook.io/docker_practice/container/run</a></p>
+<p>启动docker:</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="literal">start</span> docker</span><br></pre></td></tr></table></figure>
+<p>查看已有镜像：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -<span class="selector-tag">a</span></span><br></pre></td></tr></table></figure>
+
+<p>启动已终止容器:</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">container</span> start</span><br></pre></td></tr></table></figure>
+
+<p>运行新的镜像run：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker</span> run -it -d --name hexo_debian -p <span class="number">22</span>:<span class="number">22</span> -p <span class="number">4000</span>:<span class="number">4000</span> -v XXX:/hexo/ hexo_debian:V<span class="number">02</span></span><br></pre></td></tr></table></figure>
+
+<p>save:<br>把本地镜像打包成tar方便带走</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker</span> save -o jre<span class="number">8</span>u<span class="number">342</span>_ch.tar jre<span class="number">8</span>u<span class="number">342</span>_ch:latest</span><br></pre></td></tr></table></figure>
+<p>打包好的tar用的时候可以：</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker load -i &#123;image_name&#125;<span class="string">.tar</span></span><br><span class="line">docker load <span class="params">--input</span> &#123;image_name&#125;<span class="string">.tar</span></span><br></pre></td></tr></table></figure>
+<p>如果没有tag可以手动打tag~</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">tag</span> <span class="title">&#123;image_id</span>&#125; &#123;image_name&#125;:&#123;image_tag&#125;</span><br></pre></td></tr></table></figure>
+
+<p>自用的docker run:</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="builtin-name">run</span> -d <span class="attribute">--name</span>=calibre-web -e <span class="attribute">PUID</span>=1000 -e <span class="attribute">PGID</span>=1000 -e <span class="attribute">TZ</span>=Etc/UTC -e <span class="attribute">DOCKER_MODS</span>=linuxserver/mods:universal-calibre -p 8083:8083 -v D:\calibre_test\config:<span class="built_in">/config </span>-v D:\calibre_test\library:/books --restart unless-stopped lscr.io/linuxserver/calibre-web:latest</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="builtin-name">run</span> -d <span class="attribute">--name</span>=calibre -e <span class="attribute">PUID</span>=1000 -e <span class="attribute">PGID</span>=1000 -e <span class="attribute">TZ</span>=Asia/Shanghai -e <span class="attribute">LC_ALL</span>=zh_CN.UTF-8 -p 8080:8080 -p 8181:8181 -p 8081:8081 -v D:\calibre_test\library:/library -v D:\calibre_test\config:<span class="built_in">/config </span>--restart unless-stopped lscr.io/linuxserver/calibre:latest</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+<h4 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker compose"></a>docker compose</h4><p>启动组<br><code>docker compose -f hexo_debian_DockerCompose.yml up -d </code><br>关闭组<br><code>docker compose -f hexo_debian_DockerCompose.yml down -v</code><br>启动但是会留在容器里<br><code>docker compose up</code><br>启动不留在容器里<br><code>docker compose up -d</code><br>进入docker容器</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it XXX <span class="regexp">/bin/</span>bash</span><br></pre></td></tr></table></figure>
+<p>退出容器但保留按<code>ctrl+P+Q</code><br>也可以直接接要在容器里执行的命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> hexo hexo g -d</span><br></pre></td></tr></table></figure>
+<p>拷贝容器内的文件出来，在宿主机上输入：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp -a vsftpd:<span class="regexp">/etc/</span>services <span class="regexp">/root/</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="screen"><a href="#screen" class="headerlink" title="screen"></a>screen</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个新的窗口</span></span><br><span class="line">screen -S test</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 进入窗口后 执行文件</span></span><br><span class="line">python test.py</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 退出当前窗口</span></span><br><span class="line">ctrl+a+d   （方法<span class="number">1</span>：保留当前窗口）</span><br><span class="line">screen -d  （方法<span class="number">2</span>：保留当前窗口）</span><br><span class="line"><span class="keyword">exit</span>       （方法<span class="number">3</span>：退出程序，并关闭窗口）</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 查看窗口</span></span><br><span class="line">screen -ls</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 重新连接窗口</span></span><br><span class="line">screen -r id或窗口名称</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>winotmk
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://winotmk.github.io/240619_Linux%E5%91%BD%E4%BB%A4/" title="Linux和docker常用命令">https://winotmk.github.io/240619_Linux命令/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+  <li class="post-copyright-wintomk">
+    <strong>本站为MD文档托管，如果你想评论或者联系我，欢迎来主站发表：</strong><a target="_blank" rel="noopener" href="https://winotmk.com">winotmk.com</a>
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+              <a href="/tags/docker/" rel="tag"># docker</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/240619_%E8%BD%AF%E4%BB%B6%E6%94%B6%E9%9B%86/" rel="prev" title="软件和网站收集">
+                  <i class="fa fa-chevron-left"></i> 软件和网站收集
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/240724_%E7%94%A8%E5%AE%B9%E5%99%A8%E6%9D%A5%E8%BF%90%E8%A1%8Cstreamlit/" rel="next" title="用容器来运行streamlit">
+                  用容器来运行streamlit <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">winotmk</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
