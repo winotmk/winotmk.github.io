@@ -20,25 +20,36 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"winotmk.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"right","width":360,"display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="零碎MD文档收集 | 生命在于折腾">
-<meta property="og:type" content="website">
-<meta property="og:title" content="WinNote">
-<meta property="og:url" content="https://winotmk.github.io/tags/SVN/index.html">
+<meta name="description" content="最近搭了个memos笔记服务，但是这个小服务本身很精简不包含https相关设置，所以打算用NPM套一层实现SSL访问 Docker安装NPM(Nginx Proxy Manager)先pull镜像： 1docker pull jc21&#x2F;nginx-proxy-manager:latest  好了之后再run： 1docker run -d -v ~&#x2F;nginx-proxy&#x2F;letsencrypt:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="轻松搭建npm代理并支持SSL访问">
+<meta property="og:url" content="https://winotmk.github.io/250324-%E8%BD%BB%E6%9D%BE%E6%90%AD%E5%BB%BAnpm%E4%BB%A3%E7%90%86%E5%B9%B6%E6%94%AF%E6%8C%81ssl%E8%AE%BF%E9%97%AE/index.html">
 <meta property="og:site_name" content="WinNote">
-<meta property="og:description" content="零碎MD文档收集 | 生命在于折腾">
+<meta property="og:description" content="最近搭了个memos笔记服务，但是这个小服务本身很精简不包含https相关设置，所以打算用NPM套一层实现SSL访问 Docker安装NPM(Nginx Proxy Manager)先pull镜像： 1docker pull jc21&#x2F;nginx-proxy-manager:latest  好了之后再run： 1docker run -d -v ~&#x2F;nginx-proxy&#x2F;letsencrypt:">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://pictures.winotmk.com/250324-%E8%BD%BB%E6%9D%BE%E6%90%AD%E5%BB%BAnpm%E4%BB%A3%E7%90%86%E5%B9%B6%E6%94%AF%E6%8C%81ssl%E8%AE%BF%E9%97%AE/2025-03-24-17-36-27_87f14963.png">
+<meta property="og:image" content="http://pictures.winotmk.com/250324-%E8%BD%BB%E6%9D%BE%E6%90%AD%E5%BB%BAnpm%E4%BB%A3%E7%90%86%E5%B9%B6%E6%94%AF%E6%8C%81ssl%E8%AE%BF%E9%97%AE/2025-03-24-17-50-26_cfefce22.png">
+<meta property="og:image" content="http://pictures.winotmk.com/250324-%E8%BD%BB%E6%9D%BE%E6%90%AD%E5%BB%BAnpm%E4%BB%A3%E7%90%86%E5%B9%B6%E6%94%AF%E6%8C%81ssl%E8%AE%BF%E9%97%AE/2025-03-24-17-41-55_70c081f0.png">
+<meta property="og:image" content="http://pictures.winotmk.com/250324-%E8%BD%BB%E6%9D%BE%E6%90%AD%E5%BB%BAnpm%E4%BB%A3%E7%90%86%E5%B9%B6%E6%94%AF%E6%8C%81ssl%E8%AE%BF%E9%97%AE/2025-03-24-17-53-35_c2560091.png">
+<meta property="og:image" content="http://pictures.winotmk.com/250324-%E8%BD%BB%E6%9D%BE%E6%90%AD%E5%BB%BAnpm%E4%BB%A3%E7%90%86%E5%B9%B6%E6%94%AF%E6%8C%81ssl%E8%AE%BF%E9%97%AE/2025-03-24-18-00-04_1e12f2ea.png">
+<meta property="article:published_time" content="2025-03-24T01:26:31.862Z">
+<meta property="article:modified_time" content="2025-03-24T10:24:02.738Z">
 <meta property="article:author" content="winotmk">
+<meta property="article:tag" content="proxy">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="web">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://pictures.winotmk.com/250324-%E8%BD%BB%E6%9D%BE%E6%90%AD%E5%BB%BAnpm%E4%BB%A3%E7%90%86%E5%B9%B6%E6%94%AF%E6%8C%81ssl%E8%AE%BF%E9%97%AE/2025-03-24-17-36-27_87f14963.png">
 
 
-<link rel="canonical" href="https://winotmk.github.io/tags/SVN/">
+<link rel="canonical" href="https://winotmk.github.io/250324-%E8%BD%BB%E6%9D%BE%E6%90%AD%E5%BB%BAnpm%E4%BB%A3%E7%90%86%E5%B9%B6%E6%94%AF%E6%8C%81ssl%E8%AE%BF%E9%97%AE/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"tags/SVN/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://winotmk.github.io/250324-%E8%BD%BB%E6%9D%BE%E6%90%AD%E5%BB%BAnpm%E4%BB%A3%E7%90%86%E5%B9%B6%E6%94%AF%E6%8C%81ssl%E8%AE%BF%E9%97%AE/","path":"250324-轻松搭建npm代理并支持ssl访问/","title":"轻松搭建npm代理并支持SSL访问"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>标签: SVN | WinNote</title>
+<title>轻松搭建npm代理并支持SSL访问 | WinNote</title>
   
 
 
@@ -103,7 +114,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -116,6 +127,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker%E5%AE%89%E8%A3%85NPM-Nginx-Proxy-Manager"><span class="nav-number">1.</span> <span class="nav-text">Docker安装NPM(Nginx Proxy Manager)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%99%BB%E5%BD%95NPM%E5%B9%B6%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">登录NPM并配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEdns%E8%A7%A3%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">设置dns解析</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -278,50 +290,147 @@
 </noscript>
 
 
-    <div class="main-inner tag posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">SVN
-          <small>标签</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/250324-%E8%BD%BB%E6%9D%BE%E6%90%AD%E5%BB%BAnpm%E4%BB%A3%E7%90%86%E5%B9%B6%E6%94%AF%E6%8C%81ssl%E8%AE%BF%E9%97%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="winotmk">
+      <meta itemprop="description" content="零碎MD文档收集 | 生命在于折腾">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WinNote">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          轻松搭建npm代理并支持SSL访问
         </h1>
-      </div>
 
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
+
+      <time title="创建时间：2025-03-24 09:26:31 / 修改时间：18:24:02" itemprop="dateCreated datePublished" datetime="2025-03-24T09:26:31+08:00">2025-03-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>最近搭了个memos笔记服务，但是这个小服务本身很精简不包含https相关设置，所以打算用NPM套一层实现SSL访问</p>
+<h2 id="Docker安装NPM-Nginx-Proxy-Manager"><a href="#Docker安装NPM-Nginx-Proxy-Manager" class="headerlink" title="Docker安装NPM(Nginx Proxy Manager)"></a>Docker安装NPM(Nginx Proxy Manager)</h2><p>先pull镜像：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker</span> pull jc<span class="number">21</span>/nginx-proxy-manager:latest </span><br></pre></td></tr></table></figure>
+<p>好了之后再run：</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -v ~<span class="regexp">/nginx-proxy/</span>letsencrypt:<span class="regexp">/etc/</span>letsencrypt -v ~<span class="regexp">/nginx-proxy/</span>data:<span class="regexp">/data -p 80:80 -p 5081:81 -p 443:443 --name npm  jc21/</span>nginx-proxy-manager:latest</span><br></pre></td></tr></table></figure>
+<p>要映射出来的主要就<code>80</code>和<code>443</code>端口，分别对应http和https服务，自己家用服务器别想了，电信联通基本不会给家用宽带这个端口的，我这个是阿里云99服务器上直接搭的。<code>81</code>端口是NPM的后台WebUI界面，我故意映射到了5081端口自用<br>另外就<code>80</code>和<code>443</code>端口很有可能被已有默认服务占用，如果提示占用可用<code>lsof -i:443</code>检查一下</p>
+<h2 id="登录NPM并配置"><a href="#登录NPM并配置" class="headerlink" title="登录NPM并配置"></a>登录NPM并配置</h2><ol>
+<li>通过 服务器IP:5081(刚才设置的端口),可以访问NPM后台管理平台</li>
+</ol>
+<p>默认帐户：<a href="mailto:&#97;&#x64;&#x6d;&#x69;&#110;&#x40;&#101;&#x78;&#x61;&#x6d;&#112;&#108;&#101;&#46;&#99;&#x6f;&#x6d;">&#97;&#x64;&#x6d;&#x69;&#110;&#x40;&#101;&#x78;&#x61;&#x6d;&#112;&#108;&#101;&#46;&#99;&#x6f;&#x6d;</a><br>默认密码：changeme</p>
+<p><img src="http://pictures.winotmk.com/250324-%E8%BD%BB%E6%9D%BE%E6%90%AD%E5%BB%BAnpm%E4%BB%A3%E7%90%86%E5%B9%B6%E6%94%AF%E6%8C%81ssl%E8%AE%BF%E9%97%AE/2025-03-24-17-36-27_87f14963.png" alt="2025-03-24-17-36-27"></p>
+<ol start="2">
+<li>申请SSL证书<br>在 <code>SSL Certificates</code>页面里点<code>Add SSL Certificate</code><br>我选择使用DNS的认证方式，它自带有我买域名的服务商阿里云的相关设置，填入自己账号的key后即可签发<code>*.winotmk.com</code>证书<br>选择DNS还有个好处就是即便NPM服务没用80/443端口也可以完成认证</li>
+</ol>
+<p><img src="http://pictures.winotmk.com/250324-%E8%BD%BB%E6%9D%BE%E6%90%AD%E5%BB%BAnpm%E4%BB%A3%E7%90%86%E5%B9%B6%E6%94%AF%E6%8C%81ssl%E8%AE%BF%E9%97%AE/2025-03-24-17-50-26_cfefce22.png" alt="2025-03-24-17-50-26"></p>
+<ol start="3">
+<li>添加代理规则</li>
+</ol>
+<p>选<code>Proxy Hosts</code>里的<code>Add Proxy Hosts</code><br>在<code>Details</code>里：<br><img src="http://pictures.winotmk.com/250324-%E8%BD%BB%E6%9D%BE%E6%90%AD%E5%BB%BAnpm%E4%BB%A3%E7%90%86%E5%B9%B6%E6%94%AF%E6%8C%81ssl%E8%AE%BF%E9%97%AE/2025-03-24-17-41-55_70c081f0.png" alt="2025-03-24-17-41-55"><br>第一行的<code>Domain Names</code>是最后要访问的域名<br>第二行红框里则是源网站的信息，因为自身不带https所以选<code>http</code>，这个域名本身是我家里的群晖DDNS域名，勾可全选<br>然后在SSL标签页选择刚才申请的证书，下面选项我全选<br><img src="http://pictures.winotmk.com/250324-%E8%BD%BB%E6%9D%BE%E6%90%AD%E5%BB%BAnpm%E4%BB%A3%E7%90%86%E5%B9%B6%E6%94%AF%E6%8C%81ssl%E8%AE%BF%E9%97%AE/2025-03-24-17-53-35_c2560091.png" alt="2025-03-24-17-53-35"></p>
+<p>好了npm的设置就此结束啦</p>
+<p>现在我们还需要将刚才代理的域名设置一下解析</p>
+<h2 id="设置dns解析"><a href="#设置dns解析" class="headerlink" title="设置dns解析"></a>设置dns解析</h2><p>在买域名的地方设置一条A记录<br><img src="http://pictures.winotmk.com/250324-%E8%BD%BB%E6%9D%BE%E6%90%AD%E5%BB%BAnpm%E4%BB%A3%E7%90%86%E5%B9%B6%E6%94%AF%E6%8C%81ssl%E8%AE%BF%E9%97%AE/2025-03-24-18-00-04_1e12f2ea.png" alt="2025-03-24-18-00-04"><br>记录值当然就是我这台ECS服务器的公网IP地址辣,等dns刷新后就能愉快地用上面代理的域名以SSL访问了</p>
+<p>本文部分参考：<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/667156872">https://zhuanlan.zhihu.com/p/667156872</a></p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-12-14T00:00:00+08:00"
-              content="2023-12-14">
-          12-14
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/" itemprop="url">
-            <span itemprop="name">群晖上用容器搭建SVN服务器</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          
 
-      
-    </header>
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>winotmk
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://winotmk.github.io/250324-%E8%BD%BB%E6%9D%BE%E6%90%AD%E5%BB%BAnpm%E4%BB%A3%E7%90%86%E5%B9%B6%E6%94%AF%E6%8C%81ssl%E8%AE%BF%E9%97%AE/" title="轻松搭建npm代理并支持SSL访问">https://winotmk.github.io/250324-轻松搭建npm代理并支持ssl访问/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+  <li class="post-copyright-wintomk">
+    <strong>本站为MD文档托管，如果你想评论或者联系我，欢迎来主站发表：</strong><a target="_blank" rel="noopener" href="https://winotmk.com">winotmk.com</a>
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/proxy/" rel="tag"># proxy</a>
+              <a href="/tags/docker/" rel="tag"># docker</a>
+              <a href="/tags/web/" rel="tag"># web</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/250310-linux%E5%88%A0%E9%99%A4%E7%9B%AE%E5%BD%95%E6%8A%A5%E9%94%99%E6%97%B6%E5%A6%82%E4%BD%95%E5%AE%9A%E4%BD%8D%E5%B7%B2%E5%8D%A0%E7%94%A8%E7%9A%84%E8%BF%9B%E7%A8%8B/" rel="prev" title="linux删除目录报错和端口已占用时如何定位已占用的进程">
+                  <i class="fa fa-chevron-left"></i> linux删除目录报错和端口已占用时如何定位已占用的进程
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-    </div>
-  </div>
-  
-  
-  
+
+
+
+
 
 </div>
   </main>
