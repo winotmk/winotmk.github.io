@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"winotmk.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"right","width":360,"display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="一份 Markdown，两套静态站点生成器，两个发布目的地。我如何把写作、内容存储、构建和发布拆成一条自动化管线。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我的双构建博客管线">
+<meta property="og:url" content="https://winotmk.github.io/261123_%E6%88%91%E7%9A%84%E5%8F%8C%E6%9E%84%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AE%A1%E7%BA%BF/index.html">
+<meta property="og:site_name" content="WinNote">
+<meta property="og:description" content="一份 Markdown，两套静态站点生成器，两个发布目的地。我如何把写作、内容存储、构建和发布拆成一条自动化管线。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://pictures.winotmk.com/winotypo/49ca5e17db17759a7942875210e222d89e0685273debe07f3e99a49011a96147.png">
+<meta property="og:image" content="http://pictures.winotmk.com/winotypo/f320157dd871bbe45e0275799ba890b74f874a0e1753e0ecba266456604dd891.png">
+<meta property="article:published_time" content="2026-11-23T00:06:00.000Z">
+<meta property="article:modified_time" content="2026-11-23T08:42:35.483Z">
+<meta property="article:author" content="winotmk">
+<meta property="article:tag" content="Hugo">
+<meta property="article:tag" content="Winotypo">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="GitHub Actions">
+<meta property="article:tag" content="自动化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://pictures.winotmk.com/winotypo/49ca5e17db17759a7942875210e222d89e0685273debe07f3e99a49011a96147.png">
+
+
+<link rel="canonical" href="https://winotmk.github.io/261123_%E6%88%91%E7%9A%84%E5%8F%8C%E6%9E%84%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AE%A1%E7%BA%BF/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://winotmk.github.io/261123_%E6%88%91%E7%9A%84%E5%8F%8C%E6%9E%84%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AE%A1%E7%BA%BF/","path":"261123_我的双构建博客管线/","title":"我的双构建博客管线"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>我的双构建博客管线 | WinNote</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">WinNote</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">51</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">51</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%9E%84%E5%BB%BA%E4%B8%A4%E6%AC%A1%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">一篇文章，为什么要构建两次？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%9D%A1%E7%AE%A1%E7%BA%BF%E9%95%BF%E4%BB%80%E4%B9%88%E6%A0%B7%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">整条管线长什么样？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E5%B1%82%EF%BC%9A%E7%94%A8-Winotypo-%E5%86%99%E6%96%87%E7%AB%A0"><span class="nav-number">3.</span> <span class="nav-text">第一层：用 Winotypo 写文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%B1%82%EF%BC%9ABlog-Posts-%E6%98%AF%E5%94%AF%E4%B8%80%E7%9A%84%E6%96%87%E7%AB%A0%E6%BA%90"><span class="nav-number">4.</span> <span class="nav-text">第二层：Blog-Posts 是唯一的文章源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%B1%82%EF%BC%9A%E4%B8%80%E4%BB%BD-Markdown%EF%BC%8C%E8%87%AA%E5%8A%A8%E5%88%86%E5%8F%91%E7%BB%99-Hugo-%E5%92%8C-Hexo"><span class="nav-number">5.</span> <span class="nav-text">第三层：一份 Markdown，自动分发给 Hugo 和 Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E5%B1%82%EF%BC%9A%E4%B8%A4%E6%9D%A1%E4%BA%92%E4%B8%8D%E4%BE%9D%E8%B5%96%E7%9A%84%E6%9E%84%E5%BB%BA%E4%B8%8E%E5%8F%91%E5%B8%83%E8%B7%AF%E7%BA%BF"><span class="nav-number">6.</span> <span class="nav-text">第四层：两条互不依赖的构建与发布路线</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hugo%EF%BC%9A%E7%94%9F%E6%88%90%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%EF%BC%8C%E5%A2%9E%E9%87%8F%E5%8F%91%E5%B8%83%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91-OSS"><span class="nav-number">6.1.</span> <span class="nav-text">Hugo：生成静态文件，增量发布到阿里云 OSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo%EF%BC%9A%E6%9E%84%E5%BB%BA%E5%8F%A6%E4%B8%80%E5%A5%97%E7%BD%91%E7%AB%99%EF%BC%8C%E5%8F%91%E5%B8%83%E5%88%B0-GitHub-Pages"><span class="nav-number">6.2.</span> <span class="nav-text">Hexo：构建另一套网站，发布到 GitHub Pages</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8D%95%E7%8B%AC%E6%94%BE%EF%BC%9F"><span class="nav-number">7.</span> <span class="nav-text">图片为什么单独放？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%99%E5%A5%97%E6%9E%B6%E6%9E%84%E8%AE%A9%E6%88%91%E5%BE%97%E5%88%B0%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">8.</span> <span class="nav-text">这套架构让我得到什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%98%E6%9C%89%E5%93%AA%E4%BA%9B%E5%9C%B0%E6%96%B9%E6%B2%A1%E5%81%9A%E5%AE%8C%EF%BC%9F"><span class="nav-number">9.</span> <span class="nav-text">还有哪些地方没做完？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="nav-number">10.</span> <span class="nav-text">写在最后</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="winotmk"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">winotmk</p>
+  <div class="site-description" itemprop="description">零碎MD文档收集 | 生命在于折腾</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://winotmk.com/" title="https:&#x2F;&#x2F;winotmk.com" rel="noopener" target="_blank">正式站winotmk.com</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+
+      
+          <div class="links-of-blogroll" style="margin-top:20px; border-style:dotted none none none; padding-top:5px; text-align:left;padding-left: 20px; padding-right: 10px; padding-bottom: 5px;">
+            <div class="links-of-blogroll-title" style="padding-bottom: 5px; padding-top: 5px; padding-left: 0px; padding-right: 20px; font-size: 1.6em; argin-right: 5px;">
+          <!-- 选择合适的icon --><i class="fab fa-markdown" aria-hidden="true"></i>
+              <b style="font-size: 0.65em; padding-left: 8px; position: relative; top: -2px;">全站文章列表</b>
+            </div>
+            <ul class="links-of-blogroll-list">
+          <!-- 文章排序规格,-updated 按照文章更新时间倒排 -->
+              
+          <!-- 显示postnumb设置数目的文章 -->
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E7%BE%A4%E6%99%96%E4%B8%8A%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="群晖上用容器搭建SVN服务器" target="_blank">群晖上用容器搭建SVN服务器</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/250320-%E5%9C%A8%E7%BA%BF%E4%BD%8D%E5%9B%BE%E8%BD%ACsvg%E5%B7%A5%E5%85%B7/" title="在线位图转SVG工具" target="_blank">在线位图转SVG工具</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/250324-%E8%BD%BB%E6%9D%BE%E6%90%AD%E5%BB%BAnpm%E4%BB%A3%E7%90%86%E5%B9%B6%E6%94%AF%E6%8C%81ssl%E8%AE%BF%E9%97%AE/" title="轻松搭建npm代理并支持SSL访问" target="_blank">轻松搭建npm代理并支持SSL访问</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/250430-%E5%BC%80%E6%BA%90%E6%9B%BF%E4%BB%A3%E4%BB%98%E8%B4%B9flomo%E7%9A%84%E6%9C%80%E4%BD%B3%E9%80%89%E6%8B%A9/" title="开源替代付费Flomo的最佳选择" target="_blank">开源替代付费Flomo的最佳选择</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/260301_%E5%8D%9A%E5%AE%A2%E5%86%85%E5%AE%B9%E6%80%BB%E7%BB%93/" title="博客内容大杂烩——一个技术宅的折腾记录" target="_blank">博客内容大杂烩——一个技术宅的折腾记录</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/261123_%E4%B8%80%E4%BA%9BAI%E5%B7%A5%E5%85%B7%E5%92%8C%E6%B8%B8%E6%88%8Fdemo/" title="一些AI工具和游戏demo" target="_blank">一些AI工具和游戏demo</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/261123_%E6%88%91%E7%9A%84%E5%8F%8C%E6%9E%84%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AE%A1%E7%BA%BF/" title="我的双构建博客管线" target="_blank">我的双构建博客管线</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/ArchLinux%E5%91%BD%E4%BB%A4/" title="ArchLinux命令集" target="_blank">ArchLinux命令集</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/Docker01.1_%E4%BB%B7%E6%A0%BC%E8%AE%A1%E7%AE%97%E8%A1%A8/" title="Docker01.1_eci价格计算表" target="_blank">Docker01.1_eci价格计算表</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/Docker01/" title="Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行" target="_blank">Docker01_用docker构建hexo和vsftpd与ddns镜像并且用阿里云容器服务ECI运行</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/Linux%E6%9D%83%E9%99%90/" title="linux文件和目录权限" target="_blank">linux文件和目录权限</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/MC/" title="SourceCraft服务器" target="_blank">SourceCraft服务器</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/Maya_MASH/" title="MayaMASH动力学做链子" target="_blank">MayaMASH动力学做链子</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/WinNote/" title="WinNote" target="_blank">WinNote</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/bat/" title="批处理实现批量改名以及SVN批量改名" target="_blank">批处理实现批量改名以及SVN批量改名</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/hexo+github/" title="hexo+github" target="_blank">hexo+github</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/next%E4%B8%BB%E9%A2%98%E5%A2%9E%E5%8A%A0%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0%E4%BE%A7%E8%BE%B9%E6%A0%8F/" title="next主题增加近期文章侧边栏" target="_blank">next主题增加近期文章侧边栏</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E5%AE%89%E8%A3%85Arch/" title="安装ArchLinux系统（详细过程）" target="_blank">安装ArchLinux系统（详细过程）</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E6%A0%91%E8%8E%93%E6%B4%BETimeMachine/" title="树莓派上架设TimeMachine服务" target="_blank">树莓派上架设TimeMachine服务</a>
+                </li>
+              
+                <li class="postsSidebarNumb" style="text-indent: -1em;">
+                  <a href="/%E6%A0%91%E8%8E%93%E6%B4%BE%E8%B7%AF%E7%94%B1%E5%99%A8/" title="树莓派路由器" target="_blank">树莓派路由器</a>
+                </li>
+              
+            </ul>
+          </div>
+      
+
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://winotmk.github.io/261123_%E6%88%91%E7%9A%84%E5%8F%8C%E6%9E%84%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AE%A1%E7%BA%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="winotmk">
+      <meta itemprop="description" content="零碎MD文档收集 | 生命在于折腾">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WinNote">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          我的双构建博客管线
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-11-23 08:06:00 / 修改时间：16:42:35" itemprop="dateCreated datePublished" datetime="2026-11-23T08:06:00+08:00">2026-11-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">一份 Markdown，两套静态站点生成器，两个发布目的地。我如何把写作、内容存储、构建和发布拆成一条自动化管线。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img src="http://pictures.winotmk.com/winotypo/49ca5e17db17759a7942875210e222d89e0685273debe07f3e99a49011a96147.png" alt="1.00"></p>
+<p>写博客这件事，表面上不过是打开编辑器、写一篇 Markdown，再把页面传到服务器。但我折腾了一圈之后，发现自己花在**“怎么把文章发布出去”**上的时间，可能比写文章还多。</p>
+<p>从最初在 VS Code 里写文、借助插件管理 Front Matter，到把文章同步到云服务器、执行部署脚本，我的博客经历过好几次改造。最近，我又给自己开发了一款专门的写作工具 <strong>Winotypo</strong>，把文章编辑、属性管理和 Git 推送放进了同一个界面。</p>
+<p>而在 Winotypo 后面，我还保留着两套不同的博客：一套使用 <strong>Hugo</strong>，发布到阿里云 OSS；另一套使用 <strong>Hexo</strong>，发布到 GitHub Pages。</p>
+<p>我给这整套流程起了个名字：<strong>双构建博客管线（Dual-Build Blog Pipeline）</strong>。</p>
+<p>它听上去有点像在为个人博客过度设计，但对我来说，折腾这套系统本身也是写技术博客的一部分。</p>
+<h2 id="一篇文章，为什么要构建两次？"><a href="#一篇文章，为什么要构建两次？" class="headerlink" title="一篇文章，为什么要构建两次？"></a>一篇文章，为什么要构建两次？</h2><p>现在我的两个博客入口分别是：</p>
+<ul>
+<li><strong>Hugo</strong>：<a target="_blank" rel="noopener" href="https://md.winotmk.com/">https://md.winotmk.com/</a></li>
+<li><strong>Hexo</strong>：<a href="https://winotmk.github.io/">https://winotmk.github.io/</a></li>
+</ul>
+<p>它们的主题、生成器和部署目标并不相同，但文章内容来自同一个地方。</p>
+<p>我不希望维护两份 Markdown，也不想为了两个网站分别登录后台、复制粘贴内容。对我来说，理想状态应该是：<strong>文章只写一次；至于最后生成几套网站，由发布系统自己处理。</strong></p>
+<p>这里最关键的设计，并不是同时使用 Hugo 和 Hexo，而是把<strong>内容源</strong>和<strong>网站实现</strong>分开。将来哪怕我换掉其中一个生成器，原始文章也不需要跟着搬家。</p>
+<span id="more"></span>
+
+<h2 id="整条管线长什么样？"><a href="#整条管线长什么样？" class="headerlink" title="整条管线长什么样？"></a>整条管线长什么样？</h2><p>现在的主要流程可以画成这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">                   Winotypo</span><br><span class="line">            写作 / 预览 / Front Matter</span><br><span class="line">                     │</span><br><span class="line">                 Git Push</span><br><span class="line">                     ▼</span><br><span class="line">          GitHub：winotmk/Blog-Posts</span><br><span class="line">              唯一的 Markdown 内容源</span><br><span class="line">                     │</span><br><span class="line">           提交信息包含 [D] 时</span><br><span class="line">                     ▼</span><br><span class="line">             GitHub Actions</span><br><span class="line">         sync-deploy.yml 同步文章</span><br><span class="line">                ┌────┴────┐</span><br><span class="line">                │         │</span><br><span class="line">                ▼         ▼</span><br><span class="line">        Hugo-Blog       Hexo-Blog</span><br><span class="line">       content/posts   source/_posts</span><br><span class="line">                │         │</span><br><span class="line">         Hugo 构建      Hexo 构建</span><br><span class="line">                │         │</span><br><span class="line">          Rclone 部署   Pages 部署</span><br><span class="line">                │         │</span><br><span class="line">                ▼         ▼</span><br><span class="line">          阿里云 OSS    GitHub Pages</span><br><span class="line">                │         │</span><br><span class="line">                ▼         ▼</span><br><span class="line">       md.winotmk.com  winotmk.github.io</span><br><span class="line"></span><br><span class="line">独立图床 pictures.winotmk.com 为文章提供图片资源</span><br></pre></td></tr></table></figure>
+
+<p>我把它大致拆成了四层：<strong>写作工具、内容仓库、分发构建、静态托管</strong>。每层只负责自己的事。</p>
+<h2 id="第一层：用-Winotypo-写文章"><a href="#第一层：用-Winotypo-写文章" class="headerlink" title="第一层：用 Winotypo 写文章"></a>第一层：用 Winotypo 写文章</h2><p><img src="http://pictures.winotmk.com/winotypo/f320157dd871bbe45e0275799ba890b74f874a0e1753e0ecba266456604dd891.png" alt="1.00"></p>
+<p>以前，我主要使用 VS Code 写 Markdown，配合 Front Matter CMS 管理文章的日期、分类和标签。这套组合已经足够好用，但日常写博客时，我还是希望操作更集中一点。</p>
+<p>于是有了 <strong>Winotypo</strong>。</p>
+<p>在同一个界面里，我可以浏览文章列表、编辑和预览 Markdown、设置标题图、分类、标签与发布日期，也能查看文章的同步状态和已发布链接。写完以后直接推送到 Git 仓库，不必再来回切换编辑器、Git 客户端和网页。</p>
+<p>不过，Winotypo 并不是整套系统的“内容数据库”。<strong>真正的文章仍然是一份份普通的 Markdown 文件。</strong></p>
+<p>这一点我很看重：如果某天不再使用 Winotypo，我仍然能用 VS Code、Obsidian 或任何文本编辑器打开它们。工具可以换，内容不应该被锁在工具里。</p>
+<h2 id="第二层：Blog-Posts-是唯一的文章源"><a href="#第二层：Blog-Posts-是唯一的文章源" class="headerlink" title="第二层：Blog-Posts 是唯一的文章源"></a>第二层：Blog-Posts 是唯一的文章源</h2><p>所有文章统一保存在：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/winotmk/Blog-Posts">https://github.com/winotmk/Blog-Posts</a></p>
+<p>主要内容位于仓库的 <code>posts/</code> 目录。我在这里维护文章，而不是直接去修改 Hugo 的 <code>content/posts/</code> 或 Hexo 的 <code>source/_posts/</code>。</p>
+<p>这个仓库实际上承担了一个轻量级内容管理后端的角色：Git 负责记录历史版本，GitHub 负责保存和分发；至于如何把 Markdown 变成网页，则由下游仓库决定。</p>
+<p>不过，我也不希望每次随手提交都立刻发布。所以目前的同步工作流带有一个小开关：<strong>提交信息中包含 <code>[D]</code>，才执行文章分发</strong>。</p>
+<p>对应的触发条件大致是：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">main</span></span><br><span class="line"></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">sync-posts:</span></span><br><span class="line">    <span class="attr">if:</span> <span class="string">contains(github.event.head_commit.message,</span> <span class="string">&#x27;[D]&#x27;</span><span class="string">)</span></span><br></pre></td></tr></table></figure>
+
+<p>这样，“保存到 GitHub”和“正式启动发布”就可以分开控制。</p>
+<h2 id="第三层：一份-Markdown，自动分发给-Hugo-和-Hexo"><a href="#第三层：一份-Markdown，自动分发给-Hugo-和-Hexo" class="headerlink" title="第三层：一份 Markdown，自动分发给 Hugo 和 Hexo"></a>第三层：一份 Markdown，自动分发给 Hugo 和 Hexo</h2><p>触发后，<code>Blog-Posts</code> 的 GitHub Actions 会拉取两个目标仓库，并分别把文章同步到：</p>
+<ul>
+<li><code>Hugo-Blog/content/posts/</code></li>
+<li><code>Hexo-Blog/source/_posts/</code></li>
+</ul>
+<p>同步使用的是 <code>rsync</code>，其中 <code>--checksum</code> 用来按内容比较变化，<code>--delete</code> 用来处理已经从文章源中删除的 Markdown。同步范围限定为 <code>.md</code> 文件。</p>
+<p>这意味着新增、修改、删除文章，都可以从 <code>Blog-Posts</code> 这个入口向下游传递，而不是每次人工维护两份目录。</p>
+<p>如果某个目标仓库确实发生变化，工作流就会自动提交并推送它。新的 Push 又会触发那个博客仓库自己的部署 Action。</p>
+<p>因此，这里实际上有<strong>两级自动化</strong>：</p>
+<ol>
+<li><code>Blog-Posts</code> 负责把内容分发到不同的构建仓库。</li>
+<li>各博客仓库负责把内容变成静态网站，再部署到自己的托管平台。</li>
+</ol>
+<p>这两级之间靠 Git 提交衔接，不需要我长期维护一台负责发布的云服务器。</p>
+<h2 id="第四层：两条互不依赖的构建与发布路线"><a href="#第四层：两条互不依赖的构建与发布路线" class="headerlink" title="第四层：两条互不依赖的构建与发布路线"></a>第四层：两条互不依赖的构建与发布路线</h2><h3 id="Hugo：生成静态文件，增量发布到阿里云-OSS"><a href="#Hugo：生成静态文件，增量发布到阿里云-OSS" class="headerlink" title="Hugo：生成静态文件，增量发布到阿里云 OSS"></a>Hugo：生成静态文件，增量发布到阿里云 OSS</h3><p>Hugo 仓库位于：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/winotmk/Hugo-Blog">https://github.com/winotmk/Hugo-Blog</a></p>
+<p>收到新的文章提交之后，Action 安装指定版本的 Hugo，拉取主题子模块，然后执行构建。当前的构建命令是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hugo --minify -D --destination <span class="string">&quot;<span class="variable">$RUNNER_TEMP</span>/hugo-public&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>生成后的 HTML、CSS、索引页等文件会放到 Runner 的临时目录，再发布到 OSS Bucket <code>winhugoblog</code>，供 <code>md.winotmk.com</code> 访问。</p>
+<p>我最近还专门优化了这部分。之前使用 <code>ossutil cp -rf</code>，每次部署都会重复上传大量没有变化的文件。有一次日志里，<strong>Hugo 构建只用了约 0.57 秒，而 OSS 上传用了约 81 秒</strong>。瓶颈根本不在生成页面，而在发布方式。</p>
+<p>现在这一侧改用了 <strong>Rclone 配合部署脚本</strong>：先比较本地构建文件和 OSS 对象的大小、MD5 等信息，再结合部署清单决定哪些文件需要上传、哪些旧页面需要清理。这样既能减少重复传输，也不会盲目删除整个 Bucket 中不属于本次部署清单的对象。</p>
+<p>对于总量不算大的静态博客，这种优化已经很实用。</p>
+<h3 id="Hexo：构建另一套网站，发布到-GitHub-Pages"><a href="#Hexo：构建另一套网站，发布到-GitHub-Pages" class="headerlink" title="Hexo：构建另一套网站，发布到 GitHub Pages"></a>Hexo：构建另一套网站，发布到 GitHub Pages</h3><p>Hexo 仓库位于：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/winotmk/Hexo-Blog">https://github.com/winotmk/Hexo-Blog</a></p>
+<p>它收到新的文章提交后，使用 Node.js 环境安装依赖，运行 <code>hexo generate</code> 生成静态站点，再通过 GitHub Actions 将构建结果推送到 <code>winotmk/winotmk.github.io</code> 仓库的 <code>hexo-new-deploy</code> 分支，由 GitHub Pages 提供访问。</p>
+<p>于是，同一篇 Markdown 就有了第二种展示方式，以及一套不同的托管环境。</p>
+<p>这里所谓的“双构建”，不是构建同一个 Hugo 网站两遍，而是让<strong>两种独立的静态站点生成器分别消费同一份内容</strong>。</p>
+<h2 id="图片为什么单独放？"><a href="#图片为什么单独放？" class="headerlink" title="图片为什么单独放？"></a>图片为什么单独放？</h2><p>我的文章经常会包含截图、示意图和其他图片资源。现在我把图片统一放在独立图床 <code>pictures.winotmk.com</code>，Markdown 里只保留图片链接。</p>
+<p>这样一来，文章仓库主要保存文本，两个网站构建时也不需要反复复制同一批大图。图片资源与网页发布彼此独立，迁移或重建网站时会轻松不少。</p>
+<p>当然，这也意味着图床变成了两套网站共同依赖的基础设施。以后如果要做完整备份，除了 Markdown 和网站代码，还必须记得备份图床。</p>
+<h2 id="这套架构让我得到什么？"><a href="#这套架构让我得到什么？" class="headerlink" title="这套架构让我得到什么？"></a>这套架构让我得到什么？</h2><p>回头看，这套流程最有价值的并不是节省了多少秒的点击操作，而是几个边界终于变得清晰：</p>
+<p><strong>文章只维护一份。</strong> <code>Blog-Posts</code> 是唯一的内容源，不再担心 Hugo 和 Hexo 的文章版本不一致。</p>
+<p><strong>写作不依赖构建器。</strong> Winotypo 只需产出符合约定的 Markdown 和 Front Matter，不必知道 Hugo、Hexo 具体如何渲染。</p>
+<p><strong>两个网站可以独立演进。</strong> 我可以在 Hugo 上调整主题或部署方式，而不需要修改 Hexo 的配置，更不需要修改文章源。</p>
+<p><strong>Git 提供了天然的版本记录。</strong> 什么时候修改了文章、修改了什么、能不能回退，都有清晰的历史。</p>
+<p><strong>发布流程不再绑在自己的云服务器上。</strong> GitHub Actions 完成分发和构建，静态文件交给 OSS 与 GitHub Pages 托管。</p>
+<p>用软件架构里的说法，这有点像一个以 Git 为存储层的轻量级 Headless CMS：前面是专用写作客户端，中间是内容仓库，后面接两套彼此独立的渲染和发布系统。</p>
+<p>当然，它并不是传统意义上提供管理后台和 API 的完整 CMS；我只是借鉴了<strong>内容与表现分离</strong>的思路。</p>
+<h2 id="还有哪些地方没做完？"><a href="#还有哪些地方没做完？" class="headerlink" title="还有哪些地方没做完？"></a>还有哪些地方没做完？</h2><p>目前这套系统已经可以日常使用，但我并不认为它没有问题。</p>
+<p>首先，<strong>“已同步”不等于“已发布”</strong>。Winotypo 把文章推送到 GitHub，只能说明源仓库更新了。后面还有分发、Hugo 构建、OSS 上传、Hexo 构建和 Pages 发布等环节。任何一步失败，都可能出现 Git 里有新文章、网站上却看不到的情况。</p>
+<p>我希望以后能在 Winotypo 里直接看到两条发布链的状态：文章已提交、已分发、Hugo 部署成功、Hexo 部署成功。如果失败，也能看到对应的 Actions 运行记录，而不是再到几个仓库里逐一排查。</p>
+<p>其次，<strong>两种生成器对文章元数据的理解不一定完全相同</strong>。日期和时区、草稿、未来文章、摘要、永久链接等，都需要明确约定。之前我就遇到过 Hugo 因为时区解释问题，把一篇刚写好的文章当成“未来文章”而没有生成。现在 Hugo 已经设置了 <code>Asia/Shanghai</code>，但双端发布规则仍然值得继续统一。</p>
+<p>最后，当前文章分发工作流还是依次推送 Hugo 和 Hexo。未来如果想进一步提高容错性，可以将两条下游同步拆成独立任务：一边出问题，不影响另一边继续发布。</p>
+<p>这些都属于下一阶段的完善，而不是为了技术而技术地继续增加复杂度。</p>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>从 VS Code、Front Matter CMS，到今天的 Winotypo；从云服务器上的脚本，到 GitHub Actions 自动分发；从每次全量上传，到只处理真正变化的静态文件，我的博客发布流程已经不知不觉变成了一套小型系统。</p>
+<p>有人可能觉得，写个博客而已，为什么要搞得这么复杂？</p>
+<p>对我来说，答案其实很简单：<strong>一方面，我希望日常写文章足够省心；另一方面，我也确实喜欢研究这些工具究竟该怎样组合起来。</strong></p>
+<p>现在，我只需要在 Winotypo 里写完文章，决定发布，然后把剩下的事交给 Git 和自动化管线。</p>
+<p>文章只有一份，网站可以有两套，甚至未来可以有更多套。最重要的是，<strong>写作属于写作，构建属于构建，发布属于发布。</strong></p>
+<p>这就是我的“双构建博客管线”。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>winotmk
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://winotmk.github.io/261123_%E6%88%91%E7%9A%84%E5%8F%8C%E6%9E%84%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AE%A1%E7%BA%BF/" title="我的双构建博客管线">https://winotmk.github.io/261123_我的双构建博客管线/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+  <li class="post-copyright-wintomk">
+    <strong>本站为MD文档托管，如果你想评论或者联系我，欢迎来主站发表：</strong><a target="_blank" rel="noopener" href="https://winotmk.com">winotmk.com</a>
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Hugo/" rel="tag"># Hugo</a>
+              <a href="/tags/Winotypo/" rel="tag"># Winotypo</a>
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/tags/GitHub-Actions/" rel="tag"># GitHub Actions</a>
+              <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/" rel="tag"># 自动化</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/260301_%E5%8D%9A%E5%AE%A2%E5%86%85%E5%AE%B9%E6%80%BB%E7%BB%93/" rel="prev" title="博客内容大杂烩——一个技术宅的折腾记录">
+                  <i class="fa fa-chevron-left"></i> 博客内容大杂烩——一个技术宅的折腾记录
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/261123_%E4%B8%80%E4%BA%9BAI%E5%B7%A5%E5%85%B7%E5%92%8C%E6%B8%B8%E6%88%8Fdemo/" rel="next" title="一些AI工具和游戏demo">
+                  一些AI工具和游戏demo <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">winotmk</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
